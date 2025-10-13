@@ -1,0 +1,87 @@
+/*   */
+
+/*  AQUI ESTÁ O ESTILO GERAL DA SITE */
+
+*{ /* Reset do css,estilo geral  */
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-variation-settings:"wdth" 100; 
+}
+
+/* pseudoclase para chamar as cores sem precisar usar o codigo */
+:root{
+    --CorTextoBTN: #F6F8D5;
+    --CortextoPadrao: #000000;
+    --CorTextoElementos: #6FFED1;
+    --CorFundoTotal: #E6E0D4;
+    --CorFundoElementos: #F24455;
+    --CorFundoElementos2: #660F24;
+}
+
+body{
+    background-color: var(--CorFundoTotal);
+    height: 100vh; /*altura padrão*/
+}
+
+.interface{/*aqui vai o limite das laterais do site*/
+    max-width: 1280px ; /*largura máxima*/
+    margin: 0 auto; /*centralizar a interface*/
+
+} 
+
+.flex{ /*para colocar o div selecionada dentro do display flex, componestes um ao lado do outro*/
+    display: flex;;
+}
+
+  /* estilo do cabeçario  */
+
+header{
+    padding: 40px 4%; /*espaçamento em cima e embaixo - 4% esquerda e direita*/
+}
+
+/* Aqui vou colocar os botões ao lado do outro usando display FLEX chamando expecificamente a calsse dentro do header  */
+
+header > .interface{
+    display: flex; /*coloca os elementos em linha*/
+    align-items: center; /*alinhamento vertical*/
+    justify-content: space-between; /*espaçamento entre os elementos*/  
+}
+
+header nav div{ 
+    display: inline-block;  /* Deixando os botões um ao lado do outro */
+    padding: 0 10px;
+}
+
+header .menu-web button{
+  padding: 5px 15px;  /* arrumar espaçamento dentro dele */
+  font-size: 13px;/* Arrumar fonte interna */
+  font-weight: 500;
+  background-color: var(--CorFundoElementos);
+  border: 0;  /*tira as bordas padrão */
+  border-radius: 25px; /*bordas arredondadas*/
+  cursor: pointer; /*faz o cursor virar uma mãozinha*/
+}
+
+header .menu-web button:hover{ /*quando o usuario passar o mouse, algo acontecerá*/
+    box-shadow: 0px 0px 8px #c93030; /*aqui a cor que aparecerá ao aproximar o mouse com a dimensão que essa cor chegará*/
+    transform: scale(1.05); /*aqui é uma propriedade que da zoom quando o mouse passar pelo elemento*/
+}
+
+/* Estilo do topo do site */
+
+section.topo-Site{
+    padding: 40px 4%; /*configuração padrão para não ficar colado nas laterais quando a tela diminuir*/
+
+}
+
+section.topo-Site.flex{
+    align-items: center;
+    justify-content: center;
+}
+
