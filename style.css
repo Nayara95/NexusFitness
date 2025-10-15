@@ -1,87 +1,284 @@
-/*   */
-
-/*  AQUI ESTÁ O ESTILO GERAL DA SITE */
-
-*{ /* Reset do css,estilo geral  */
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-
-  font-family: "Open Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: weight;
-  font-style: normal;
-  font-variation-settings:"wdth" 100; 
-}
-
-/* pseudoclase para chamar as cores sem precisar usar o codigo */
-:root{
-    --CorTextoBTN: #F6F8D5;
+/* ======== VARIÁVEIS DE COR ======== */
+:root {
+    --CorTextoBTN: #ffffff;
     --CortextoPadrao: #000000;
     --CorTextoElementos: #6FFED1;
-    --CorFundoTotal: #E6E0D4;
-    --CorFundoElementos: #F24455;
-    --CorFundoElementos2: #660F24;
+    --CorFundoTotal: #ffffff;
+    --CorFundoElementos: #660F24;
+    --CorFundoElementos2: #F24455;
 }
 
-body{
+/* ======== ESTILO GLOBAL ======== */
+body {
+    font-family: 'Poppins', sans-serif;
     background-color: var(--CorFundoTotal);
-    height: 100vh; /*altura padrão*/
+    margin: 0;
+    color: var(--CortextoPadrao);
 }
 
-.interface{/*aqui vai o limite das laterais do site*/
-    max-width: 1280px ; /*largura máxima*/
-    margin: 0 auto; /*centralizar a interface*/
-
-} 
-
-.flex{ /*para colocar o div selecionada dentro do display flex, componestes um ao lado do outro*/
-    display: flex;;
-}
-
-  /* estilo do cabeçario  */
-
-header{
-    padding: 40px 4%; /*espaçamento em cima e embaixo - 4% esquerda e direita*/
-}
-
-/* Aqui vou colocar os botões ao lado do outro usando display FLEX chamando expecificamente a calsse dentro do header  */
-
-header > .interface{
-    display: flex; /*coloca os elementos em linha*/
-    align-items: center; /*alinhamento vertical*/
-    justify-content: space-between; /*espaçamento entre os elementos*/  
-}
-
-header nav div{ 
-    display: inline-block;  /* Deixando os botões um ao lado do outro */
-    padding: 0 10px;
-}
-
-header .menu-web button{
-  padding: 5px 15px;  /* arrumar espaçamento dentro dele */
-  font-size: 13px;/* Arrumar fonte interna */
-  font-weight: 500;
-  background-color: var(--CorFundoElementos);
-  border: 0;  /*tira as bordas padrão */
-  border-radius: 25px; /*bordas arredondadas*/
-  cursor: pointer; /*faz o cursor virar uma mãozinha*/
-}
-
-header .menu-web button:hover{ /*quando o usuario passar o mouse, algo acontecerá*/
-    box-shadow: 0px 0px 8px #c93030; /*aqui a cor que aparecerá ao aproximar o mouse com a dimensão que essa cor chegará*/
-    transform: scale(1.05); /*aqui é uma propriedade que da zoom quando o mouse passar pelo elemento*/
-}
-
-/* Estilo do topo do site */
-
-section.topo-Site{
-    padding: 40px 4%; /*configuração padrão para não ficar colado nas laterais quando a tela diminuir*/
-
-}
-
-section.topo-Site.flex{
+/* ======== CABEÇALHO ======== */
+header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 15px 50px;
+    color: var(--CorTextoBTN);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 100px;
+}
+
+/* Botões do cabeçalho */
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ======== DROPDOWN ======== */
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background-color: var(--CorFundoElementos2);
+    color: var(--CorTextoBTN);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--CorFundoTotal);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: var(--CortextoPadrao);
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--CorFundoElementos);
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* ======== SEÇÕES PRINCIPAIS ======== */
+main {
+    padding: 40px 80px;
+}
+
+.intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.intro-text {
+    max-width: 500px;
+}
+
+.btn-principal {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* ======== LOGIN PAGE ======== */
+.login-container {
+    display: flex;
+    width: 800px;
+    height: 450px;
+    margin: 80px auto;
+    background-color: var(--CorFundoTotal);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* LADO ESQUERDO */
+.login-left {
+    flex: 1;
+    background-color: #E6E0D4;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
+.login-left h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login-left label {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-left input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+}
+
+/* Botões de login */
+.login-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-acessar,
+.btn-redefinir {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+    font-size: 14px;
+}
+
+.btn-acessar {
+    background-color: var(--CorFundoElementos2);
+    color: var(--CorTextoBTN);
+}
+
+.btn-redefinir {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+}
+
+/* LADO DIREITO */
+.login-right {
+    flex: 1;
+    background-color: var(--CorFundoElementos2);
+    color: var(--CorTextoBTN);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.logo-login {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+.login-right h3 {
+    font-size: 20px;
+    margin: 10px 0 30px 0;
+    letter-spacing: 2px;
+}
+
+.login-right p {
+    margin-bottom: 20px;
+}
+
+.btn-cadastrar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* ======== RODAPÉ ======== */
+footer {
+    background-color: var(--CorFundoElementos2);
+    position: relative;
+    color: var(--CorTextoBTN);
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    border-radius: 60px 60px 0 0;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.footer-img img {
+    width: 30px; 
+    height: auto;
+}
+
+.footer-links a {
+    color: var(--CorTextoBTN);
+    text-decoration: none;
+    margin: 5px 10px;
+}
+
+.img-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ======== MEDIA QUERIES ======== */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .login-container {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin: 40px auto;
+    }
+
+    .login-left, .login-right {
+        padding: 30px;
+        width: auto;
+    }
+    
+    main {
+        padding: 20px;
+    }
+    
+    header {
+        padding: 15px 20px;
+    }
+}
