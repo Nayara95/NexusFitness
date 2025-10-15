@@ -14,6 +14,9 @@ body {
     background-color: var(--CorFundoTotal);
     margin: 0;
     color: var(--CortextoPadrao);
+    display: flex; /*fixar rodape e elementos do body*/
+    flex-direction: column; /*orientação do body em coluna*/
+    min-height: 100vh; /*tamanho minimo*/
 }
 
 /* ======== CABEÇALHO ======== */
@@ -222,25 +225,16 @@ main {
 /* ======== RODAPÉ ======== */
 footer {
     background-color: var(--CorFundoElementos2);
-    position: relative;
     color: var(--CorTextoBTN);
+    margin-top: auto;
     text-align: center;
     padding: 40px 20px;
-    margin-top: 60px;
-    border-radius: 60px 60px 0 0;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-bottom: 15px;
-    box-sizing: border-box;
+   
 }
 
 .footer-img img {
     width: 30px; 
-    height: auto;
+    
 }
 
 .footer-links a {
@@ -248,6 +242,7 @@ footer {
     text-decoration: none;
     margin: 5px 10px;
 }
+
 
 .img-banner img {
     width: 100%;
