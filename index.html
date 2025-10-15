@@ -1,92 +1,74 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- FONTES -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <!--FIM FONTES -->
-
-    <link rel="stylesheet" href="style.css">
     <title>Nexus Fitness</title>
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
-<body> <!--  -->
+<body>
+    <!-- ======== CABEÇALHO/HEADER ======== -->
     <header>
-        <div class="interface">
-            <div class="logo">
-                <a href="#">
-                    <img src="imagens/nexus.png" alt="Logo do site Nexus Fitness">
-                </a>
-            </div><!--Fecha logo-->
+        <div class="logo">
+            <img src="imagens/nexus.png" alt="Logo Nexus Fitness">
+        </div>
 
-            <nav class="menu-web">
-               <div class="btn-comeca">
-                    <a href="#">
-                         <button>Começar</button>
-                    </a>
-               </div><!--Fim btn comrçar  -->
+        <div class="header-buttons">
 
-               <div class="btn-cliente">
-                    <a href="#">
-                         <button>Cliente</button>
-                    </a>
-               </div><!--Fim btn cliente  -->
-
-                 <div class="btn-menu">
-                    <a href="#">
-                         <button>Menu</button>
-                    </a>
-               </div><!--Fim btn cliente  -->
-
-
-
-            </nav>
-
-        </div><!--Fecha interface-->
-
-
+            <!-- Menu dropdown (login) -->
+            <div class="dropdown">
+                <button class="dropbtn">Minha Conta▾</button>
+                <div class="dropdown-content">
+                    <a href="login.html">Login</a>
+                </div>
+            </div>
+        </div>
     </header>
 
+    <!-- ======== SEÇÃO PRINCIPAL BODY/MAIN ======== -->
     <main>
-        <section class="topo-Site">
-            <div class="interface">
-                <div class="flex">
-                    <div class="txt-Topo-Site">
+        <section class="intro">
+            <div class="intro-text">
+                <h1>Um ponto de conexão inabalável!</h1>
+                <p>Um pioneirismo que alia força e inovação. Aqui, sua evolução é o nosso combustível diário!</p>
+                <button class="btn-principal">Saiba mais</button>
+            </div>
+            <div class="img-banner">
+                <img src="imagens/banner1.png" alt="Tecnologia Fitness">
+            </div>
+        </section>
 
-                        <h1> Um ponto de conexão inabalável!</h1>
-                        <p> "Um pLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-
-                        <div class="btn-saiba-mais">
-                            <a href="#">
-                                <button>Saiba mais</button>
-                            </a>
-                        </div><!--Fim btn saiba mais  -->
-
-                    </div><!--Final div txt Topo-->
-
-                    <div class="img-topo-site">
-                        <img src="imagens/ImgInicial.png" alt="">
-
-                    </div><!--Final div img-Topo-->
+        <section class="intro">
+            <div class="img-banner">
+                <img src="imagens/banner2.PNG" alt="Tecnologia Fitness">
+            </div>
+            <div class="intro-text">
+                <h1>Tecnologia de ponta e alto alcance</h1>
                 
-                </div><!--Final div flex-->
-            </div> <!--Fim div Interfase  -->
-        </section><!--Final sessão Topo site-->
+                <button class="btn-principal">Faça já seu orçamento</button>
+            </div>
+            
+        </section>
+
     </main>
 
-
-
-
-
-
-
-
-
+    <!-- ======== RODAPÉ/FOOTER ======== -->
+    <footer>
+        <div class="footer-links">
+            
+                <a href="#">Sobre</a>
+                <a href="#">Planos</a>
+                <a href="#">Contato</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Privacidade</a>
+        </div>
+            
+    <!-- ======== Redes Sociais ======== -->
+            <div class="footer-img">
+                <a href="#"><img src="imagens/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="imagens/instagram.png" alt="Instagram"></a>
+            </div>
+        <p>© 2025 Nexus Fitness — Todos os direitos reservados.</p>
+    </footer>
 </body>
-
 </html>
