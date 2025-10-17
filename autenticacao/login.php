@@ -12,7 +12,7 @@ $usuarios = [
     'prof@nexus.com' => [
         'senha' => 'prof123',
         'tipo' => 'professor',
-        'pagina' => '../professor/index-professor.html' // Assumindo que esta página exista
+        'pagina' => '../professor/index-professor.php' // Assumindo que esta página exista
     ]
 ];
 // --------------------
