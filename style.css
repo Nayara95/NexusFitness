@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 /* ======== VARIÁVEIS DE COR ======== */
 :root {
   --CorTextoBTN: #ffffff;
@@ -145,7 +147,7 @@ main {
   margin-bottom: 5px;
 }
 
-.login-left input {
+.login-left input, .login-left select {
   width: 100%;
   padding: 10px;
   border: none;
