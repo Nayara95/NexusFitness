@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Nexus Fitness</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+
+        <!-- ======== LADO ESQUERDO ======== -->
+        <div class="login-left">
+            <h2>informe os dados para cadastro</h2>
+
+            <form onsubmit="return cadastraForm()">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Digite seu email" required>
+
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+
+                <label for="cep">CEP</label>
+                <input type="text" id="email" name="email" placeholder="Digite seu " required>
+
+                <label for="email">Text</label>
+                <input type="text" id="email" name="email" placeholder="Digite seu " required>
+
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+
+                <label for="conf-senha">Confime sua senha</label>
+                <input type="password" id="conf-senha" name="conf-senha" placeholder="Digite sua senha" required>
+
+                <div class="login-buttons">
+                    <button type="submit" class="btn-acessar">Cadastrar</button>
+                    <button type="button" class="btn-redefinir">Limpar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

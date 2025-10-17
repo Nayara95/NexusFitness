@@ -115,8 +115,8 @@ main {
 /* ======== LOGIN PAGE ======== */
 .login-container {
   display: flex;
-  width: 800px;
-  height: 450px;
+  width: auto;
+  height: auto;
   margin: 80px auto;
   background-color: var(--CorFundoTotal);
   border-radius: 10px;
@@ -220,6 +220,7 @@ main {
   cursor: pointer;
   font-weight: bold;
   font-size: 14px;
+  text-decoration: none;
 }
 
 /* ======== RODAPÉ ======== */
