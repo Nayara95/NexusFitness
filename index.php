@@ -5,24 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nexus Fitness</title>
     <link rel="stylesheet" href="style.css" />
+
+     <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
+
+    
   </head>
   <body>
-    <!-- ======== CABEÇALHO/HEADER ======== -->
-    <header>
-      <div class="logo">
-        <img src="imagens/nexus.png" alt="Logo Nexus Fitness" />
-      </div>
 
-      <div class="header-buttons">
-        <!-- Menu dropdown (login) -->
-        <div class="dropdown">
-          <button class="dropbtn">Minha Conta▾</button>
-          <div class="dropdown-content">
-            <a href="login.html">Login</a>
-          </div>
-        </div>
-      </div>
-    </header>
+     <?php 
+        include ('header.php');      
+     ?>
 
     <!-- ======== SEÇÃO PRINCIPAL BODY/MAIN ======== -->
     <main>
@@ -53,21 +45,11 @@
     </main>
 
     <!-- ======== RODAPÉ/FOOTER ======== -->
-    <footer>
-      <div class="footer-links">
-        <a href="#">Sobre</a>
-        <a href="#">Planos</a>
-        <a href="#">Contato</a>
-        <a href="#">Termos de Uso</a>
-        <a href="#">Privacidade</a>
-      </div>
-      <br />
-      <!-- ======== Redes Sociais ======== -->
-      <div class="footer-img">
-        <a href="#"><img src="imagens/facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="imagens/instagram.png" alt="Instagram" /></a>
-      </div>
-      <p>© 2025 Nexus Fitness — Todos os direitos reservados.</p>
-    </footer>
+
+      <?php 
+        include ('footer.php');      
+      ?>
+
+ 
   </body>
 </html>
