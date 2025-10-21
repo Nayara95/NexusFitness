@@ -47,9 +47,10 @@ $professor_info = [
     </header>
 
     <main>
-        <div class="login-container">
-            <div class="login-left">
-              <h2>Meu Perfil</h2>
+        <div class="profile-container">
+          <h2>Meu Perfil</h2>
+            <div class="profile-details">
+              
                 <p><strong>Nome:</strong> <?php echo htmlspecialchars($professor_info['nome']); ?></p>
                 <p><strong>Email:</strong> <?php echo htmlspecialchars($professor_info['email']); ?></p>
                 <p><strong>Especialidade:</strong> <?php echo htmlspecialchars($professor_info['especialidade']); ?></p>

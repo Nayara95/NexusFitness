@@ -6,46 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meu Perfil - Nexus Fitness</title>
     <link rel="stylesheet" href="../style.css" />
-    <style>
-        .profile-container {
-            background-color: #fff;
-            padding: 30px;
-            margin: 30px auto;
-            max-width: 800px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-        .profile-container h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .profile-details p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
-        .profile-details p strong {
-            color: #333;
-        }
-        .btn-edit {
-            display: block;
-            width: 180px;
-            margin: 30px auto 0;
-            padding: 12px;
-            background-color: #007bff;
-            color: #fff;
-            text-align: center;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-        }
-        .btn-edit:hover {
-            background-color: #0056b3;
-        }
-    </style>
   </head>
   <body>
     <!-- ======== CABEÇALHO/HEADER ======== -->
