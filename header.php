@@ -9,7 +9,7 @@
         <div class="dropdown">
           <button class="dropbtn">Minha Conta▾</button>
           <div class="dropdown-content">
-            <a href="login.html">Login</a>
+            <a href="login.php">Login</a>
           </div>
         </div>
       </div>

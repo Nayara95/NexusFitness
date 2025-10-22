@@ -33,7 +33,7 @@
             <img src="imagens/nexus.png" alt="Nexus Fitness" class="logo-login">
             <h3>NEXUS<br>FITNESS</h3>
             <p>Ainda não é nosso aluno?</p>
-            <a href="cadastro-aluno.html" class="btn-cadastrar">Cadastrar</a>
+            <a href="cadastro-aluno.php" class="btn-cadastrar">Cadastrar</a>
             
         </div>
 
