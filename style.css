@@ -6,6 +6,7 @@
   --CorFundoTotal: #ffffff;
   --CorFundoElementos: #660f24;
   --CorFundoElementos2: #f24455;
+  --CorFundoDesativado: #949494;
 }
 
 /* ======== ESTILO GLOBAL ======== */
@@ -16,7 +17,8 @@ body {
   color: var(--CortextoPadrao);
   display: flex; /*fixar rodape e elementos do body*/
   flex-direction: column; /*orientação do body em coluna*/
-  min-height: 100vh; /*tamanho minimo*/
+  height: 100vh; /*tamanho minimo*/
+  
 }
 
 /* ======== CABEÇALHO ======== */
@@ -247,6 +249,7 @@ footer {
   display: block;
 }
 
+
 /* ======== MEDIA QUERIES ======== */
 @media (max-width: 768px) {
   .footer-links {
@@ -274,4 +277,572 @@ footer {
   header {
     padding: 15px 20px;
   }
+}
+
+/* ======== Perfil Aluno ======== */
+
+.perfil_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 40px;
+  width: auto;
+}
+
+  .perfil_container form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 500px;
+  }
+
+  .perfil_container form label{
+   font-weight: Light;
+   color: rgb(148, 148, 148)
+  }
+
+  .perfil_container form input{
+   padding: 10px;
+   border-radius: 5px;
+   border: 2px solid var(--CortextoPadrao);
+   }
+
+.perfil_container p{
+  font-size: 14px;
+  color: rgb(148, 148, 148);
+}
+
+.btn-plano{
+  display: flex;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 10px 90px;
+  margin: auto;
+}
+
+.btn-plano button{
+   border: none;
+   background: none;
+   font-size: 26px;
+   cursor: pointer;
+}
+
+.checkIn{
+  margin: auto;
+  padding: 40px 0px;
+}
+
+/* ======== Escolha plano e detalhe plano ======== */
+
+
+.escolha_plano_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.titulo_plano{
+  text-align: center;
+  
+}
+
+.escolha_plano_container h3{
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 3px solid var(--CortextoPadrao);
+}
+
+.escolha_plano_container p{
+  text-align: center;
+  
+}
+
+
+/* 01 verificar*/
+.nexus_equilibrio{
+  border: 3px solid var(--CortextoPadrao);
+  border-radius: 10px;
+  /*padding: auto;*/
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 700px;
+  height: 280px;
+}
+
+.nexus_equilibrio p{
+  text-align: right;
+  margin-right: 20px;
+}
+
+.nexus_equilibrio img{
+  width: 50px;
+}
+
+
+.nexus_equilibrio button{
+  background-color: var(--CorFundoElementos);
+  color: var(--CorTextoBTN);
+  margin-left: 580px;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 5px 8px;
+}
+
+.nexus_elite{
+  border: 3px solid var(--CortextoPadrao);
+  border-radius: 10px;
+  box-sizing:border-box;
+ 
+}
+.nexus_elite p{
+  text-align: right;
+  margin-right: 30px;
+}
+.nexus_elite img{
+   width: 50px;
+}
+
+.nexus_elite button{
+  background-color: var(--CorFundoElementos);
+  color: var(--CorTextoBTN);
+  margin-left: 580px;
+   border: 2px solid;
+  border-radius: 10px;
+  padding: 5px 8px;
+
+}
+
+.btn-escolha-plano{
+  margin-bottom: 10px;
+}
+
+/* ======== boas vindas aluno ======== */
+
+.ativaAgenda_container{
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ align-items: center;
+ padding: 80px 40px;
+ width: auto;
+}
+
+.ativaAgenda_container button{
+    border: solid 2px;
+    background-color: var(--CorFundoDesativado);
+    font-size: 26px;
+    cursor: pointer;
+    margin: 30px;
+    padding: 20px 100px;
+    width: 750px;
+    border-radius: 10px;
+}
+
+/* ======== Ativas plano ======== */
+.saude{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 40px;
+  width: auto;
+}
+
+.text-saude-principal h1{
+  text-align: center;
+  font-size: 36px;
+}
+
+.text-saude-principal p{
+  text-align: center;
+  font-size: 20px;
+}
+
+
+
+.saude1, .saude2, .saude3{
+  border: 3px solid var(--CortextoPadrao);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 700px;
+  height: 200px;
+}
+
+.saude1, .saude2, .saude3, h3{
+  text-align: center;
+  font-size: 25px;
+  
+}
+
+.saude1, .saude2, .saude3, p{
+  text-align: left;
+  font-size: 15px;
+}
+
+.saude div form{
+   margin-top: 60px;
+   text-align: center;
+}
+
+.btn-enviarArquivo::file-selector-button ,input[type="submit"]{
+  background-color: var(--CorFundoElementos);
+  color: var(--CorTextoBTN);
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 5px 18px;
+  
+  cursor: pointer;
+
+}
+
+input[type="file"]{
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+
+/* ======== Agenda de treino ======== */
+
+
+
+.agenda-semanal {
+    margin: 40px auto;
+    background-color: #f6e6e6;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+    padding: 30px;
+}
+
+.agenda-semanal h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+
+.botao-dia {
+    background: none;
+    border: solid 2px;
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+    
+    /* Estilo para a aba */
+    border-bottom: 3px solid transparent; 
+    color: #777;
+    font-weight: 500;
+}
+
+.botao-dia:hover {
+    color: var(--CorFundoElementos2)
+}
+
+.botao-dia.ativo {
+    color: var(--CorFundoElementos);
+    border-bottom: 3px solid var(--CorFundoElementos);
+    font-weight: bold;
+}
+
+.agenda-semanal p{
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;    
+}
+
+.atividades-container {
+    padding: 20px 0;
+}
+
+
+#tituloDia {
+    color: var(--CortextoPadrao);
+    border-left: 5px solid var(--CorFundoElementos);
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+#listaAulas {
+    list-style: none;
+    padding: 0;
+}
+
+
+#listaAulas li {
+    background-color: #f9f9f9;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+
+  /* ======== ENDEREÇO PAGAMENTO ======== */
+
+
+
+.endereco-body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Cor de fundo leve */
+}
+
+
+
+/* Container Principal - A caixa que contém tudo */
+.container {
+    display: flex;
+    width: 800px; /* Largura total da sua caixa */
+    height: 600px; /* Altura total da sua caixa */
+    background-color: white;
+    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Borda arredondada */
+    overflow: hidden; /* Garante que as sub-áreas fiquem dentro do raio */
+  
+  }
+
+/* Coluna Esquerda: Vermelha */
+.logo-left {
+    flex: 0 0 25%; /* Ocupa 35% da largura */
+    background-color: #f24455; /* Cor vermelha do logo */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; 
+}
+
+.logo-left img {
+    height: auto;
+    margin-bottom: 20px;
+    width: 90px;
+}   
+
+/* Coluna Direita: Cinza Claro (Conteúdo Principal) */
+.endereco-content{
+    flex: 1; /* Ocupa o restante (65%) */
+    background-color: #e6e0d4; /* Cor cinza claro */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Seção de Valores (Topo) */
+.resumo-cobranca {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.resumo-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #333;
+}
+
+
+/* Formulário de Endereço */
+
+.dados-form h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+
+.dados-form label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.dados-form input[type="text"] { /*texto interno dos campos*/
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que padding não aumente a largura */
+    margin-bottom: 5px;
+    font-size: 14px;
+    
+}
+
+/* Layout de duas colunas dentro do formulário Estado/cidade/Numero/complemento*/
+.input-row {
+    display: flex;
+    gap: 50px; /* Espaçamento entre os campos */
+}
+
+.input-field {
+    flex: 1; /* Faz com que os campos dividam o espaço igualmente */
+}
+
+/* Campo de CEP com o link "não sei meu CEP" */
+.input-group-cep {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.input-group-cep input {
+    flex-grow: 1;
+    margin-bottom: 0; /* Remove a margem extra */
+    padding-right: 100px; /* Espaço para o link */
+}
+
+.link-cep {
+    position: absolute;
+    right: 10px;
+    font-size: 12px;
+    color: #888;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+
+
+
+/* Botão de Pagamento */
+.payment-button {
+    background-color: #8C2A3C; /* Cor de botão mais escura (vinho) */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 20px; /* Borda bem arredondada */
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 30px;
+    align-self: center; /* Alinha à esquerda */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.payment-button:hover {
+    background-color: #6a1f2c;
+}
+
+/* Correção para o "Bairro" e "Rua" ocuparem 100% */
+#bairro, #rua {
+    width: 100%;
+}
+
+
+/* Opções de Pagamento - BOTOES */
+
+.opcoes-pagamento {
+    display: flex;
+    margin-bottom: 25px;
+}
+.tab-pagamento {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    border-radius: 6px 6px 0 0;
+}
+.tab-pagamento.ativo {
+    background-color: #ffdede;
+    border-color: var(--CorFundoElementos2);
+    color: var(--CorFundoElementos2);
+    border-bottom: 1px solid #fff; /* Esconde a linha para simular a aba */
+}
+
+/* ESCONDER / MOSTRAR CONTEUDO */
+.conteudo-metodo {
+    padding: 20px 0;
+    border: 1px solid #ddd;
+    border-top: none;
+    display: none; /* Por padrão, escondido */
+}
+
+.conteudo-metodo.ativo {
+    display: block; /* Mostra o formulário ativo */
+}
+
+/* Estilos de Campos (Simplificados) */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.grupo-valide-cvv{
+  display: flex;
+    gap: 15px;
+}
+
+.grupo-nome-numero .grupo-valide-cvv{
+  flex: 1;
+}
+
+/* PIX ESPECÍFICO */
+
+#conteudo-pix{
+  padding-top: 0px;
+}
+.qrcode-box {
+    width: 180px;
+    height: 100px;
+    margin: 10px auto 15px;
+}
+.qrcode-box img {
+    width: 100%;
+    height: 10px;
+}
+.copia-cola-area {
+    margin-bottom: 20px;
+}
+
+/* Botões */
+
+button[type="submit"]{
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+#btnPagarCartao {
+    background-color: var(--CorFundoElementos);
+    color: white;
+}
+
+#btnPagarPix, #btnCopiar {
+    background-color: var(--CorFundoElementos); /* Cor PIX */
+    color: white;
 }
