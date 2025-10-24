@@ -4,7 +4,7 @@ session_start();
 // Verifica se o usuário está logado e se é um professor
 if (!isset($_SESSION['loggedin']) || $_SESSION['tipo'] !== 'professor') {
     // Se não estiver logado como professor, redireciona para a página de login
-    header('Location: ../login.html');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -59,10 +59,8 @@ $professor_info = [
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Nexus Fitness. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+      <?php 
+        include('../footer.php');      
+    ?>
 </body>
 </html>

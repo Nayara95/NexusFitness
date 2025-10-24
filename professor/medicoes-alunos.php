@@ -4,7 +4,7 @@ session_start();
 // Verifica se o usuário está logado e se é um professor
 if (!isset($_SESSION['loggedin']) || $_SESSION['tipo'] !== 'professor') {
     // Se não estiver logado como professor, redireciona para a página de login
-    header('Location: ../login.html');
+    header('Location: ../login.php');
     exit;
 }
 ?>
