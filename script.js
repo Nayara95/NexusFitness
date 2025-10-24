@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ======== AGENDA ======== */
 
 // 1. Base de Dados: Atividades para a semana
@@ -228,34 +227,80 @@ document.addEventListener('DOMContentLoaded', () => {
     //validarNumeroCartao(numeroCartaoInput);
 });
 
-=======
-function getFormattedDateTime() {
-    const date = new Date();
-    const options = {
-        timeZone: 'America/Sao_Paulo',
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-    };
-    return new Intl.DateTimeFormat('pt-BR', options).format(date);
-}
-
-// Função para a data de cadastro em cadastro-aluno.html
-function setRegistrationDate() {
-    const element = document.getElementById('data-cadastro');
-    if (element) {
-        element.value = getFormattedDateTime();
-    }
-}
-
+//PROFESSOR VENDO FICHA DE TREINO DO ALUNO JS
 document.addEventListener('DOMContentLoaded', function() {
-    // Para cadastro-aluno.html - define e atualiza a data de cadastro
-    if (document.getElementById('data-cadastro')) {
-        setRegistrationDate(); // Chamada inicial
-        setInterval(setRegistrationDate, 1000);
-    }
-});
->>>>>>> 6d571b8e602e01d7b9f4f06ef10441b1a8868b00
+            const fichaTreinoModal = document.getElementById('fichaTreinoModal');
+            const closeFicha = document.getElementById('closeFicha');
+            const criarFichaBtns = document.querySelectorAll('.btn-criar-ficha, .btn-editar-ficha');
+            const nomeAlunoFicha = document.getElementById('nomeAlunoFicha');
+            const matriculaAluno = document.getElementById('matriculaAluno');
+            const btnPendentes = document.getElementById('btnPendentes');
+
+            // Abrir modal de ficha de treino
+            criarFichaBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const aluno = this.getAttribute('data-aluno');
+                    const matricula = this.getAttribute('data-matricula');
+                    
+                    nomeAlunoFicha.textContent = aluno;
+                    matriculaAluno.value = matricula;
+                    
+                    // Definir título baseado na ação
+                    const isEdit = this.classList.contains('btn-editar-ficha');
+                    document.querySelector('#fichaTitulo span').textContent = aluno;
+                    
+                    fichaTreinoModal.style.display = 'flex';
+                });
+            });
+
+            // Fechar modal de ficha de treino
+            closeFicha.addEventListener('click', function() {
+                fichaTreinoModal.style.display = 'none';
+            });
+
+            // Botão pendentes (pode ser usado para filtrar)
+            btnPendentes.addEventListener('click', function() {
+                // Filtra apenas as fichas pendentes
+                const fichas = document.querySelectorAll('.ficha-card');
+                fichas.forEach(ficha => {
+                    const status = ficha.querySelector('.status');
+                    if (!status.classList.contains('status-pendente')) {
+                        ficha.style.display = 'none';
+                    } else {
+                        ficha.style.display = 'block';
+                    }
+                });
+                
+                // Alternar estado do botão
+                this.classList.toggle('active');
+                if (this.classList.contains('active')) {
+                    this.querySelector('.pendentes-text').textContent = 'Mostrar Todos';
+                } else {
+                    fichas.forEach(ficha => ficha.style.display = 'block');
+                    this.querySelector('.pendentes-text').textContent = 'Fichas Pendentes';
+                }
+            });
+
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', function(event) {
+                if (event.target === fichaTreinoModal) {
+                    fichaTreinoModal.style.display = 'none';
+                }
+            });
+
+            // Busca em tempo real
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const fichas = document.querySelectorAll('.ficha-card');
+                
+                fichas.forEach(ficha => {
+                    const alunoNome = ficha.querySelector('h3').textContent.toLowerCase();
+                    if (alunoNome.includes(searchTerm)) {
+                        ficha.style.display = 'block';
+                    } else {
+                        ficha.style.display = 'none';
+                    }
+                });
+            });
+        });

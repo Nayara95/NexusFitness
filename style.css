@@ -1284,3 +1284,504 @@ button[type="submit"]{
     background-color: var(--CorFundoElementos); /* Cor PIX */
     color: white;
 }
+
+
+/* ======== PÁGINA TREINOS DOS ALUNOS ======== */
+.treinos-alunos-page {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho da Página */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 30px;
+    background: linear-gradient(135deg, var(--CorFundoElementos2) 0%, var(--CorFundoElementos) 100%);
+    border-radius: 15px;
+    color: white;
+}
+
+.header-content h1 {
+    margin: 0 0 10px 0;
+    font-size: 2.2rem;
+}
+
+.header-content p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.btn-pendentes {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-pendentes:hover,
+.btn-pendentes.active {
+    background: white;
+    color: var(--CorFundoElementos2);
+}
+
+.pendentes-count {
+    background: #ffd700;
+    color: #000;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Filtros e Busca */
+.filtros-section {
+    margin-bottom: 30px;
+}
+
+.filtros-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.search-group {
+    display: flex;
+    position: relative;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 50px 12px 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--CorFundoElementos2);
+}
+
+.btn-search {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #6c757d;
+}
+
+.filter-select {
+    padding: 12px 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+}
+
+/* Lista de Fichas */
+.alunos-fichas-section {
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--CortextoPadrao);
+    font-size: 1.8rem;
+}
+
+.fichas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+}
+
+.ficha-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ficha-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.ficha-header {
+    padding: 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aluno-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.foto-placeholder {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #dee2e6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    font-weight: bold;
+    color: var(--CorFundoElementos2);
+}
+
+.aluno-detalhes h3 {
+    margin: 0 0 5px 0;
+    color: var(--CortextoPadrao);
+}
+
+.matricula {
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.status {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-pendente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-ativo {
+    background: #d1edff;
+    color: #004085;
+}
+
+.btn-criar-ficha,
+.btn-editar-ficha {
+    background: var(--CorFundoElementos2);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-editar-ficha {
+    background: #6c757d;
+}
+
+.btn-criar-ficha:hover {
+    background: var(--CorFundoElementos);
+}
+
+.btn-editar-ficha:hover {
+    background: #5a6268;
+}
+
+.ficha-preview {
+    padding: 20px;
+}
+
+.preview-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.preview-item:last-child {
+    border-bottom: none;
+}
+
+.preview-item strong {
+    color: var(--CortextoPadrao);
+}
+
+/* Modal de Ficha de Treino (atualizado) */
+.ficha-treino-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.ficha-treino-content {
+    background: white;
+    border-radius: 12px;
+    width: 95%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ficha-header {
+    background: var(--CorFundoElementos2);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.ficha-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-ficha {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.ficha-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 30px;
+}
+
+.ficha-left,
+.ficha-right {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.aluno-foto-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.foto-placeholder-modal {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.matricula-input label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.matricula-input input {
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+.exercicios-section h3,
+.fisico-section h3,
+.saude-section h3,
+.agenda-section h3 {
+    margin: 0 0 15px 0;
+    color: var(--CortextoPadrao);
+}
+
+.exercicios-section textarea,
+.agenda-section textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.fisico-section {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.medidas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.medida-input label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.medida-input input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+}
+
+.saude-agenda-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.saude-section,
+.agenda-section {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.dias-treino-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.dia-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.ficha-actions {
+    padding: 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-salvar-rascunho,
+.btn-enviar-ficha {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-salvar-rascunho {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-enviar-ficha {
+    background: var(--CorFundoElementos2);
+    color: white;
+}
+
+.btn-salvar-rascunho:hover {
+    background: #5a6268;
+}
+
+.btn-enviar-ficha:hover {
+    background: var(--CorFundoElementos);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .treinos-alunos-page {
+        padding: 15px;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .filtros-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .fichas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ficha-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .ficha-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    
+    .aluno-foto-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .medidas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ficha-actions {
+        flex-direction: column;
+    }
+}

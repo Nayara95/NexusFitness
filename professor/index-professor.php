@@ -15,7 +15,7 @@ $email = $_SESSION['email'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do Professor - Nexus Fitness</title>
+    <title>Área do Professor - Nexus Fitness</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -45,23 +45,23 @@ $email = $_SESSION['email'];
                     <div class="foto-perfil-box">
                         <span>Foto</span>
                     </div>
-                    <button class="btn-perfil">Ver Perfil</button>
+                    <button class="btn-perfil" onClick="window.location.href='perfil-professor.php'">Ver Perfil</button>
                 </div>
                 
                 <div class="professor-details">
-                    <h1>Painel do Professor</h1>
+                    <h1>Área do Professor</h1>
                     <p class="boas-vindas">Seja bem-vindo(a) professor(a) <strong><?php echo htmlspecialchars($email); ?></strong>!</p>
                     <p class="descricao">Gerencie seus alunos e atividades da academia.</p>
                 </div>
                 
                 <div class="professor-actions">
-                    <button class="btn-ficha-treino">
-                        <span>Fichas de Treinos</span>
-                    </button>
-                    <div class="pendentes-badge">
-                        <span class="pendentes-count">3</span>
-                        <span class="pendentes-text">Pendentes</span>
-                    </div>
+                    <a href="index-professor.php" class=" btn-pendentes">
+                      <span>Área Principal</span>
+                    </a>
+                    <a href="treino-alunos.php" class=" btn-pendentes">
+                      <span class="pendentes-count">3</span>
+                      <span class="pendentes-text">Pendentes</span>
+                </a>
                 </div>
             </div>
         </section>
@@ -153,74 +153,6 @@ $email = $_SESSION['email'];
                         <div class="agenda-group">
                             <h4>Agenda do Aluno</h4>
                             <textarea placeholder="Observações da agenda...">Treino focado em membros superiores esta semana.</textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="aluno-actions">
-                        <button class="btn-editar">Editar Ficha</button>
-                        <button class="btn-enviar">Enviar</button>
-                        <button class="btn-saude">Dados de Saúde</button>
-                    </div>
-                </div>
-                
-                <!-- Card do Aluno 2 (exemplo adicional) -->
-                <div class="aluno-card">
-                    <div class="aluno-header">
-                        <div class="aluno-foto">
-                            <span>Foto</span>
-                        </div>
-                        <div class="aluno-info">
-                            <h3>Maria Santos</h3>
-                            <span class="matricula">Matrícula: 12346</span>
-                        </div>
-                    </div>
-                    
-                    <div class="aluno-content">
-                        <div class="aluno-dados">
-                            <div class="dados-group">
-                                <label>Nome:</label>
-                                <input type="text" value="Maria Santos" readonly>
-                            </div>
-                            <div class="dados-group">
-                                <label>Matrícula:</label>
-                                <input type="text" value="12346" readonly>
-                            </div>
-                        </div>
-                        
-                        <div class="exercicios-group">
-                            <h4>Exercícios Programados</h4>
-                            <textarea placeholder="Descreva os exercícios do aluno...">- Leg press 3x15
-- Cadeira extensora 3x12
-- Stiff 4x10</textarea>
-                        </div>
-                        
-                        <div class="saude-group">
-                            <h4>Dias de Treino</h4>
-                            <div class="dias-treino">
-                                <label class="dia-option">
-                                    <input type="checkbox" name="dia-aluno2"> Segunda-feira
-                                </label>
-                                <label class="dia-option">
-                                    <input type="checkbox" name="dia-aluno2"> Terça-feira
-                                </label>
-                                <label class="dia-option">
-                                    <input type="checkbox" name="dia-aluno2" checked> Quarta-feira
-                                </label>
-                                <label class="dia-option">
-                                    <input type="checkbox" name="dia-aluno2"> Quinta-feira
-                                </label>
-                                <label class="dia-option">
-                                    <input type="checkbox" name="dia-aluno2" checked> Sexta-feira
-                                </label>
-                                <label class="dia-option">
-                                    <input type="checkbox" name="dia-aluno2"> Sábado
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="agenda-group">
-                            <h4>Agenda do Aluno</h4>
-                            <textarea placeholder="Observações da agenda...">Foco em membros inferiores com descanso adequado.</textarea>
                         </div>
                     </div>
                     
