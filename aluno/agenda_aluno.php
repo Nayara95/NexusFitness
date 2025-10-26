@@ -8,6 +8,9 @@
     <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
 
     <link rel="stylesheet" href="../style.css" />
+    <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
+
+    <link rel="stylesheet" href="style.css" />
 
     <!-- ======== link de site de icones ======== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
@@ -34,6 +37,7 @@
         </div>
         <div class="img-banner">
           <img src="../imagens/banner1.png" alt="Tecnologia Fitness" />
+          <img src="imagens/banner1.png" alt="Tecnologia Fitness" />
         </div>
       </section>
 
@@ -82,6 +86,10 @@
       ?>
 
  <script src="../script.js"></script>
+        include ('footer.php');      
+      ?>
+
+ <script src="script.js"></script>
 
 </body>
 </html>

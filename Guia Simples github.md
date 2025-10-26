@@ -47,7 +47,8 @@ Exemplo:
 ```bash
 git checkout -b ajuste-login
 ```
-
+Trocando de Branch
+git switch nome-da-sua-branch
 ---
 
 ## 💾 3. Fazendo alterações e commitando

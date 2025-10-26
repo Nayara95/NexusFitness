@@ -7,6 +7,9 @@
     <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
 
     <link rel="stylesheet" href="../style.css" />
+    <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
+
+    <link rel="stylesheet" href="style.css" />
 
     <!-- ======== link de site de icones ======== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
@@ -19,6 +22,7 @@
  <!-- ======== CABEÇALHO/HEADER ======== -->
     <?php
          include ('../header.php')    
+         include ('header.php')    
     ?>
 
     
@@ -34,6 +38,7 @@
         </div>
         <div class="img-banner">
           <img src="../imagens/banner1.png" alt="Tecnologia Fitness" />
+          <img src="imagens/banner1.png" alt="Tecnologia Fitness" />
         </div>
       </section>
 
@@ -113,6 +118,7 @@
         <input type="number" id="status" name="status" required>
       </form>
       <img src="../imagens/checkIn.png" alt="Imagem de check-in">
+      <img src="imagens/checkIn.png" alt="Imagem de check-in">
 
     </div>
 
@@ -131,6 +137,7 @@
 
       <?php 
         include ('../footer.php');      
+        include ('footer.php');      
       ?>
 
 </body>
