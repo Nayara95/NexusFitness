@@ -1,0 +1,119 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\NF\\NexusFitness\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\NF\\NexusFitness\\arquivosEnviados.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:arquivosEnviados.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 2\\uploadArq_2.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\uploadArq.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\NF\\NexusFitness\\ativa_plano.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ativa_plano.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\enviaArq.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\NF\\NexusFitness\\escolha_plano.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:escolha_plano.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "uploadArq_2.php",
+              "DocumentMoniker": "E:\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 2\\uploadArq_2.php",
+              "RelativeDocumentMoniker": "..\\..\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 2\\uploadArq_2.php",
+              "ToolTip": "E:\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 2\\uploadArq_2.php",
+              "RelativeToolTip": "..\\..\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 2\\uploadArq_2.php",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2025-10-23T20:47:37.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "arquivosEnviados.php",
+              "DocumentMoniker": "E:\\NF\\NexusFitness\\arquivosEnviados.php",
+              "RelativeDocumentMoniker": "arquivosEnviados.php",
+              "ToolTip": "E:\\NF\\NexusFitness\\arquivosEnviados.php",
+              "RelativeToolTip": "arquivosEnviados.php",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2025-10-23T19:44:18.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "uploadArq.php",
+              "DocumentMoniker": "E:\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\uploadArq.php",
+              "RelativeDocumentMoniker": "..\\..\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\uploadArq.php",
+              "ToolTip": "E:\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\uploadArq.php",
+              "RelativeToolTip": "..\\..\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\uploadArq.php",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2025-10-23T19:40:12.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "enviaArq.html",
+              "DocumentMoniker": "E:\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\enviaArq.html",
+              "RelativeDocumentMoniker": "..\\..\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\enviaArq.html",
+              "ToolTip": "E:\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\enviaArq.html",
+              "RelativeToolTip": "..\\..\\Desenvolvimento web 2\\Programa\u00E7\u00E3o web2\\Aula 8\\PHP\\Exemplo PHP aula 6 parte 1\\enviaArq.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-10-23T19:33:33.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ativa_plano.php",
+              "DocumentMoniker": "E:\\NF\\NexusFitness\\ativa_plano.php",
+              "RelativeDocumentMoniker": "ativa_plano.php",
+              "ToolTip": "E:\\NF\\NexusFitness\\ativa_plano.php",
+              "RelativeToolTip": "ativa_plano.php",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAAFIAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2025-10-23T19:31:14.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "escolha_plano.php",
+              "DocumentMoniker": "E:\\NF\\NexusFitness\\escolha_plano.php",
+              "RelativeDocumentMoniker": "escolha_plano.php",
+              "ToolTip": "E:\\NF\\NexusFitness\\escolha_plano.php",
+              "RelativeToolTip": "escolha_plano.php",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2025-10-23T19:26:26.166Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

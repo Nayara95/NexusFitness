@@ -29,6 +29,7 @@
             Um pioneirismo que alia força e inovação. Aqui, sua evolução é o
             nosso combustível diário!
           </p>
+
           <button class="btn-principal">Saiba mais</button>
         </div>
         <div class="img-banner">
@@ -51,10 +52,11 @@
             <h3>Questionario de saúde</h3>
             <p>Descrição do questionario</p>
             
-            <form action="#" method="post"enctype="#">
+            <form action="#" method="post" enctype="multipart/form-data">
           
-                <input type="file" class="btn-enviarArquivo" name="arquivo" id="arquivo" />
+                <input type="file" class="btn-enviarArquivo" name="bio" id="arquivo" />
                 <input type="submit" value="Enviar">
+
             </form>
 
       </div>
@@ -64,7 +66,7 @@
             <h3>Exame de Bioimpedância</h3>
             <p>Descrição do questionario</p>
             
-            <form action="#" method="post"enctype="#">
+            <form action="#" method="post"enctype="multipart/form-data">
           
                 <input type="file" class="btn-enviarArquivo" name="arquivo" id="arquivo" />
                 <input type="submit" value="Enviar">
@@ -78,7 +80,7 @@
             <h3>Atestado Médico</h3>
             <p>Descrição do questionario</p>
             
-            <form action="#" method="post"enctype="#">
+            <form action="#" method="post"enctype="multipart/form-data">
           
                 <input type="file" class="btn-enviarArquivo" name="arquivo" id="arquivo" />
                 <input type="submit" value="Enviar">
