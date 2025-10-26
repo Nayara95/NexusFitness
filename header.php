@@ -1,7 +1,7 @@
    <!-- ======== CABEÇALHO/HEADER ======== -->
    <header>
       <div class="logo">
-        <img src="imagens/nexus.png" alt="Logo Nexus Fitness" />
+        <img src="../imagens/nexus.png" alt="Logo Nexus Fitness" />
       </div>
 
       <div class="header-buttons">
