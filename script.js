@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ======== AGENDA ======== */
 
 // 1. Base de Dados: Atividades para a semana
@@ -132,16 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
- //==========================================================
- // LÓGICA 2: COMPORTAMENTO DO PIX (Copia e Cola)
- // ==========================================================
+
+ // DO PIX (Copia e Cola)
+
     const btnCopiar = document.getElementById('btnCopiar');
 
     btnCopiar.addEventListener('click', () => {
         chavePixInput.select();
         chavePixInput.setSelectionRange(0, 99999);
 
-        // Usa a API de cópia moderna
+        // Usando a API de cópia moderna
         navigator.clipboard.writeText(chavePixInput.value)
             .then(() => {
                 const textoOriginal = btnCopiar.textContent;
@@ -156,9 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 
-    // ==========================================================
-    // LÓGICA 3: COMPORTAMENTO DO CARTÃO (Validação e Formatação)
-    // ==========================================================
+  
+    // COMPORTAMENTO DO CARTÃO (Validação e Formatação)
+
 
     numeroCartaoInput.addEventListener('input', (e) => {
         let valor = e.target.value.replace(/\D/g, '');
@@ -172,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const grupoCampo = input.closest('.campo-grupo');
 
         // * Implementação simplificada de validação *
-        // Ocultado o feedback para simplificar, mas as classes de cor (valido/invalido) funcionam
+   
         grupoCampo.classList.remove('campo-valido', 'campo-invalido');
 
         if (valor.length === 16) {
@@ -185,9 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    // ==========================================================
-    // LÓGICA 4: SUBMISSÃO (Simulação)
-    // ==========================================================
+    // ==========Mudança de abas
 
     document.getElementById('formPagamento').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -216,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             botaoPagar.textContent = 'Aguardando Confirmação...';
 
             setTimeout(() => {
-                // Em um sistema real, aqui o JS faria um AJAX para checar se o Pix foi pago
+                // EM ANDAMENTO = checar se o Pix foi pago
                 alert("Notificação enviada! Verifique o status em 5 minutos.");
                 botaoPagar.textContent = 'Notificação Enviada.';
                 botaoPagar.disabled = true;
@@ -228,34 +225,68 @@ document.addEventListener('DOMContentLoaded', () => {
     //validarNumeroCartao(numeroCartaoInput);
 });
 
-=======
-function getFormattedDateTime() {
-    const date = new Date();
-    const options = {
-        timeZone: 'America/Sao_Paulo',
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-    };
-    return new Intl.DateTimeFormat('pt-BR', options).format(date);
-}
 
-// Função para a data de cadastro em cadastro-aluno.html
-function setRegistrationDate() {
-    const element = document.getElementById('data-cadastro');
-    if (element) {
-        element.value = getFormattedDateTime();
-    }
-}
+//VALIDAÇÃO DOS DADOS DOS CAMPOS DA PAGINA CADASTRO_ALUNO
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Para cadastro-aluno.html - define e atualiza a data de cadastro
-    if (document.getElementById('data-cadastro')) {
-        setRegistrationDate(); // Chamada inicial
-        setInterval(setRegistrationDate, 1000);
+    // 1. MÁSCARA DE CPF EM TEMPO REAL
+    const cpfInput = document.getElementById('cpf');
+
+    if (cpfInput) {
+        // Adiciona o ouvinte para aplicar a máscara a cada tecla digitada/colada
+        cpfInput.addEventListener('input', function(e) {
+            let value = e.target.value;
+            
+            // 1. Remove tudo que não for dígito. Isso garante que o usuário só insira números.
+            value = value.replace(/\D/g, ""); 
+    
+            // 2. Aplica a formatação do CPF (999.999.999-99)
+            // Note: A ordem é importante aqui. A máscara é aplicada passo a passo.
+            
+            // Insere o primeiro ponto (após o 3º dígito)
+            value = value.replace(/(\d{3})(\d)/, "$1.$2"); 
+            
+            // Insere o segundo ponto (após o 6º dígito)
+            value = value.replace(/(\d{3})(\d)/, "$1.$2"); 
+            
+            // Insere o traço (após o 9º dígito)
+            // O $ é crucial para garantir que o traço vá para a posição correta
+            value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); 
+
+            // Limita o tamanho do campo em 14 caracteres (11 dígitos + 3 separadores)
+            if (value.length > 14) {
+                 value = value.substring(0, 14);
+            }
+    
+            // Atualiza o valor do campo com a string formatada
+            e.target.value = value;
+        });
+    }
+    // VALIDAÇÃO AO SUBMETER O FORMULÁRIO
+    // (Ajustada para usar a máscara)
+
+    
+    const form = document.getElementById('formCadastro');
+    
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // --- Validação do CPF ---
+            if (cpfInput) {
+                // Remove a máscara (pontos e traços) para verificar o total de dígitos
+                const cpfValue = cpfInput.value.replace(/\D/g, ''); 
+                
+                if (cpfValue.length !== 11) {
+                    alert('Por favor, insira um CPF válido com 11 dígitos.');
+                    cpfInput.focus();
+                    isValid = false;
+                }
+            }
+          
+        });
     }
 });
->>>>>>> 6d571b8e602e01d7b9f4f06ef10441b1a8868b00
+
+
+

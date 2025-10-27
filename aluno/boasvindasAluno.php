@@ -25,6 +25,7 @@
          include ('header.php')    
     ?>
 
+<main>
   <section class="intro">
         <div class="intro-text">
           <h1>Um ponto de conexão inabalável!</h1>
@@ -42,12 +43,11 @@
       </section>
 
     <!-- ======== escolha do plano - pós cadastro======== -->
-<main>
 
     <div class="ativaAgenda_container">
-        <button type="submit" class="btn-ativa-plano">Ative seu plano</button>
+        <button type="submit" onclick="redirecionar('ativa_plano.php')" class="btn-ativa-plano">Ative seu plano</button>
 
-        <button type="submit" class="btn-agenda">Agenda de treino</button>
+        <button type="submit" onclick="redirecionar('agenda_aluno.php')" class="btn-agenda">Agenda de treino</button>
     </div>
 
 
@@ -79,6 +79,13 @@
         include ('../footer.php');      
         include ('footer.php');      
       ?>
+
+
+      <script> //direcionado os botões para suas paginas
+        function redirecionar(url) {
+            window.location.href = url;
+        }
+    </script>
 
 </body>
 </html>
