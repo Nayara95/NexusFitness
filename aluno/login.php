@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Nexus Fitness</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <!-- icone superior -->
+  <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
+
+
 </head>
 <body>
 
@@ -30,10 +34,10 @@
 
         <!-- ======== LADO DIREITO ======== -->
         <div class="login-right">
-            <img src="imagens/nexus.png" alt="Nexus Fitness" class="logo-login">
+            <img src="../imagens/nexus.png" alt="Nexus Fitness" class="logo-login">
             <h3>NEXUS<br>FITNESS</h3>
             <p>Ainda não é nosso aluno?</p>
-            <a href="cadastro-aluno.html" class="btn-cadastrar">Cadastrar</a>
+            <a href="../aluno/cadastro-aluno.php" class="btn-cadastrar">Cadastrar</a>
             
         </div>
 

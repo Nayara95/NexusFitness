@@ -116,7 +116,7 @@ main {
   cursor: pointer;
 }
 
-/* ======== LOGIN PAGE ======== */
+/* Pagina de logi  */
 .login-container {
   display: flex;
   width: auto;
@@ -227,6 +227,140 @@ main {
   font-size: 14px;
   text-decoration: none;
 }
+
+
+
+/* pagina de cadastro */
+
+
+
+.cadastro_container{
+  display: flex; 
+  width: 90%;
+  height: auto;
+  margin: 5px auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: var(--borda-raio);
+  overflow: hidden;
+
+}
+
+/* CADASTRO LADO ESQUERDO  */
+
+.cadastro_esquerdo{
+    flex: 0 0 25%; /* Ocupa 35% da largura */
+    background-color: var(--CorFundoElementos2);
+    color: white;
+    width: auto;
+    height: auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around; /* Distribui o conteúdo (logo, texto, botão) */
+}
+
+.cadastro_esquerdo img{
+  padding-top: 120px;
+  
+}
+
+
+.alunoTxt {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.btnEntrar {
+    display: block;
+    width: 70%;
+    padding: 12px 20px;
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    text-decoration: none;
+    border-radius:10px;
+    font-size: 18px;
+    font-weight: bold;
+    /*transition: var(--CorFundoElementos2) 0.3s; */
+    text-align: center;
+}
+
+.btnEntrar:hover {
+    background-color: #7b2a33;
+}
+
+/* CADASTRO LADO DIREITO  */
+
+.cadastro_direito{
+  flex: 1; /* Ocupa o restante do espaço (65%) */
+  background-color: rgb(246, 240, 233);
+  padding: 0px 30px 0px 20px;
+  color: var(--cor-texto-escuro);
+}
+
+.cadastro_direito form label {
+ display: block;
+  font-size: 14px;
+  font-weight: bold;
+  /*margin-top: 15px;
+  /*margin-bottom: 5px;*/
+}
+
+.cadastro_direito form input,select{ /* campo seletivo*/
+ width: 100%;
+ padding: 10px;
+ border: 1px solid #ccc;
+ /*border-radius: var(--borda-raio);*/
+ font-size: 16px;
+ outline: none;
+}
+
+.campoSeletivo {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os campos */
+}
+
+.campoSeletivo .campo {
+    flex: 1; /* ocupam 50% do espaço, um ao lado do */
+}
+
+/* Texto de Informações */
+.info-texto {
+    line-height: 1.4;
+    margin-top: 5px;
+    /*margin-bottom: 20px;*/
+    padding: 0px 50px; /* Pequena margem à direita para o texto */
+}
+.info-texto p{
+ font-size: 12px;
+ color: #777;
+}
+
+/* Botão de Cadastro (Cadastro de Senha) */
+.btnCadastar {
+    display: block;
+    width: 60%; /* menor que a largura total */
+   margin: 0 auto; /* Centraliza o botão */
+   padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--CorFundoElementos2) 0.3s;
+}
+.btnCadastar button{
+  color: var(--CorFundoTotal);
+  background-color: var(--CorFundoElementos);
+}
+
+
+
+
+
+
+
+
 
 /* ======== DADOS CADASTRAIS ======== */
 
@@ -466,24 +600,25 @@ footer {
 /* ======== boas vindas aluno ======== */
 
 .ativaAgenda_container{
- display: flex;
- flex-direction: column;
- justify-content: space-between;
- align-items: center;
- padding: 80px 40px;
- width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 90px;
+  margin-top: 100px;
+
+ border: 1px solid;
+ border-radius: 10px;
+ box-shadow: 10px 10px #bf4c5f50;
+
 }
 
-.ativaAgenda_container button{
-    border: solid 2px;
-    background-color: var(--CorFundoDesativado);
-    font-size: 26px;
-    cursor: pointer;
-    margin: 30px;
-    padding: 20px 100px;
-    width: 750px;
-    border-radius: 10px;
+.ativaAgenda_container button[type="submit"]{
+ max-width: 700px;
+ margin: 20px;
+ background-color: #b0afaf;
+
 }
+
 
 /* ======== Ativas plano ======== */
 .saude{
@@ -651,8 +786,8 @@ input[type="file"]{
 /* Container Principal - A caixa que contém tudo */
 .container {
     display: flex;
-    width: 800px; /* Largura total da sua caixa */
-    height: 600px; /* Altura total da sua caixa */
+    width: 800px; /* Largura total da caixa */
+    height: 600px; /* Altura total da caixa */
     background-color: white;
     box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
     border-radius: 10px; /* Borda arredondada */
