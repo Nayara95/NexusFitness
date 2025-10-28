@@ -428,6 +428,13 @@ footer {
   display: block;
 }
 
+/*.footer p{
+  max-width: 768px;
+  flex-direction: column;
+    align-items: center;
+}*/
+
+
 
 /* ======== MEDIA QUERIES ======== */
 @media (max-width: 768px) {
@@ -560,14 +567,14 @@ footer {
 }
 
 
-.nexus_equilibrio button{
+/*.nexus_equilibrio button{
   background-color: var(--CorFundoElementos);
   color: var(--CorTextoBTN);
-  margin-left: 580px;
+  margin-left: 50px;
   border: 2px solid;
   border-radius: 10px;
   padding: 5px 8px;
-}
+}*/
 
 .nexus_elite{
   border: 3px solid var(--CortextoPadrao);
@@ -583,19 +590,16 @@ footer {
    width: 50px;
 }
 
-.nexus_elite button{
+.btn-escolha-plano{
   background-color: var(--CorFundoElementos);
   color: var(--CorTextoBTN);
-  margin-left: 580px;
+  /*margin-left: 580px;*/
    border: 2px solid;
   border-radius: 10px;
-  padding: 5px 8px;
+ 
 
 }
 
-.btn-escolha-plano{
-  margin-bottom: 10px;
-}
 
 /* ======== boas vindas aluno ======== */
 

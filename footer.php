@@ -1,4 +1,4 @@
-   <footer>
+  <footer>
       <div class="footer-links">
         <a href="#">Sobre</a>
         <a href="#">Planos</a>
@@ -9,8 +9,10 @@
       <br />
       <!-- ======== Redes Sociais ======== -->
       <div class="footer-img">
-        <a href="#"><img src="../imagens/facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="../imagens/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="imagens/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="imagens/instagram.png" alt="Instagram" /></a>
       </div>
-      <a>© 2025 Nexus Fitness — Todos os direitos reservados.</a>
-    </footer>
+
+    <p>© 2025 Nexus Fitness — Todos os direitos reservados.</p>
+     
+  </footer>

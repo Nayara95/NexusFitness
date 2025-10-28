@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda de treinos</title>
 
-    <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
+    <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
 
     <link rel="stylesheet" href="../style.css" />
+    <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
 
     <!-- ======== link de site de icones ======== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
@@ -17,11 +18,12 @@
    
 </head>
 <body>
- <!-- ======== CABEÇALHO/HEADER ======== -->
-    <?php
+<?php
          include ('../header.php')    
     ?>
-
+<main>
+ 
+<!-- ======== CABEÇALHO/HEADER ======== -->
 
   <section class="intro">
         <div class="intro-text">
@@ -34,7 +36,7 @@
         </div>
         <div class="img-banner">
           <img src="../imagens/banner1.png" alt="Tecnologia Fitness" />
-          <img src="imagens/banner1.png" alt="Tecnologia Fitness" />
+         
         </div>
       </section>
 
@@ -73,7 +75,7 @@
 
 
 
-
+</main>
 
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
@@ -83,10 +85,6 @@
       ?>
 
  <script src="../script.js"></script>
-        include ('footer.php');      
-      ?>
-
- <script src="script.js"></script>
 
 </body>
 </html>

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastrar | Nexus Fitness</title>
     <link rel="stylesheet" href="../style.css" />
+
+     <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
+
   </head>
   <body>
 
@@ -60,8 +63,8 @@
                 <label for="ddd">DDD</label>
                 <input type="number" id="ddd" name="ddd" placeholder="Informe o DDD" required>
                 
-                <label for="telefone">Telefone</label>
-                <input type="number" id="telefone" name="telefone" placeholder="Informe o Telefone" required>
+                <label for="telefone">Celular</label>
+                <input type="number" id="celular" name="celular" placeholder="Informe o celular" required>
 
 
                  <div class="info-texto">
@@ -77,6 +80,7 @@
 
                 <div class="btnCadastar">
                     <button type="submit" class="btn-cadastra">Cadastrar</button>
+                    <a href="escolha_plano.php">aqui</a>
                 </div>
 
           <br />

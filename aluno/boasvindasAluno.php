@@ -1,18 +1,3 @@
-
-<?php
-session_start();
-
-// Verifica se o usuário está logado e se é um aluno
-if (!isset($_SESSION['loggedin']) || $_SESSION['tipo'] !== 'aluno') {
-    // Se não estiver logado como aluno, redireciona para a página de login
-    header('Location: ../login.php');
-    exit;
-}
-
-$email = $_SESSION['email'];
-?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -35,24 +20,10 @@ $email = $_SESSION['email'];
 </head>
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
-     <header>
-      <div class="logo">
-        <img src="../imagens/nexus.png" alt="Logo Nexus Fitness" />
-      </div>
+    <?php
+         include ('../header.php');  
+    ?>
 
-      <div class="header-buttons">
-        <!-- Menu dropdown (login) -->
-        <div class="dropdown">
-          <button class="dropbtn">Minha Conta▾</button>
-          <div class="dropdown-content">
-            <a href="../aluno/index-aluno.php">Área do Aluno</a>
-            <a href="../aluno/perfil-aluno.php">Meu Perfil</a>
-            <a href="../autenticacao/logout.php">Sair</a>
-          </div>
-        </div>
-      </div>
-    </header>
-    
 <main>
   <section class="intro">
         <div class="intro-text">
@@ -65,14 +36,15 @@ $email = $_SESSION['email'];
         </div>
         <div class="../img-banner">
           <img src="../imagens/banner1.png" alt="Tecnologia Fitness" />
+    
       </section>
 
     <!-- ======== escolha do plano - pós cadastro======== -->
 
     <div class="ativaAgenda_container">
-        <button type="submit" onclick="redirecionar('ativa_plano.php')" class="btn-ativa-plano">Ative seu plano</button>
+        <button type="submit" onclick="redirecionar1('ativa_plano.php')" class="btn-ativa-plano">Ative seu plano</button>
 
-        <button type="submit" onclick="redirecionar('agenda_aluno.php')" class="btn-agenda">Agenda de treino</button>
+        <button type="submit" onclick="redirecionar2('agenda_aluno.php')" class="btn-agenda">Agenda de treino</button>
     </div>
 
 
@@ -83,7 +55,7 @@ $email = $_SESSION['email'];
         <input type="number" id="status" name="status" required>
       </form>
       <img src="../imagens/checkIn.png" alt="Imagem de check-in">
-      <img src="../imagens/checkIn.png" alt="Imagem de check-in">
+      <img src="imagens/checkIn.png" alt="Imagem de check-in">
 
     </div>
 
@@ -91,22 +63,19 @@ $email = $_SESSION['email'];
 
 
 
-
-    
-
-
-
-
-
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
         include ('../footer.php');      
+      
       ?>
 
 
       <script> //direcionado os botões para suas paginas
-        function redirecionar(url) {
+        function redirecionar1(url) {
+            window.location.href = url;
+        }
+         function redirecionar2(url) {
             window.location.href = url;
         }
     </script>

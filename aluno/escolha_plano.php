@@ -14,6 +14,7 @@
     <?php
          include ('../header.php')    
     ?>
+<main>
  <!-- ======== SEÇÃO PRINCIPAL BODY/MAIN ======== -->
    
       <section class="intro">
@@ -31,7 +32,7 @@
       </section>
 
 
-<main>
+
 
   <div class="titulo_plano">
     <h2 >Escolha seu plano</h2>
@@ -48,8 +49,7 @@
           <li>Acesso completo às instalações</li>
           <li>1 sessão de personal trainer por mês</li>
           <li>Acesso ao aplicativo Nexus Fitness</li>
-          <li>Acesso ao aplicativo Nexus Fitness</li>
-          <li>Acesso ao aplicativo Nexus Fitness</li>
+        
          
         </ul>
 
