@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="../style.css" />
     <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
 
-    <link rel="stylesheet" href="style.css" />
-
     <!-- ======== link de site de icones ======== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
       integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
@@ -20,11 +18,12 @@
    
 </head>
 <body>
- <!-- ======== CABEÇALHO/HEADER ======== -->
-    <?php
+<?php
          include ('../header.php')    
     ?>
-
+<main>
+ 
+<!-- ======== CABEÇALHO/HEADER ======== -->
 
   <section class="intro">
         <div class="intro-text">
@@ -37,7 +36,7 @@
         </div>
         <div class="img-banner">
           <img src="../imagens/banner1.png" alt="Tecnologia Fitness" />
-          <img src="imagens/banner1.png" alt="Tecnologia Fitness" />
+         
         </div>
       </section>
 
@@ -76,7 +75,7 @@
 
 
 
-
+</main>
 
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
@@ -86,10 +85,6 @@
       ?>
 
  <script src="../script.js"></script>
-        include ('footer.php');      
-      ?>
-
- <script src="script.js"></script>
 
 </body>
 </html>
