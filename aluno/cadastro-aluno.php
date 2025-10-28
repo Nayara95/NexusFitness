@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastrar | Nexus Fitness</title>
     <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
 
@@ -18,7 +17,7 @@
       <div class="cadastro_esquerdo">
             <img src="../imagens/nexus.png" alt="Nexus Fitness" class="logo-login">
             <p class="alunoTxt">Já é nosso aluno?</p>
-            <a href="login.php" class="btnEntrar">Entrar</a>
+            <a href="../login.php" class="btnEntrar">Entrar</a>
             
         </div>
 

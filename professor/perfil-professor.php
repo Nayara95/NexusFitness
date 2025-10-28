@@ -59,10 +59,8 @@ $professor_info = [
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Nexus Fitness. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    <?php 
+        include ('../footer.php');      
+      ?>
 </body>
 </html>

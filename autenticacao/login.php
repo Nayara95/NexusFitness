@@ -7,7 +7,7 @@ $usuarios = [
     'aluno@nexus.com' => [
         'senha' => 'aluno123',
         'tipo' => 'aluno',
-        'pagina' => '../aluno/index-aluno.php'
+        'pagina' => '../aluno/boasvindasAluno.php'
     ],
     'prof@nexus.com' => [
         'senha' => 'prof123',

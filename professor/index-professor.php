@@ -38,17 +38,10 @@ $email = $_SESSION['email'];
     </header>
 
     <main>
-        <div class="container">
-            <h2>Bem-vindo, Professor!</h2>
-            <p>Este é o seu painel de controle. Utilize o menu acima para navegar entre as seções.</p>
-            <p>Email logado: <?php echo htmlspecialchars($email); ?></p>
-        </div>
+        
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Nexus Fitness. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+      <?php 
+        include ('../footer.php');      
+      ?>
 </body>
 </html>

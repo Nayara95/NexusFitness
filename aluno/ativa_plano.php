@@ -21,8 +21,7 @@
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
     <?php
-         include ('../header.php')    
-         include ('header.php')    
+         include ('../header.php');    
     ?>
 
     
@@ -136,8 +135,7 @@
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
-        include ('../footer.php');      
-        include ('footer.php');      
+        include ('../footer.php');       
       ?>
 
 </body>

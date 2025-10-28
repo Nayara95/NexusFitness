@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil Aluno</title>
-    <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
+    <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
 
     <!-- ======== link de site de icones ======== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
@@ -18,7 +18,7 @@
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
     <?php
-         include ('header.php')    
+         include ('../header.php')    
     ?>
 
 
@@ -46,7 +46,7 @@
      </form>
 
       <p>Para acessar seus dados,baixe o aplicativo Nexus Fitness. Disponivel em: </p>
-      <img src="imagens/googlePlay.png" alt="App Nezus Fitness Google Play" />
+      <img src="../imagens/googlePlay.png" alt="App Nezus Fitness Google Play" />
 
     </div>
 
@@ -65,7 +65,7 @@
         <label for="status">Check-ins</label>
         <input type="number" id="status" name="status" required>
       </form>
-      <img src="imagens/checkIn.png" alt="Imagem de check-in">
+      <img src="../imagens/checkIn.png" alt="Imagem de check-in">
 
     </div>
 
@@ -80,7 +80,7 @@
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
-        include ('footer.php');      
+        include ('../footer.php');      
       ?>
 
 </body>

@@ -1,3 +1,18 @@
+
+<?php
+session_start();
+
+// Verifica se o usuário está logado e se é um aluno
+if (!isset($_SESSION['loggedin']) || $_SESSION['tipo'] !== 'aluno') {
+    // Se não estiver logado como aluno, redireciona para a página de login
+    header('Location: ../login.php');
+    exit;
+}
+
+$email = $_SESSION['email'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,11 +35,24 @@
 </head>
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
-    <?php
-         include ('../header.php')    
-         include ('header.php')    
-    ?>
+     <header>
+      <div class="logo">
+        <img src="../imagens/nexus.png" alt="Logo Nexus Fitness" />
+      </div>
 
+      <div class="header-buttons">
+        <!-- Menu dropdown (login) -->
+        <div class="dropdown">
+          <button class="dropbtn">Minha Conta▾</button>
+          <div class="dropdown-content">
+            <a href="../aluno/index-aluno.php">Área do Aluno</a>
+            <a href="../aluno/perfil-aluno.php">Meu Perfil</a>
+            <a href="../autenticacao/logout.php">Sair</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    
 <main>
   <section class="intro">
         <div class="intro-text">
@@ -37,9 +65,6 @@
         </div>
         <div class="../img-banner">
           <img src="../imagens/banner1.png" alt="Tecnologia Fitness" />
-        <div class="img-banner">
-          <img src="imagens/banner1.png" alt="Tecnologia Fitness" />
-        </div>
       </section>
 
     <!-- ======== escolha do plano - pós cadastro======== -->
@@ -58,7 +83,7 @@
         <input type="number" id="status" name="status" required>
       </form>
       <img src="../imagens/checkIn.png" alt="Imagem de check-in">
-      <img src="imagens/checkIn.png" alt="Imagem de check-in">
+      <img src="../imagens/checkIn.png" alt="Imagem de check-in">
 
     </div>
 
@@ -77,7 +102,6 @@
 
       <?php 
         include ('../footer.php');      
-        include ('footer.php');      
       ?>
 
 

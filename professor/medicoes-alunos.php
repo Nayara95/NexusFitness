@@ -36,16 +36,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['tipo'] !== 'professor') {
     </header>
 
     <main>
-        <div class="container">
-            <h2>Medições dos Alunos</h2>
-            <p>Esta página está em construção. Em breve, você poderá visualizar e registrar as medições dos seus alunos aqui.</p>
-        </div>
+        
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Nexus Fitness. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    <?php 
+        include ('../footer.php');      
+      ?>
 </body>
 </html>
