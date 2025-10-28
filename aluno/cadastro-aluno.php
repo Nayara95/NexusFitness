@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastrar | Nexus Fitness</title>
     <link rel="stylesheet" href="../style.css" />
-<<<<<<< HEAD
-
-     <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
-
-=======
     <link rel="stylesheet" href="../style.css" />
->>>>>>> c71507c8a109a031e91656693fdfeba2638a5afa
   </head>
   <body>
 
