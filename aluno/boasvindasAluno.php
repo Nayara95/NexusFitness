@@ -21,8 +21,7 @@
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
     <?php
-         include ('../header.php')    
-         include ('header.php')    
+         include ('../header.php');  
     ?>
 
 <main>
@@ -37,17 +36,15 @@
         </div>
         <div class="../img-banner">
           <img src="../imagens/banner1.png" alt="Tecnologia Fitness" />
-        <div class="img-banner">
-          <img src="imagens/banner1.png" alt="Tecnologia Fitness" />
-        </div>
+    
       </section>
 
     <!-- ======== escolha do plano - pós cadastro======== -->
 
     <div class="ativaAgenda_container">
-        <button type="submit" onclick="redirecionar('ativa_plano.php')" class="btn-ativa-plano">Ative seu plano</button>
+        <button type="submit" onclick="redirecionar1('ativa_plano.php')" class="btn-ativa-plano">Ative seu plano</button>
 
-        <button type="submit" onclick="redirecionar('agenda_aluno.php')" class="btn-agenda">Agenda de treino</button>
+        <button type="submit" onclick="redirecionar2('agenda_aluno.php')" class="btn-agenda">Agenda de treino</button>
     </div>
 
 
@@ -66,23 +63,19 @@
 
 
 
-
-    
-
-
-
-
-
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
         include ('../footer.php');      
-        include ('footer.php');      
+      
       ?>
 
 
       <script> //direcionado os botões para suas paginas
-        function redirecionar(url) {
+        function redirecionar1(url) {
+            window.location.href = url;
+        }
+         function redirecionar2(url) {
             window.location.href = url;
         }
     </script>

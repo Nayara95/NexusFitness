@@ -6,14 +6,15 @@
     <title>Escolha seu plano</title>
     <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
    
 </head>
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
     <?php
-         include ('header.php')    
+         include ('../header.php')    
     ?>
+<main>
  <!-- ======== SEÇÃO PRINCIPAL BODY/MAIN ======== -->
    
       <section class="intro">
@@ -26,12 +27,12 @@
           <button class="btn-principal">Saiba mais</button>
         </div>
         <div class="img-banner">
-          <img src="imagens/banner1.png" alt="Tecnologia Fitness" />
+          <img src="../imagens/banner1.png" alt="Tecnologia Fitness" />
         </div>
       </section>
 
 
-<main>
+
 
   <div class="titulo_plano">
     <h2 >Escolha seu plano</h2>
@@ -42,14 +43,13 @@
     <div class="planos">
 
       <div class="nexus_equilibrio">
-        <h3><img src="imagens/imgPlano1.png" alt="imagem do logo do plano">Nexus Equilibrio</h3>
+        <h3><img src="../imagens/imgPlano1.png" alt="imagem do logo do plano">Nexus Equilibrio</h3>
         <p>R$ 000,00/mês</p>
         <ul>
           <li>Acesso completo às instalações</li>
           <li>1 sessão de personal trainer por mês</li>
           <li>Acesso ao aplicativo Nexus Fitness</li>
-          <li>Acesso ao aplicativo Nexus Fitness</li>
-          <li>Acesso ao aplicativo Nexus Fitness</li>
+        
          
         </ul>
 
@@ -57,7 +57,7 @@
       </div>
 
       <div class="nexus_elite">
-        <h3><img src="imagens/imgPlano2.png" alt="imagem do logo do plano">Nexus Elite</h3>
+        <h3><img src="../imagens/imgPlano2.png" alt="imagem do logo do plano">Nexus Elite</h3>
         <p>R$ 000,00/mês</p>
         <ul>
           <li>Acesso completo às instalações para até 4 membros</li>
@@ -78,7 +78,7 @@
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
-        include ('footer.php');      
+        include ('../footer.php');      
       ?>
 
 </body>

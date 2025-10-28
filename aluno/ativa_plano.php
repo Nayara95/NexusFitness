@@ -7,9 +7,7 @@
     <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
 
     <link rel="stylesheet" href="../style.css" />
-    <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
-
-    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
 
     <!-- ======== link de site de icones ======== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
@@ -21,11 +19,11 @@
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
     <?php
-         include ('../header.php')    
-         include ('header.php')    
+         include ('../header.php');   
+
     ?>
 
-    
+ <main>
       <section class="intro">
         <div class="intro-text">
           <h1>Um ponto de conexão inabalável!</h1>
@@ -38,13 +36,12 @@
         </div>
         <div class="img-banner">
           <img src="../imagens/banner1.png" alt="Tecnologia Fitness" />
-          <img src="imagens/banner1.png" alt="Tecnologia Fitness" />
         </div>
       </section>
 
 
 
-   <main>
+  
     <section class="saude">
 
         <div class="text-saude-principal">
@@ -97,16 +94,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
    </main>
 
 
@@ -118,7 +105,7 @@
         <input type="number" id="status" name="status" required>
       </form>
       <img src="../imagens/checkIn.png" alt="Imagem de check-in">
-      <img src="imagens/checkIn.png" alt="Imagem de check-in">
+      
 
     </div>
 
@@ -136,8 +123,7 @@
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
-        include ('../footer.php');      
-        include ('footer.php');      
+        include ('../footer.php');           
       ?>
 
 </body>
