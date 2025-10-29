@@ -3,7 +3,6 @@ session_start();
 
 // Verifica se o usuário está logado e se é um professor
 if (!isset($_SESSION['loggedin']) || $_SESSION['tipo'] !== 'professor') {
-    // Se não estiver logado como professor, redireciona para a página de login
     header('Location: ../login.php');
     exit;
 }
@@ -19,13 +18,12 @@ $email = $_SESSION['email'];
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <header>
+     <header>
       <div class="logo">
         <img src="../imagens/nexus.png" alt="Logo Nexus Fitness" />
       </div>
 
       <div class="header-buttons">
-        <!-- Menu dropdown (login) -->
         <div class="dropdown">
           <button class="dropbtn">Minha Conta▾</button>
           <div class="dropdown-content">
@@ -38,17 +36,17 @@ $email = $_SESSION['email'];
     </header>
 
     <main>
-        <div class="container">
-            <h2>Bem-vindo, Professor!</h2>
-            <p>Este é o seu painel de controle. Utilize o menu acima para navegar entre as seções.</p>
-            <p>Email logado: <?php echo htmlspecialchars($email); ?></p>
+        <div class="painel-simples">
+            <h1>Painel do Professor</h1>
+            <p class="bem-vindo">Bem-vindo, <?php echo htmlspecialchars($email); ?>!</p>
+            
+            <div class="botoes-simples">
+                <a href="medicoes-alunos.php" class="btn-simples btn-medicoes">Medições dos Alunos</a>
+                <a href="treino-alunos.php" class="btn-simples">Treinos dos Alunos</a>
+            </div>
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Nexus Fitness. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    <?php include ('../footer.php'); ?>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Endereço de cobrança</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body class="endereco-body">
@@ -15,7 +15,7 @@
 
 
             <div class="logo-left">
-                <img src="imagens/logoBranco.png" alt="Logo Nexus Fitness" class="logo-image">
+                <img src="../imagens/logoBranco.png" alt="Logo Nexus Fitness" class="logo-image">
             
              </div>
 
