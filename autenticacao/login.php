@@ -35,7 +35,7 @@ if (isset($usuarios[$email]) && $usuarios[$email]['senha'] === $senha) {
     exit;
 } else {
     // Falha no login: redireciona de volta para a página de login com um erro
-    header('Location: ../login.html?error=1');
+    header('Location: ../login.php?error=1');
     exit;
 }
 ?>
