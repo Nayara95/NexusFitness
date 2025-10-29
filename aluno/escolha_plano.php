@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escolha seu plano</title>
-    <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
+    <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
 
     <link rel="stylesheet" href="../style.css" />
    
@@ -12,7 +12,7 @@
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
     <?php
-         include ('../header.php')    
+         include ('header.php')    
     ?>
 <main>
  <!-- ======== SEÇÃO PRINCIPAL BODY/MAIN ======== -->
@@ -52,9 +52,10 @@
         
          
         </ul>
-
-        <button type="submit" class="btn-escolha-plano">Ver detalhes</button>
-      </div>
+        <div class="btn-escolha">
+          <button type="submit" onclick="detalhePlano('detalhe_plano.php')" class="btn-escolha-plano">Ver detalhes</button>
+        </div>
+    </div>
 
       <div class="nexus_elite">
         <h3><img src="../imagens/imgPlano2.png" alt="imagem do logo do plano">Nexus Elite</h3>
@@ -64,7 +65,10 @@
           <li>2 sessões de personal trainer por mês</li>
           <li>Acesso ao aplicativo Nexus Fitness</li>
         </ul>
-        <button type="submit" class="btn-escolha-plano">Ver detalhes</button>
+
+        <div class="btn-escolha">
+            <button type="submit" onclick="detalhePlano('detalhe_plano.php')"class="btn-escolha-plano">Ver detalhes</button>
+          </div>
       </div>
 
     </div>
@@ -75,11 +79,19 @@
 
 
 
+
+
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
-        include ('../footer.php');      
+        include ('footer.php');      
       ?>
+
+      <script> //direcionado os botões para suas paginas
+        function detalhePlano(url) {
+          window.location.href = url;
+           }
+      </script>
 
 </body>
 </html>

@@ -21,7 +21,7 @@
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
     <?php
-         include ('../header.php');  
+         include ('header.php');  
     ?>
 
 <main>
@@ -49,13 +49,14 @@
 
 
 
+   
     <div class="checkIn">
       <form action="treinoAluno">
         <label for="status">Check-ins</label>
         <input type="number" id="status" name="status" required>
       </form>
       <img src="../imagens/checkIn.png" alt="Imagem de check-in">
-      <img src="imagens/checkIn.png" alt="Imagem de check-in">
+      
 
     </div>
 
@@ -66,7 +67,7 @@
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
-        include ('../footer.php');      
+        include ('footer.php');      
       
       ?>
 

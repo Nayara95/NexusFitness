@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil Aluno</title>
-    <link rel="shortcut icon" href="imagens/faviconNexus.png" type="logo Nexus Fitness">
+    <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
 
     <!-- ======== link de site de icones ======== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
@@ -16,13 +16,13 @@
    
 </head>
 <body>
- <!-- ======== CABEÇALHO/HEADER ======== -->
+ <!--  CABEÇALHO -->
     <?php
          include ('header.php')    
     ?>
 
 
-<!-- ======== SEÇÃO VER CADASTRO - SEM ACESSO APENAS VISUALIZAÇÃO ======== -->
+<!--  SEÇÃO VER CADASTRO - SEM ACESSO APENAS VISUALIZAÇÃO  -->
 
     <div class="perfil_container">
       <form action="cadastro" method="#">
@@ -32,9 +32,6 @@
         <label for="NomeSocial">Nome Social</label>
         <input type="text" id="NomeSocial" name="NomeSocial" required />
 
-        <label for="cpf">Nome Social</label>
-        <input type="number" id="cpf" name="cpf" required />
-
         <label for="genero">Gênero</label>
         <input type="text" id="genero" name="genero" required />
 
@@ -43,10 +40,11 @@
 
         <label for="telefone">Telefone</label>
         <input type="number" id="telefone" name="telefone" required>
-     </form>
+     
 
-      <p>Para acessar seus dados,baixe o aplicativo Nexus Fitness. Disponivel em: </p>
-      <img src="imagens/googlePlay.png" alt="App Nezus Fitness Google Play" />
+        <p>Para acessar seus dados,baixe o aplicativo Nexus Fitness. Disponivel em: </p>
+        <img src="../imagens/googlePlay.png" alt="App Nezus Fitness Google Play" />
+     </form>
 
     </div>
 
@@ -65,7 +63,7 @@
         <label for="status">Check-ins</label>
         <input type="number" id="status" name="status" required>
       </form>
-      <img src="imagens/checkIn.png" alt="Imagem de check-in">
+      <img src="../imagens/checkIn.png" alt="Imagem de check-in">
 
     </div>
 

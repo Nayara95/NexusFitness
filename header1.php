@@ -3,7 +3,7 @@
    <!-- ======== CABEÇALHO/HEADER ======== -->
    <header>
       <div class="logo">
-        <img src="../imagens/nexus.png" alt="Logo Nexus Fitness" />
+        <img src="imagens/nexus.png" alt="Logo Nexus Fitness" />
       </div>
 
       <div class="header-buttons">
@@ -11,8 +11,8 @@
         <div class="dropdown">
           <button class="dropbtn">Minha Conta▾</button>
           <div class="dropdown-content">
-            <a href="../login.php">Login</a>
-          </div>
+            <a href="login.php">Login</a>
+            <a href="../aluno/boasvindasAluno.php">Voltar</a>     
         </div>
       </div>
     </header>
