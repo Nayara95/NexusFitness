@@ -355,6 +355,6 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
         </div>
     </main>
 
-    <?php include ('../footer.php'); ?>
+    <?php include ('../footer1.php'); ?>
 </body>
 </html>
