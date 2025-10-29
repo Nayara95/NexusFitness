@@ -1030,3 +1030,1679 @@ button[type="submit"]{
     background-color: var(--CorFundoElementos); /* Cor PIX */
     color: white;
 }
+
+/* ======== ESTILOS ESPECÍFICOS PARA A PÁGINA DE TREINOS DOS ALUNOS ======== */
+
+.treinos-container {
+    background-color: #fff;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 1200px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.treinos-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--CorFundoElementos);
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+/* Seção de Pesquisa */
+.pesquisa-section {
+    margin-bottom: 40px;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 4px solid var(--CorFundoElementos);
+}
+
+.pesquisa-section h2 {
+    color: var(--CorFundoElementos);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.search-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 300px;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.search-form input:focus {
+    outline: none;
+    border-color: var(--CorFundoElementos2);
+}
+
+.btn-pesquisar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pesquisar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+/* Resultados da Pesquisa */
+.resultados-pesquisa h3 {
+    color: var(--CortextoPadrao);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.alunos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.aluno-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    transition: box-shadow 0.3s ease;
+}
+
+.aluno-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aluno-info-basica {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.aluno-id {
+    background-color: #e9ecef;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.aluno-email {
+    font-size: 13px;
+    color: #666;
+}
+
+.btn-selecionar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-selecionar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+/* Status dos alunos */
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-ativo {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-inativo {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Seção do Aluno Selecionado */
+.aluno-selecionado-section {
+    margin-top: 30px;
+}
+
+.aluno-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--CorFundoElementos2);
+}
+
+.aluno-titulo h2 {
+    color: var(--CorFundoElementos);
+    margin: 0 0 10px 0;
+    font-size: 1.8em;
+}
+
+.aluno-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Informações de Saúde */
+.info-saude {
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border-left: 4px solid #4dabf7;
+}
+
+.info-saude h3 {
+    color: var(--CorFundoElementos);
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.saude-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.info-item label {
+    font-weight: bold;
+    color: var(--CortextoPadrao);
+    font-size: 14px;
+}
+
+.info-item span {
+    color: #555;
+    font-size: 14px;
+}
+
+.no-info {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Ficha de Treinos */
+.ficha-treinos {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ficha-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--CorFundoElementos);
+    color: white;
+}
+
+.ficha-header h3 {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.ficha-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-editar, .btn-enviar {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-editar {
+    background-color: white;
+    color: var(--CorFundoElementos);
+    border: 2px solid white;
+}
+
+.btn-editar:hover {
+    background-color: #f8f9fa;
+}
+
+.btn-enviar {
+    background-color: var(--CorFundoElementos2);
+    color: white;
+    border: 2px solid var(--CorFundoElementos2);
+}
+
+.btn-enviar:hover {
+    background-color: #d9364e;
+}
+
+/* Dias de Treino */
+.dias-treino {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.dia-treino {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    min-height: 200px;
+}
+
+.dia-treino h4 {
+    color: var(--CorFundoElementos);
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--CorFundoElementos2);
+    font-size: 1.1em;
+}
+
+.exercicios-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.exercicio-item {
+    background-color: white;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 3px solid var(--CorFundoElementos);
+}
+
+.exercicio-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.exercicio-numero {
+    background-color: var(--CorFundoElementos);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.exercicio-nome {
+    font-weight: bold;
+    color: var(--CortextoPadrao);
+    font-size: 14px;
+}
+
+.exercicio-detalhes {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #666;
+}
+
+.sem-treino {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Mensagens de estado */
+.no-results, .no-aluno {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+    .treinos-container {
+        padding: 20px;
+        margin: 20px 15px;
+    }
+    
+    .treinos-container h1 {
+        font-size: 1.8em;
+    }
+    
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-form input {
+        min-width: 100%;
+    }
+    
+    .aluno-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .aluno-info-basica {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .ficha-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .ficha-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .dias-treino {
+        grid-template-columns: 1fr;
+    }
+    
+    .saude-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .treinos-container {
+        padding: 15px;
+        margin: 15px 10px;
+    }
+    
+    .aluno-item {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .ficha-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-editar, .btn-enviar {
+        width: 100%;
+    }
+    
+    .exercicio-detalhes {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* ======== ESTILOS PARA AVALIAÇÃO FÍSICA ======== */
+
+.avaliacao-container {
+    background-color: #fff;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 1000px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.avaliacao-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--CorFundoElementos);
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+/* Seção de Pesquisa */
+.pesquisa-section {
+    margin-bottom: 40px;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 4px solid var(--CorFundoElementos);
+}
+
+.pesquisa-section h2 {
+    color: var(--CorFundoElementos);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.search-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 300px;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.search-form input:focus {
+    outline: none;
+    border-color: var(--CorFundoElementos2);
+}
+
+.btn-pesquisar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pesquisar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+/* Resultados da Pesquisa */
+.resultados-pesquisa h3 {
+    color: var(--CortextoPadrao);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.alunos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.aluno-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    transition: box-shadow 0.3s ease;
+}
+
+.aluno-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aluno-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.aluno-info strong {
+    color: var(--CortextoPadrao);
+    font-size: 14px;
+}
+
+.aluno-info span {
+    color: #666;
+    font-size: 13px;
+}
+
+.btn-selecionar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-selecionar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+/* Seção do Aluno Selecionado */
+.avaliacao-form-section {
+    margin-top: 30px;
+}
+
+.aluno-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--CorFundoElementos2);
+}
+
+.aluno-header h2 {
+    color: var(--CorFundoElementos);
+    margin: 0;
+    font-size: 1.6em;
+}
+
+.aluno-header .aluno-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.data-atual {
+    font-weight: bold;
+    color: var(--CorFundoElementos2);
+}
+
+/* Formulário de Avaliação */
+.avaliacao-form {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: var(--CortextoPadrao);
+    font-size: 14px;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--CorFundoElementos2);
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Ações do Formulário */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-salvar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-salvar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+.btn-criar-exercicio {
+    background-color: var(--CorFundoElementos2);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-criar-exercicio:hover {
+    background-color: #d9364e;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--CorFundoElementos);
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.close {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #ffdddd;
+}
+
+.modal-form {
+    padding: 20px;
+}
+
+.modal-form .input-group {
+    margin-bottom: 20px;
+}
+
+.btn-cancelar {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancelar:hover {
+    background-color: #545b62;
+}
+
+/* Mensagens de estado */
+.no-results, .no-aluno {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+    .avaliacao-container {
+        padding: 20px;
+        margin: 20px 15px;
+    }
+    
+    .avaliacao-container h1 {
+        font-size: 1.8em;
+    }
+    
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-form input {
+        min-width: 100%;
+    }
+    
+    .aluno-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .aluno-header .aluno-info {
+        align-items: flex-start;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .avaliacao-container {
+        padding: 15px;
+        margin: 15px 10px;
+    }
+    
+    .aluno-item {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .avaliacao-form {
+        padding: 20px;
+    }
+    
+    .btn-salvar, .btn-criar-exercicio, .btn-cancelar {
+        width: 100%;
+    }
+}
+
+
+/* ======== ESTILOS PARA AVALIAÇÃO FÍSICA ======== */
+
+.avaliacao-container {
+    background-color: #fff;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 1200px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.avaliacao-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--CorFundoElementos);
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+/* Seção de Pesquisa */
+.pesquisa-section {
+    margin-bottom: 40px;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 4px solid var(--CorFundoElementos);
+}
+
+.pesquisa-section h2 {
+    color: var(--CorFundoElementos);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.search-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 300px;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.search-form input:focus {
+    outline: none;
+    border-color: var(--CorFundoElementos2);
+}
+
+.btn-pesquisar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pesquisar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+/* Tabelas */
+.tabela-alunos, .tabela-dados {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Seção do Aluno Selecionado */
+.aluno-selecionado-section {
+    margin-top: 30px;
+}
+
+.aluno-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--CorFundoElementos2);
+}
+
+.aluno-info h2 {
+    color: var(--CorFundoElementos);
+    margin: 0 0 10px 0;
+    font-size: 1.8em;
+}
+
+.aluno-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.aluno-meta span {
+    background-color: #f8f9fa;
+    padding: 4px 12px;
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.aluno-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-criar-exercicio, .btn-historico {
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid;
+}
+
+.btn-criar-exercicio {
+    background-color: var(--CorFundoElementos2);
+    color: var(--CorTextoBTN);
+    border-color: var(--CorFundoElementos2);
+}
+
+.btn-criar-exercicio:hover {
+    background-color: #d9364e;
+}
+
+.btn-historico {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border-color: var(--CorFundoElementos);
+}
+
+.btn-historico:hover {
+    background-color: #5a0e1f;
+}
+
+/* Alertas */
+.alert {
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.alert-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Formulário de Dados */
+.form-section {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+}
+
+.form-section h3 {
+    color: var(--CorFundoElementos);
+    margin-bottom: 25px;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.form-section h4 {
+    color: var(--CorFundoElementos2);
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    border-bottom: 2px solid var(--CorFundoElementos2);
+    padding-bottom: 8px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: var(--CortextoPadrao);
+    font-size: 14px;
+}
+
+.input-group input {
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    padding-right: 60px;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--CorFundoElementos2);
+}
+
+.unidade {
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    color: #666;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Grupo de Data */
+.data-group {
+    margin-top: 10px;
+}
+
+.data-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.data-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+}
+
+.data-field input {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.data-label {
+    font-size: 11px;
+    color: #666;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Ações do Formulário */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-salvar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-salvar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+.btn-cancelar {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancelar:hover {
+    background-color: #545b62;
+}
+
+/* Botões de Ação nas Tabelas */
+.acoes {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-selecionar, .btn-editar, .btn-excluir {
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-selecionar, .btn-editar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+}
+
+.btn-selecionar:hover, .btn-editar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+.btn-excluir {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-excluir:hover {
+    background-color: #c82333;
+}
+
+/* Histórico */
+.historico-section {
+    margin-top: 40px;
+}
+
+.historico-section h3 {
+    color: var(--CorFundoElementos);
+    margin-bottom: 20px;
+    font-size: 1.4em;
+}
+
+/* Mensagens de estado */
+.no-results, .no-aluno, .no-data {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    font-style: italic;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    margin: 20px 0;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+    .avaliacao-container {
+        padding: 20px;
+        margin: 20px 15px;
+    }
+    
+    .avaliacao-container h1 {
+        font-size: 1.8em;
+    }
+    
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-form input {
+        min-width: 100%;
+    }
+    
+    .aluno-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    
+    .aluno-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .data-inputs {
+        flex-direction: column;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn-salvar, .btn-cancelar {
+        width: 100%;
+        text-align: center;
+    }
+    
+    table {
+        font-size: 12px;
+    }
+    
+    th, td {
+        padding: 8px 10px;
+    }
+    
+    .acoes {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .avaliacao-container {
+        padding: 15px;
+        margin: 15px 10px;
+    }
+    
+    .aluno-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-section {
+        padding: 20px;
+    }
+    
+    .btn-criar-exercicio, .btn-historico {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+ .painel-simples {
+            background-color: #fff;
+            padding: 40px;
+            margin: 30px auto;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .painel-simples h1 {
+            color: var(--CorFundoElementos);
+            margin-bottom: 10px;
+        }
+        
+        .bem-vindo {
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .botoes-simples {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-simples {
+            background-color: var(--CorFundoElementos);
+            color: var(--CorTextoBTN);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            min-width: 200px;
+        }
+        
+        .btn-simples:hover {
+            background-color: var(--CorFundoElementos2);
+        }
+        
+        .btn-medicoes {
+            background-color: var(--CorFundoElementos2);
+        }
+        
+        .btn-medicoes:hover {
+            background-color: #d9364e;
+        }
+        
+        @media (max-width: 768px) {
+            .botoes-simples {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-simples {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+
+        /* ======== ESTILOS PARA PERFIL DO PROFESSOR ======== */
+
+.perfil-container {
+    background-color: #fff;
+    padding: 40px;
+    margin: 30px auto;
+    max-width: 1000px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--CorFundoElementos);
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+.perfil-header {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    align-items: flex-start;
+}
+
+.foto-perfil {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.foto-perfil img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--CorFundoElementos);
+    margin-bottom: 15px;
+}
+
+.btn-alterar-foto {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-alterar-foto:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+.info-basica {
+    flex: 1;
+}
+
+.info-basica h3 {
+    color: var(--CorFundoElementos);
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-item label {
+    font-weight: bold;
+    color: var(--CortextoPadrao);
+    font-size: 14px;
+}
+
+.info-item span {
+    color: #555;
+    font-size: 15px;
+}
+
+.sobre-professor {
+    margin-top: 20px;
+}
+
+/* Formulários */
+.form-section {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--CorFundoElementos);
+}
+
+.form-section h3 {
+    color: var(--CorFundoElementos);
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: var(--CortextoPadrao);
+    font-size: 14px;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--CorFundoElementos2);
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.btn-salvar {
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-salvar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+.btn-cancelar {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-cancelar:hover {
+    background-color: #545b62;
+}
+
+/* Modal de Foto */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--CorFundoElementos);
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.close {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #ffdddd;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Alertas */
+.alert {
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.alert-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
