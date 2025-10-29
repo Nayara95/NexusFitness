@@ -7,6 +7,10 @@
      <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
     <link rel="stylesheet" href="../style.css">
 
+ <!-- ======== link de site de icones ======== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
      
 
 </head>
@@ -45,7 +49,7 @@
             <button type="button" class="tab-pagamento ativo" data-metodo="cartao">
                 Cartão de Crédito
             </button>
-            <button type="button" class="tab-pagamento" data-metodo="pix">
+            <button type="button" onclick="bemvindo('boasvindasAluno.php')"  class="tab-pagamento" data-metodo="pix">
                 PIX
             </button>
         </div>
@@ -117,6 +121,13 @@
 
    
     <script src="../script.js"></script>
+
+      <script> //direcionado os botões para suas paginas
+        function bemvindo(url) {
+            window.location.href = url;
+        }
+        
+    </script>
 
 </body>
 </html>

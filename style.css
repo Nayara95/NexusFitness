@@ -235,13 +235,14 @@ main {
 
 
 .cadastro_container{
-  display: flex; 
-  width: 90%;
-  height: auto;
-  margin: 5px auto;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border-radius: var(--borda-raio);
-  overflow: hidden;
+   display: flex;
+   margin-left: 400px;
+    width: 900px; /* Largura total da caixa */
+    height: 850px; /* Altura total da caixa */
+   background-color: var(--CorFundoTotal);
+    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 15px; /* Borda arredondada */
+    overflow: hidden; /* Garante que as sub-áreas fiquem dentro do raio */
 
 }
 
@@ -256,6 +257,8 @@ main {
     padding: 40px;
     display: flex;
     flex-direction: column;
+
+
     align-items: center;
     text-align: center;
     justify-content: space-around; /* Distribui o conteúdo (logo, texto, botão) */
@@ -565,17 +568,27 @@ footer {
   /*padding: auto;*/
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 700px;
-  height: 280px;
+  width: 800px;
+  height: 290px;
 }
 
-.nexus_equilibrio p{
+.valor_assinar{
+  width: 100%;
   text-align: right;
-  margin-right: 20px;
+  margin: 0px;
+  
+}
+
+
+.valor_assinar p{
+  margin: 0px;
+  display: inline-block;
+  
 }
 
 .nexus_equilibrio img{
   width: 50px;
+  
 }
 
 
@@ -592,12 +605,11 @@ footer {
   border: 3px solid var(--CortextoPadrao);
   border-radius: 10px;
   box-sizing:border-box;
+
+  
  
 }
-.nexus_elite p{
-  text-align: right;
-  margin-right: 30px;
-}
+
 .nexus_elite img{
    width: 50px;
 }
@@ -618,12 +630,21 @@ footer {
   color: var(--CorTextoBTN);
 }
 
-.btn-escolha-plano a{
-text-decoration: none;
 
+
+.btn-assinar{
+   width: 200px;
+  font-size: 0.9em;
+  margin-left: 40%;
+  padding-bottom: 15px;
+ 
 }
 
-/*escolha plano botões
+.btn-assinar button{
+
+ background-color: var(--CorFundoElementos2);
+
+}
 
 
 
@@ -814,7 +835,7 @@ input[type="file"]{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0; /* Cor de fundo leve */
+    background-color: #ffffff; 
 }
 
 
@@ -822,11 +843,12 @@ input[type="file"]{
 /* Container Principal - A caixa que contém tudo */
 .container {
     display: flex;
+   margin-left: 40px;
     width: 800px; /* Largura total da caixa */
-    height: 600px; /* Altura total da caixa */
-    background-color: white;
+    height: 650px; /* Altura total da caixa */
+    background-color: rgb(41, 32, 13);
     box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 10px; /* Borda arredondada */
+    border-radius: 15px; /* Borda arredondada */
     overflow: hidden; /* Garante que as sub-áreas fiquem dentro do raio */
   
   }

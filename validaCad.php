@@ -19,11 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p>Bem-vindo(a), $nomeCompletoSeguro.</p>";
     echo "<p>Seus dados foram processados. Você será notificado(a) por e-mail: $emailSeguro</p>";
 
+    echo "<h1>PAGINA EM ANDAMENTO</h1>";
+
 } else {
     // Se for acessada diretamente sem o POST
     header('Location: cadastro-aluno.php');
     exit;
 }
+
 ?>
 
 

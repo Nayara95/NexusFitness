@@ -12,7 +12,7 @@
 
           <button class="dropbtn">Minha Conta▾</button>
             <div class="dropdown-content">
-              <a href="login.php">Login</a>
+              <a href="../login.php">Login</a>
               <a href="boasvindasAluno.php">Voltar</a>
             </div>
         </div>
