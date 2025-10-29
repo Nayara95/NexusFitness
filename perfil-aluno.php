@@ -1,17 +1,19 @@
-<?php include_once '../autenticacao/auth.php'; ?>
+ <?php include_once '../autenticacao/auth.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meu Perfil - Nexus Fitness</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="style.css" />
+
   </head>
   <body>
+    
     <!-- ======== CABEÇALHO/HEADER ======== -->
     <header>
       <div class="logo">
-        <img src="../imagens/nexus.png" alt="Logo Nexus Fitness" />
+        <img src="imagens/nexus.png" alt="Logo Nexus Fitness" />
       </div>
 
       <div class="header-buttons">
@@ -19,9 +21,9 @@
         <div class="dropdown">
           <button class="dropbtn">Minha Conta▾</button>
           <div class="dropdown-content">
-            <a href="../aluno/index-aluno.php">Área do Aluno</a>
-            <a href="../aluno/perfil-aluno.php">Meu Perfil</a>
-            <a href="../autenticacao/logout.php">Sair</a>
+            <a href="aluno/boasvindasAluno.php">Área do Aluno</a>
+            <a href="aluno/perfilAluno.php">Meu Perfil</a>
+            <a href="autenticacao/logout.php">Sair</a>
           </div>
         </div>
       </div>
@@ -53,8 +55,8 @@
       <br />
       <!-- ======== Redes Sociais ======== -->
       <div class="footer-img">
-        <a href="#"><img src="../imagens/facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="../imagens/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="imagens/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="imagens/instagram.png" alt="Instagram" /></a>
       </div>
       <p>© 2025 Nexus Fitness — Todos os direitos reservados.</p>
     </footer>

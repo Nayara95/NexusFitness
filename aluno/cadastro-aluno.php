@@ -13,6 +13,7 @@
 
 
 <main>
+  
 
     <div class="cadastro_container"> <!-- div completa -->
 
@@ -30,7 +31,7 @@
       <div class="cadastro_direito">
         <h2>informe os dados para cadastro</h2>
 
-        <form action="cadastrar.php" method="POST" id="formCadastrar">
+        <form action="../validaCad.php" method="POST" id="formCadastrar">
 
                 <label for="nome">Nome Completo</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>

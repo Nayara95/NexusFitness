@@ -9,8 +9,8 @@
       <br />
       <!-- ======== Redes Sociais ======== -->
       <div class="footer-img">
-        <a href="#"><img src="imagens/facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="imagens/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="../imagens/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="../imagens/instagram.png" alt="Instagram" /></a>
       </div>
 
     <p>© 2025 Nexus Fitness — Todos os direitos reservados.</p>

@@ -12,7 +12,7 @@
 <body>
  <!-- ======== CABEÇALHO/HEADER ======== -->
     <?php
-         include ('../header.php')    
+         include ('header.php')    
     ?>
 
 
@@ -42,19 +42,19 @@
     <div class="planos">
       
       <div class="nexus_equilibrio">
-         <h3><img src="../imagens/imgPlano1.png" alt="imagem do logo do plano">Nexus Equilibrio</h3>
-      
-        <ul>
-          <li>Acesso completo às instalações</li>
-          <li>1 sessão de personal trainer por mês</li>
-          <li>Acesso ao aplicativo Nexus Fitness</li>
-          <li>Acesso ao aplicativo Nexus Fitness</li>
-          <li>Acesso ao aplicativo Nexus Fitness</li>
-          <li>Acesso ao aplicativo Nexus Fitness</li>
-        </ul>
+          <h3><img src="../imagens/imgPlano1.png" alt="imagem do logo do plano">Nexus Equilibrio</h3>
+          <ul>
+            <li>Acesso completo às instalações</li>
+            <li>1 sessão de personal trainer por mês</li>
+            <li>Acesso ao aplicativo Nexus Fitness</li>
+            <li>Acesso ao aplicativo Nexus Fitness</li>
+            <li>Acesso ao aplicativo Nexus Fitness</li>
+            <li>Acesso ao aplicativo Nexus Fitness</li>
+          </ul>
 
-        <p>R$ 000,00/mês</p>
-        <button type="submit" class="btn-escolha-plano">Assinar</button>
+          <p>R$ 000,00/mês</p>
+             <button type="submit" class="btnAssinar">Assinar</button>
+         
       </div>
 
       <div class="nexus_elite">
@@ -88,7 +88,7 @@
 <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
-        include ('../footer.php');      
+        include ('footer.php');      
       ?>
 
 </body>

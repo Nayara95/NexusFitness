@@ -472,16 +472,26 @@ footer {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 80px 40px;
-  width: auto;
+  padding: 80px;
+
 }
 
   .perfil_container form{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 500px;
+    width: 600px;
+    padding: 30px;
+    border: 2px solid rgb(177, 177, 177);
+    border-radius: 10px;
+    box-shadow: 10px 10px #bf4c5f50;
+
   }
+
+   .perfil_container form img{
+    margin: auto;
+
+   }
 
   .perfil_container form label{
    font-weight: Light;
@@ -497,6 +507,7 @@ footer {
 .perfil_container p{
   font-size: 14px;
   color: rgb(148, 148, 148);
+  margin: auto;
 }
 
 .btn-plano{
@@ -520,6 +531,7 @@ footer {
 }
 
 /* ======== Escolha plano e detalhe plano ======== */
+
 
 
 .escolha_plano_container{
@@ -590,15 +602,35 @@ footer {
    width: 50px;
 }
 
+.btn-escolha{
+ 
+  width: 200px;
+  font-size: 0.9em;
+  margin-left: 40%;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+
 .btn-escolha-plano{
+  border: 1px solid;
+  border-radius: 10px;
   background-color: var(--CorFundoElementos);
   color: var(--CorTextoBTN);
-  /*margin-left: 580px;*/
-   border: 2px solid;
-  border-radius: 10px;
- 
+}
+
+.btn-escolha-plano a{
+text-decoration: none;
 
 }
+
+/*escolha plano botões
+
+
+
+
+
+
+
 
 
 /* ======== boas vindas aluno ======== */

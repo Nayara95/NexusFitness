@@ -13,7 +13,7 @@
   <body>
 
      <?php 
-        include ('header.php');      
+        include ('header1.php');      
      ?>
 
     <!-- ======== SEÇÃO PRINCIPAL BODY/MAIN ======== -->
@@ -47,7 +47,7 @@
     <!-- ======== RODAPÉ/FOOTER ======== -->
 
       <?php 
-        include ('footer.php');      
+        include ('footer1.php');      
       ?>
 
  
