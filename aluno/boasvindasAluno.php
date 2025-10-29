@@ -44,7 +44,9 @@
     <div class="ativaAgenda_container">
         <button type="submit" onclick="redirecionar1('ativa_plano.php')" class="btn-ativa-plano">Ative seu plano</button>
 
-        <button type="submit" onclick="redirecionar2('agenda_aluno.php')" class="btn-agenda">Agenda de treino</button>
+        <button type="submit" onclick="redirecionar('agenda_aluno.php')" class="btn-agenda">Agenda de treino</button>
+
+        <button type="submit" onclick="redirecionar1('perfilAluno.php')" class="btn-agenda">Perfil(provisório)</button>
     </div>
 
 
@@ -74,9 +76,6 @@
 
       <script> //direcionado os botões para suas paginas
         function redirecionar1(url) {
-            window.location.href = url;
-        }
-         function redirecionar2(url) {
             window.location.href = url;
         }
     </script>

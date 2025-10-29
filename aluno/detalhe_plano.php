@@ -48,13 +48,16 @@
             <li>1 sessão de personal trainer por mês</li>
             <li>Acesso ao aplicativo Nexus Fitness</li>
             <li>Acesso ao aplicativo Nexus Fitness</li>
-            <li>Acesso ao aplicativo Nexus Fitness</li>
-            <li>Acesso ao aplicativo Nexus Fitness</li>
+            
           </ul>
 
-          <p>R$ 000,00/mês</p>
-             <button type="submit" class="btnAssinar">Assinar</button>
-         
+          <div class="valor_assinar">
+            <p>R$ 000,00/mês</p>
+          </div>
+
+            <div class="btn-assinar">
+              <button type="submit" onclick="pagamento('enderecoPg.php')" class="btnAssinar-">Assinar</button>
+            </div>
       </div>
 
       <div class="nexus_elite">
@@ -69,14 +72,19 @@
           <li>Acesso ao aplicativo Nexus Fitness</li>
         </ul>
 
-         <p>R$ 000,00/mês</p>
-        <button type="submit" class="btn-escolha-plano">Assinar</button>
+         <div class="valor_assinar">
+            <p>R$ 000,00/mês</p>
+          </div>
+
+         <div class="btn-assinar">
+              <button type="submit" onclick="pagamento('enderecoPg.php')" class="btnAssinar-">Assinar</button>
+          </div>
+
       </div>
 
     </div>
   </div>
- 
- 
+
 
 
 </main>
@@ -90,6 +98,13 @@
       <?php 
         include ('footer.php');      
       ?>
+
+      
+    <script> //direcionado os botões para suas paginas provisório
+        function pagamento(url) {
+            window.location.href = url;
+        }
+    </script>
 
 </body>
 </html>
