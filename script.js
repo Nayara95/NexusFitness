@@ -290,3 +290,109 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+function editarFicha(alunoId) {
+            // Redireciona para a página de edição com o ID do aluno
+            window.location.href = 'editar-treino.php?aluno_id=' + alunoId;
+        }
+        
+        function enviarFicha(alunoId) {
+            if (confirm('Deseja enviar esta ficha de treino para o aluno?')) {
+                // Simula o envio da ficha
+                fetch('enviar-ficha.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'aluno_id=' + alunoId
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Ficha enviada com sucesso para o aluno!');
+                    } else {
+                        alert('Erro ao enviar ficha: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('Erro ao enviar ficha. Tente novamente.');
+                });
+            }
+        }
+        
+        // Auto-focus no campo de pesquisa
+        document.getElementById('searchInput')?.focus();
+        
+        // Limpa a pesquisa quando clicar no logo ou mudar de página
+        document.querySelector('.logo')?.addEventListener('click', function() {
+            window.location.href = 'treino-alunos.php';
+        });
+
+
+            // Auto-focus na pesquisa
+        document.getElementById('searchInput')?.focus();
+
+        // Validação de data
+        const diaInput = document.getElementById('dia');
+        const mesInput = document.getElementById('mes');
+        const anoInput = document.getElementById('ano');
+
+        if (diaInput && mesInput && anoInput) {
+            [diaInput, mesInput, anoInput].forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.length > this.maxLength) {
+                        this.value = this.value.slice(0, this.maxLength);
+                    }
+                });
+            });
+        }
+
+
+        
+        // Modal de Foto
+function abrirModalFoto() {
+    document.getElementById('modalFoto').style.display = 'block';
+}
+
+function fecharModalFoto() {
+    document.getElementById('modalFoto').style.display = 'none';
+    document.getElementById('formFoto').reset();
+}
+
+// Fechar modal ao clicar fora
+window.onclick = function(event) {
+    const modal = document.getElementById('modalFoto');
+    if (event.target === modal) {
+        fecharModalFoto();
+    }
+}
+
+// Preview da foto antes do upload
+document.addEventListener('DOMContentLoaded', function() {
+    const fotoInput = document.getElementById('foto');
+    if (fotoInput) {
+        fotoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('fotoPreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Validação de senha
+    const formSenha = document.querySelector('form[action*="alterar_senha"]');
+    if (formSenha) {
+        formSenha.addEventListener('submit', function(e) {
+            const novaSenha = document.getElementById('nova_senha').value;
+            const confirmarSenha = document.getElementById('confirmar_senha').value;
+            
+            if (novaSenha !== confirmarSenha) {
+                e.preventDefault();
+                alert('As senhas não coincidem!');
+            }
+        });
+    }
+});
