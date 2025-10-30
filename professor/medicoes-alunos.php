@@ -344,6 +344,6 @@ if (isset($_GET['excluir_id']) && $alunoSelecionado) {
         </div>
     </main>
 
-    <?php include ('../footer.php'); ?>
+    <?php include ('../footer1.php'); ?>
 </body>
 </html>

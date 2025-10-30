@@ -269,7 +269,7 @@ function exibirValor($array, $chave, $padrao = '') {
         </div>
     </div>
 
-    <?php include ('../footer.php'); ?>
+    <?php include ('../footer1.php'); ?>
     
     <script src="../script.js"></script>
 </body>

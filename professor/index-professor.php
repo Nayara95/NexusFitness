@@ -47,6 +47,6 @@ $email = $_SESSION['email'];
         </div>
     </main>
 
-    <?php include ('../footer.php'); ?>
+    <?php include ('../footer1.php'); ?>
 </body>
 </html>
