@@ -31,7 +31,7 @@
       <div class="cadastro_direito">
         <h2>informe os dados para cadastro</h2>
 
-        <form action="../validaCad.php" method="POST" id="formCadastrar">
+        <form action="BDCadastro.php" method="POST" id="formCadastrar">
 
                 <label for="nome">Nome Completo</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
@@ -57,7 +57,7 @@
                   </div>
                   <div class="campo"> 
                       <label for="data-nasc">Data de Nascimento</label>
-                    <input type="date" id="nascimento" name="nascimento" placeholder="Informe a Data de Nascimento" required>
+                    <input type="date" id="data_nasc" name="data_nasc" placeholder="Informe a Data de Nascimento" required>
                   </div>
 
                 </div> 
@@ -65,7 +65,7 @@
                 <input type="number" id="ddd" name="ddd" placeholder="Informe o DDD" required>
                 
                 <label for="telefone">Celular</label>
-                <input type="number" id="celular" name="celular" placeholder="Informe o celular" required>
+                <input type="number" id="celular" name="telefone" placeholder="Informe o celular" required>
 
 
                  <div class="info-texto">
