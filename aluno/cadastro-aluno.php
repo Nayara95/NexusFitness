@@ -31,12 +31,13 @@
       <div class="cadastro_direito">
         <h2>informe os dados para cadastro</h2>
 
-        <form action="BDCadastro.php" method="POST" id="formCadastrar">
+        <form action="incluirBD_php" method="POST" id="formCadastrar">
 
                 <label for="nome">Nome Completo</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+
                 <label for="nomeSocial">Nome social</label>
-                <input type="text" id="nomeSocial" name="nomeSocial">
+                <input type="text" id="nome_social" name="nome_social">
 
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Digite seu email" required>
