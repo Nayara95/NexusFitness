@@ -1,4 +1,5 @@
 --aqui a estrutura está sendo conectada com as seus atributos php
+--EM ANDAMENTO
 
 create database BD_NexusFit;
 
