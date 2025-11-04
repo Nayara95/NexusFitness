@@ -1,4 +1,4 @@
---aqui a estrutura está sendo conectada com as seus atributos php
+--aqui a estrutura estï¿½ sendo conectada com as seus atributos php
 --EM ANDAMENTO
 
 create database BD_NexusFit;
@@ -6,13 +6,12 @@ create database BD_NexusFit;
 use BD_NexusFit;
 
 create table tbl_aluno(
---id_aluno int PRIMARY KEY not null,
 
 --foto image,
 nome varchar(100)not null,
 email varchar(100) not null,
 cpf numeric(14) not null,
-genero varchar(100) not null, --M masculino,F feminino,ñ quer informar
+genero varchar(100) not null, --M masculino,F feminino,ï¿½ quer informar
 data_nasc date not null,
 dd1 numeric(3) not null, 
 telefone numeric(12) not null,
