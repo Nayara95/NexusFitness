@@ -191,6 +191,7 @@ complemento varchar(100),
 
 --CHAVE ESTRANGEIRA
 id_professor int FOREIGN KEY references tbl_professor(id_professor)
+id_permissao int FOREIGN KEY references tbl_permissao(id_permissao)
 
 
 );
@@ -205,6 +206,7 @@ DataPermissao DATETIME not null,
 --CHAVE ESTRANGEIRA
 id_professor int FOREIGN KEY references tbl_professor(id_professor),
 id_aluno int FOREIGN KEY references tbl_aluno(id_aluno)
+id_funcionarios int FOREIGN KEY references id_funcionarios
 
 );
 
