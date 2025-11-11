@@ -2,25 +2,25 @@
 session_start();
 
 // Verifica se o usuário está logado e se é um professor
-if (!isset($_SESSION['loggedin']) || $_SESSION['tipo'] !== 'professor') {
+if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
     header('Location: ../login.php');
     exit;
 }
 
-// --- DADOS DE EXEMPLO DO PROFESSOR ---
-// Em um sistema real, você buscaria isso de um banco de dados
-$professor_info = [
-    'id' => 1,
-    'nome' => 'João da Silva',
-    'email' => $_SESSION['email'],
-    'telefone' => '(11) 99999-9999',
-    'especialidade' => 'Musculação e Treinamento Funcional',
-    'cref' => '123456-G/SP',
-    'experiencia' => '5 anos',
-    'formacao' => 'Educação Física - USP',
-    'sobre' => 'Professor dedicado com foco em resultados e bem-estar dos alunos.',
-    'foto' => '../imagens/avatar-professor.jpg'
-];
+require_once '../autenticacao/conexao.php';
+$conn = conectar();
+
+// Busca os dados do professor no banco de dados
+$stmt = $conn->prepare("SELECT * FROM tbl_professor WHERE id_professor = :id");
+$stmt->bindParam(':id', $_SESSION['id_professor']);
+$stmt->execute();
+$professor_info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Se não encontrar o professor, redireciona para o login
+if (!$professor_info) {
+    header('Location: ../login.php?error=not_found');
+    exit;
+}
 
 // Processar upload de foto
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {

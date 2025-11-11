@@ -2,180 +2,61 @@
 session_start();
 
 // Verifica se o usuário está logado e se é um professor
-if (!isset($_SESSION['loggedin']) || $_SESSION['tipo'] !== 'professor') {
-    // Se não estiver logado como professor, redireciona para a página de login
+if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
     header('Location: ../login.php');
     exit;
 }
 
-// Dados de exemplo para demonstração
-$alunos = [
-    [
-        'id' => 1,
-        'nome' => 'João Silva',
-        'email' => 'joao.silva@email.com',
-        'status' => 'ativo',
-        'data_inicio' => '2023-10-15'
-    ],
-    [
-        'id' => 2,
-        'nome' => 'Maria Santos',
-        'email' => 'maria.santos@email.com',
-        'status' => 'ativo',
-        'data_inicio' => '2023-10-20'
-    ],
-    [
-        'id' => 3,
-        'nome' => 'Pedro Oliveira',
-        'email' => 'pedro.oliveira@email.com',
-        'status' => 'inativo',
-        'data_inicio' => '2023-09-05'
-    ],
-    [
-        'id' => 4,
-        'nome' => 'Ana Costa',
-        'email' => 'ana.costa@email.com',
-        'status' => 'ativo',
-        'data_inicio' => '2023-11-01'
-    ],
-    [
-        'id' => 5,
-        'nome' => 'Carlos Lima',
-        'email' => 'carlos.lima@email.com',
-        'status' => 'ativo',
-        'data_inicio' => '2023-10-25'
-    ]
-];
+require_once('../autenticacao/conexao.php');
+$conn = conectar();
 
-// Dados de treinos de exemplo
-$treinos = [
-    1 => [ // ID do João Silva
-        'segunda' => [
-            ['exercicio' => 'Supino Reto', 'series' => '4x12', 'carga' => '40kg'],
-            ['exercicio' => 'Crucifixo', 'series' => '3x15', 'carga' => '12kg'],
-            ['exercicio' => 'Tríceps Corda', 'series' => '3x12', 'carga' => '20kg']
-        ],
-        'terca' => [
-            ['exercicio' => 'Barra Fixa', 'series' => '4x8', 'carga' => 'Peso Corporal'],
-            ['exercicio' => 'Remada Curvada', 'series' => '3x10', 'carga' => '50kg']
-        ],
-        'quarta' => [
-            ['exercicio' => 'Agachamento Livre', 'series' => '4x10', 'carga' => '60kg'],
-            ['exercicio' => 'Leg Press', 'series' => '3x12', 'carga' => '100kg']
-        ],
-        'quinta' => [],
-        'sexta' => [
-            ['exercicio' => 'Desenvolvimento', 'series' => '4x12', 'carga' => '25kg'],
-            ['exercicio' => 'Elevação Lateral', 'series' => '3x15', 'carga' => '8kg']
-        ],
-        'sabado' => [],
-        'domingo' => []
-    ],
-    2 => [ // ID da Maria Santos
-        'segunda' => [
-            ['exercicio' => 'Leg Press', 'series' => '4x12', 'carga' => '80kg'],
-            ['exercicio' => 'Cadeira Extensora', 'series' => '3x15', 'carga' => '30kg']
-        ],
-        'terca' => [],
-        'quarta' => [
-            ['exercicio' => 'Supino Inclinado', 'series' => '4x10', 'carga' => '30kg'],
-            ['exercicio' => 'Cross Over', 'series' => '3x12', 'carga' => '15kg']
-        ],
-        'quinta' => [
-            ['exercicio' => 'Puxada Alta', 'series' => '4x10', 'carga' => '40kg'],
-            ['exercicio' => 'Remada Baixa', 'series' => '3x12', 'carga' => '35kg']
-        ],
-        'sexta' => [],
-        'sabado' => [
-            ['exercicio' => 'Abdominal Supra', 'series' => '3x20', 'carga' => 'Peso Corporal'],
-            ['exercicio' => 'Prancha', 'series' => '3x1min', 'carga' => 'Peso Corporal']
-        ],
-        'domingo' => []
-    ],
-    3 => [ // ID do Pedro Oliveira
-        'segunda' => [
-            ['exercicio' => 'Rosca Direta', 'series' => '4x12', 'carga' => '15kg'],
-            ['exercicio' => 'Rosca Martelo', 'series' => '3x15', 'carga' => '12kg']
-        ],
-        'terca' => [],
-        'quarta' => [],
-        'quinta' => [
-            ['exercicio' => 'Agachamento Smith', 'series' => '4x10', 'carga' => '50kg'],
-            ['exercicio' => 'Afundo', 'series' => '3x12', 'carga' => '10kg']
-        ],
-        'sexta' => [],
-        'sabado' => [],
-        'domingo' => []
-    ]
-];
+// Busca todos os alunos
+$stmt = $conn->query("SELECT id_aluno as id, nome, email, data_cadastro as data_inicio FROM tbl_aluno");
+$alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Informações de saúde dos alunos
-$infoSaude = [
-    1 => [
-        'peso' => '78kg',
-        'altura' => '175cm',
-        'objetivo' => 'Hipertrofia',
-        'restricoes' => 'Problema no ombro direito',
-        'observacoes' => 'Precisa focar em técnica'
-    ],
-    2 => [
-        'peso' => '65kg',
-        'altura' => '165cm',
-        'objetivo' => 'Definição Muscular',
-        'restricoes' => 'Nenhuma',
-        'observacoes' => 'Boa evolução nos últimos 2 meses'
-    ],
-    3 => [
-        'peso' => '85kg',
-        'altura' => '180cm',
-        'objetivo' => 'Emagrecimento',
-        'restricoes' => 'Problema no joelho esquerdo',
-        'observacoes' => 'Focar em exercícios de baixo impacto'
-    ]
-];
+
+
+
+
 
 $alunoSelecionado = null;
 $treinoAluno = null;
 $saudeAluno = null;
 
-// Processa a seleção direta por ID
 if (isset($_GET['aluno_id']) && !empty($_GET['aluno_id'])) {
     $alunoId = intval($_GET['aluno_id']);
     
     // Busca o aluno selecionado
-    foreach ($alunos as $aluno) {
-        if ($aluno['id'] === $alunoId) {
-            $alunoSelecionado = $aluno;
-            break;
-        }
-    }
+    $stmt = $conn->prepare("SELECT id_aluno as id, nome, email, 'ativo' as status FROM tbl_aluno WHERE id_aluno = :id");
+    $stmt->execute(['id' => $alunoId]);
+    $alunoSelecionado = $stmt->fetch(PDO::FETCH_ASSOC);
     
     // Carrega treinos e informações de saúde se o aluno foi encontrado
     if ($alunoSelecionado) {
-        $treinoAluno = isset($treinos[$alunoId]) ? $treinos[$alunoId] : [];
-        $saudeAluno = isset($infoSaude[$alunoId]) ? $infoSaude[$alunoId] : null;
+        $stmt = $conn->prepare("SELECT segunda, terca, quarta, quinta, sexta, sabado, domingo FROM tbl_agendaTreino WHERE id_aluno = :id");
+        $stmt->execute(['id' => $alunoId]);
+        $treinoAluno = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $stmt = $conn->prepare("SELECT peso, altura FROM tbl_fisicoAluno WHERE id_fisicoAluno = :id ORDER BY data_alteracao DESC");
+        $stmt->execute(['id' => $alunoId]);
+        $saudeAluno = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 
 // Processa a pesquisa
 $resultadosPesquisa = [];
 if (isset($_GET['search']) && !empty($_GET['search'])) {
-    $termoPesquisa = strtolower(trim($_GET['search']));
+    $termoPesquisa = trim($_GET['search']);
     
-    foreach ($alunos as $aluno) {
-        // Busca por ID (se o termo for numérico)
-        if (is_numeric($termoPesquisa) && intval($termoPesquisa) === $aluno['id']) {
-            $resultadosPesquisa[] = $aluno;
-        }
-        // Busca por nome
-        elseif (strpos(strtolower($aluno['nome']), $termoPesquisa) !== false) {
-            $resultadosPesquisa[] = $aluno;
-        }
-        // Busca por email
-        elseif (strpos(strtolower($aluno['email']), $termoPesquisa) !== false) {
-            $resultadosPesquisa[] = $aluno;
-        }
+    if (is_numeric($termoPesquisa)) {
+        $stmt = $conn->prepare("SELECT id_aluno as id, nome, email, 'ativo' as status FROM tbl_aluno WHERE id_aluno = :termo");
+        $stmt->execute(['termo' => $termoPesquisa]);
+    } else {
+        $termoPesquisa = '%' . strtolower($termoPesquisa) . '%';
+        $stmt = $conn->prepare("SELECT id_aluno as id, nome, email, 'ativo' as status FROM tbl_aluno WHERE lower(nome) LIKE :termo OR lower(email) LIKE :termo");
+        $stmt->execute(['termo' => $termoPesquisa]);
     }
+    $resultadosPesquisa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 <!DOCTYPE html>
@@ -220,20 +101,22 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                     <button type="submit" class="btn-pesquisar">Pesquisar</button>
                 </form>
                 
-                <?php if (isset($_GET['search']) && !empty($_GET['search'])): ?>
+                <?php 
+                $listaAlunos = (isset($_GET['search']) && !empty($_GET['search'])) ? $resultadosPesquisa : $alunos;
+                ?>
                 <div class="resultados-pesquisa">
-                    <h3>Resultados da Pesquisa para "<?php echo htmlspecialchars($_GET['search']); ?>"</h3>
+                    <h3><?php echo (isset($_GET['search']) && !empty($_GET['search'])) ? 'Resultados da Pesquisa para "' . htmlspecialchars($_GET['search']) . '"' : 'Todos os Alunos'; ?></h3>
                     
-                    <?php if (count($resultadosPesquisa) > 0): ?>
+                    <?php if (count($listaAlunos) > 0): ?>
                     <div class="alunos-lista">
-                        <?php foreach ($resultadosPesquisa as $aluno): ?>
+                        <?php foreach ($listaAlunos as $aluno): ?>
                             <div class="aluno-item">
                                 <div class="aluno-info-basica">
                                     <div class="aluno-id">ID: <?php echo $aluno['id']; ?></div>
                                     <strong><?php echo $aluno['nome']; ?></strong>
                                     <span class="aluno-email"><?php echo $aluno['email']; ?></span>
-                                    <span class="status status-<?php echo $aluno['status']; ?>">
-                                        <?php echo ucfirst($aluno['status']); ?>
+                                    <span class="status status-ativo">
+                                        Ativo
                                     </span>
                                 </div>
                                 <a href="?aluno_id=<?php echo $aluno['id']; ?>" class="btn-selecionar">Selecionar</a>
@@ -244,7 +127,6 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                         <p class="no-results">Nenhum aluno encontrado.</p>
                     <?php endif; ?>
                 </div>
-                <?php endif; ?>
             </div>
             
             <!-- Seção do Aluno Selecionado -->
@@ -275,18 +157,6 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                         <div class="info-item">
                             <label>Altura:</label>
                             <span><?php echo $saudeAluno['altura']; ?></span>
-                        </div>
-                        <div class="info-item">
-                            <label>Objetivo:</label>
-                            <span><?php echo $saudeAluno['objetivo']; ?></span>
-                        </div>
-                        <div class="info-item full-width">
-                            <label>Restrições:</label>
-                            <span><?php echo $saudeAluno['restricoes']; ?></span>
-                        </div>
-                        <div class="info-item full-width">
-                            <label>Observações:</label>
-                            <span><?php echo $saudeAluno['observacoes']; ?></span>
                         </div>
                     </div>
                 </div>
@@ -325,19 +195,10 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                         <div class="dia-treino">
                             <h4><?php echo $diaNome; ?></h4>
                             <div class="exercicios-lista">
-                                <?php if (count($exerciciosDia) > 0): ?>
-                                    <?php foreach ($exerciciosDia as $index => $exercicio): ?>
+                                <?php if (!empty($treinoAluno[$diaKey])): ?>
                                     <div class="exercicio-item">
-                                        <div class="exercicio-header">
-                                            <span class="exercicio-numero"><?php echo $index + 1; ?>.</span>
-                                            <div class="exercicio-nome"><?php echo $exercicio['exercicio']; ?></div>
-                                        </div>
-                                        <div class="exercicio-detalhes">
-                                            <span><strong>Séries:</strong> <?php echo $exercicio['series']; ?></span>
-                                            <span><strong>Carga:</strong> <?php echo $exercicio['carga']; ?></span>
-                                        </div>
+                                        <div class="exercicio-nome"><?php echo $treinoAluno[$diaKey]; ?></div>
                                     </div>
-                                    <?php endforeach; ?>
                                 <?php else: ?>
                                     <p class="sem-treino">Sem treino cadastrado</p>
                                 <?php endif; ?>
