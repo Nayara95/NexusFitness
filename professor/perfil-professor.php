@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
         mkdir($uploadDir, 0777, true);
     }
     
-    $fileName = 'professor_' . $professor_info['id'] . '_' . time() . '_' . basename($_FILES['foto']['name']);
+    $fileName = 'professor_' . $professor_info['id_professor'] . '_' . time() . '_' . basename($_FILES['foto']['name']);
     $uploadFile = $uploadDir . $fileName;
     
     // Verificar se é uma imagem
@@ -40,8 +40,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
     
     if (in_array($imageFileType, $allowedTypes)) {
         if (move_uploaded_file($_FILES['foto']['tmp_name'], $uploadFile)) {
-            $professor_info['foto'] = $uploadFile;
-            $mensagem = "Foto atualizada com sucesso!";
+            // Ler o conteúdo do arquivo para salvar como varbinary
+            $fotoData = file_get_contents($uploadFile);
+
+            // Atualizar o blob da foto no banco de dados
+            $stmt_update = $conn->prepare("UPDATE tbl_professor SET foto = :foto WHERE id_professor = :id");
+            // Especificar o tipo de encoding para dados binários para o driver SQLSRV
+            $stmt_update->bindParam(':foto', $fotoData, PDO::PARAM_LOB, 0, PDO::SQLSRV_ENCODING_BINARY);
+            $stmt_update->bindParam(':id', $professor_info['id_professor'], PDO::PARAM_INT);
+            
+            if ($stmt_update->execute()) {
+                // Não precisamos mais do arquivo temporário, o blob está no banco
+                unlink($uploadFile); 
+                $mensagem = "Foto atualizada com sucesso!";
+                // Recarregar a página para que a nova imagem seja exibida corretamente
+                header("Location: perfil-professor.php");
+                exit;
+            } else {
+                // Se a atualização do banco falhar, remove o arquivo que foi upado
+                unlink($uploadFile);
+                $erro = "Erro ao atualizar a foto no banco de dados.";
+            }
         } else {
             $erro = "Erro ao fazer upload da foto.";
         }
@@ -128,7 +147,12 @@ function exibirValor($array, $chave, $padrao = '') {
             <!-- Cabeçalho do Perfil -->
             <div class="perfil-header">
                 <div class="foto-perfil">
-                    <img src="<?php echo exibirValor($professor_info, 'foto', '../imagens/professor-nexus.png'); ?>" alt="Foto do Professor" id="fotoPreview">
+                    <?php
+                        // Define a fonte da imagem. Se o campo 'foto' não estiver vazio, usa o script.
+                        // Adiocinado um timestamp para evitar problemas de cache do navegador após o upload.
+                        $fotoSrc = !empty($professor_info['foto']) ? 'get_professor_image.php?t=' . time() : '../imagens/professor-nexus.png';
+                    ?>
+                    <img src="<?php echo $fotoSrc; ?>" alt="Foto do Professor" id="fotoPreview">
                     <button class="btn-alterar-foto" onclick="abrirModalFoto()">Alterar Foto</button>
                 </div>
                 

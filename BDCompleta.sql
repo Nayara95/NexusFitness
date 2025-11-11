@@ -60,7 +60,7 @@ GO
 
 CREATE TABLE tbl_funcionarios(
     id_funcionarios int PRIMARY KEY NOT NULL,
-    foto image,
+    foto varbinary (max),
     nome varchar(100) NOT NULL,
     nome_social varchar(100),
     genero varchar(3) NOT NULL,
@@ -104,7 +104,7 @@ GO
 
 CREATE TABLE tbl_professor(
     id_professor int PRIMARY KEY NOT NULL,
-    foto image,
+    foto varbinary (max),
     nome varchar(100) NOT NULL,
     nome_social varchar(100),
     genero varchar(3) NOT NULL,
@@ -180,7 +180,7 @@ CREATE TABLE tbl_modalidade(
     descricao_modal varchar(100),
     data_cadastro datetime,
     modal_situacao varchar(100),
-    foto image,
+    foto varbinary (max),
     id_funcionarios int
 );
 GO
