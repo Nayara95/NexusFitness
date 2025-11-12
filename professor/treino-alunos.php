@@ -37,7 +37,7 @@ if (isset($_GET['aluno_id']) && !empty($_GET['aluno_id'])) {
         $stmt->execute(['id' => $alunoId]);
         $treinoAluno = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $stmt = $conn->prepare("SELECT peso, altura FROM tbl_fisicoAluno WHERE id_fisicoAluno = :id ORDER BY data_alteracao DESC");
+        $stmt = $conn->prepare("SELECT peso, altura FROM tbl_fisicoAluno WHERE id_aluno = :id ORDER BY data_alteracao DESC");
         $stmt->execute(['id' => $alunoId]);
         $saudeAluno = $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -48,14 +48,17 @@ $resultadosPesquisa = [];
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $termoPesquisa = trim($_GET['search']);
     
-    if (is_numeric($termoPesquisa)) {
-        $stmt = $conn->prepare("SELECT id_aluno as id, nome, email, 'ativo' as status FROM tbl_aluno WHERE id_aluno = :termo");
-        $stmt->execute(['termo' => $termoPesquisa]);
-    } else {
-        $termoPesquisa = '%' . strtolower($termoPesquisa) . '%';
-        $stmt = $conn->prepare("SELECT id_aluno as id, nome, email, 'ativo' as status FROM tbl_aluno WHERE lower(nome) LIKE :termo OR lower(email) LIKE :termo");
-        $stmt->execute(['termo' => $termoPesquisa]);
-    }
+    $termoPesquisa = trim($_GET['search']);
+    $termoPesquisaLike = '%' . strtolower($termoPesquisa) . '%';
+
+    // Use a single query to search across ID, nome, and email
+    // CAST id_aluno to VARCHAR for LIKE comparison
+    $stmt = $conn->prepare("SELECT id_aluno as id, nome, email, 'ativo' as status FROM tbl_aluno WHERE CAST(id_aluno AS VARCHAR) LIKE :termoId OR LOWER(nome) LIKE :termoNome OR LOWER(email) LIKE :termoEmail");
+    $stmt->execute([
+        'termoId' => $termoPesquisaLike,
+        'termoNome' => $termoPesquisaLike,
+        'termoEmail' => $termoPesquisaLike
+    ]);
     $resultadosPesquisa = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
@@ -215,7 +218,8 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
             <?php endif; ?>
         </div>
     </main>
-
-    <?php include ('../footer1.php'); ?>
+    <footer>
+      <a>© 2025 Nexus Fitness — Todos os direitos reservados.</a>
+    </footer>
 </body>
 </html>

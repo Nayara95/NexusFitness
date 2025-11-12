@@ -109,13 +109,7 @@ CREATE TABLE tbl_professor(
     nome_social varchar(100),
     genero varchar(3) NOT NULL,
     email varchar(100) NOT NULL,
-    registro_cref numeric(6) NOT NULL,
-    cpf numeric(11) NOT NULL,
-    data_nasc date NOT NULL,
-    dd1 numeric(3) NOT NULL, 
-    telefone numeric(9) NOT NULL,
-    data_cadastro datetime NOT NULL,
-    senha numeric(18) NOT NULL,
+    senha varchar(255) NOT NULL,
     data_inicio datetime NOT NULL,
     data_alteracao datetime NOT NULL,
     rua varchar(100) NOT NULL,
@@ -152,13 +146,14 @@ GO
 
 CREATE TABLE tbl_fisicoAluno(
     id_fisicoAluno int PRIMARY KEY NOT NULL,
-    altura numeric(10),
-    peso numeric(10),
-    braco numeric(10),
-    abdomen numeric(10),
-    perna numeric(10),
+    altura decimal (18,2),
+	peso decimal (18,2),
+	braco decimal (18,2),
+	abdomen decimal (18,2),
+	perna decimal (18,2),
     data_alteracao datetime NOT NULL,
-    id_professor int
+    id_professor int,
+    id_aluno int
 );
 GO
 
@@ -262,14 +257,14 @@ VALUES
 (5, '<questionario><problema_cardiaco>Sim</problema_cardiaco><lesoes>Não</lesoes><medicamentos>Não</medicamentos></questionario>', NULL, NULL, GETDATE(), 5);
 GO
 
--- 9. Décimo: tbl_fisicoAluno (depende de professor)
-INSERT INTO tbl_fisicoAluno (id_fisicoAluno, altura, peso, braco, abdomen, perna, data_alteracao, id_professor)
+-- 9. Décimo: tbl_fisicoAluno (depende de professor e aluno)
+INSERT INTO tbl_fisicoAluno (id_fisicoAluno, altura, peso, braco, abdomen, perna, data_alteracao, id_professor, id_aluno)
 VALUES
-(1, 1.75, 75.5, 35.5, 85.0, 55.5, GETDATE(), 1),
-(2, 1.65, 62.0, 28.0, 72.0, 48.0, GETDATE(), 2),
-(3, 1.80, 82.0, 38.0, 90.0, 58.0, GETDATE(), 1),
-(4, 1.70, 68.5, 30.5, 78.0, 50.5, GETDATE(), 2),
-(5, 1.78, 79.0, 36.0, 88.0, 56.0, GETDATE(), 1);
+(1, 1.75, 75.5, 35.5, 85.0, 55.5, GETDATE(), 1, 1),
+(2, 1.65, 62.0, 28.0, 72.0, 48.0, GETDATE(), 2, 2),
+(3, 1.80, 82.0, 38.0, 90.0, 58.0, GETDATE(), 1, 3),
+(4, 1.70, 68.5, 30.5, 78.0, 50.5, GETDATE(), 2, 4),
+(5, 1.78, 79.0, 36.0, 88.0, 56.0, GETDATE(), 1, 5);
 GO
 
 -- 10. Décimo primeiro: tbl_permissao (depende de professor, aluno e funcionarios)
@@ -328,6 +323,10 @@ FOREIGN KEY (id_plano) REFERENCES tbl_plano(id_plano);
 GO
 
 ALTER TABLE tbl_dadosSaude ADD CONSTRAINT FK_DadosSaude_Aluno 
+FOREIGN KEY (id_aluno) REFERENCES tbl_aluno(id_aluno);
+GO
+
+ALTER TABLE tbl_fisicoAluno ADD CONSTRAINT FK_FisicoAluno_Aluno 
 FOREIGN KEY (id_aluno) REFERENCES tbl_aluno(id_aluno);
 GO
 
