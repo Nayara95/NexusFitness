@@ -41,12 +41,17 @@ $email = $_SESSION['email'];
             <p class="bem-vindo">Bem-vindo, <?php echo htmlspecialchars($email); ?>!</p>
             
             <div class="botoes-simples">
-                <a href="medicoes-alunos.php" class="btn-simples btn-medicoes">Medições dos Alunos</a>
+                <a href="medicoes-alunos.php" class="btn-simples">Medições dos Alunos</a>
                 <a href="treino-alunos.php" class="btn-simples">Treinos dos Alunos</a>
             </div>
         </div>
     </main>
 
-    <?php include ('../footer1.php'); ?>
+    <footer>
+      
+      <a>© 2025 Nexus Fitness — Todos os direitos reservados.</a>
+     
+    </footer>
+  
 </body>
 </html>

@@ -45,7 +45,7 @@ if ($professor && $senha == $professor['senha']) {
     header('Location: ../professor/perfil-professor.php');
     exit;
 }
-
+echo("Falha no login");
 // Falha no login
 header('Location: ../login.php?error=1');
 exit;
