@@ -1,0 +1,54 @@
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.left-card, .right-card {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-left: 4px solid var(--CorFundoElementos);
+}
+
+.left-card {
+    flex: 1;
+    max-width: 400px;
+}
+
+.right-card {
+    flex: 2;
+}
+
+.pesquisa-section {
+    margin-bottom: 0;
+    padding: 0;
+    background-color: transparent;
+    border-left: none;
+}
+
+.aluno-selecionado-section {
+    margin-top: 0;
+}
+
+.aluno-row {
+    cursor: pointer;
+}
+
+.aluno-row:hover {
+    background-color: #f0f0f0;
+}
+
+.btn-editar-js{
+    background-color: var(--CorFundoElementos);
+    color: var(--CorTextoBTN);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}

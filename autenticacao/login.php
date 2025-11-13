@@ -42,7 +42,7 @@ if ($professor && $senha == $professor['senha']) {
     $_SESSION['permissao'] = 'professor';
     $_SESSION['id_professor'] = $professor['id_professor'];
     $_SESSION['nome'] = $professor['nome'];
-    header('Location: ../professor/perfil-professor.php');
+    header('Location: ../professor/index-professor.php');
     exit;
 }
 echo("Falha no login");
