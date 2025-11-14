@@ -47,17 +47,6 @@ CREATE TABLE tbl_aluno(
 );
 GO
 
-CREATE TABLE tbl_plano(
-    id_plano int PRIMARY KEY NOT NULL,
-    nome_plano varchar(30) NOT NULL,
-    valor_plano int NOT NULL,
-    data_cadastro datetime NOT NULL,
-    observacao varchar(200) NOT NULL,
-    id_aluno int,
-    id_funcionarios int
-);
-GO
-
 CREATE TABLE tbl_funcionarios(
     id_funcionarios int PRIMARY KEY NOT NULL,
     foto varbinary (max),
@@ -88,6 +77,35 @@ CREATE TABLE tbl_funcionarios(
 );
 GO
 
+-- CORRIGIDO: Adicionadas colunas que estavam faltando na tbl_professor
+CREATE TABLE tbl_professor(
+    id_professor int PRIMARY KEY NOT NULL,
+    foto varbinary (max),
+    nome varchar(100) NOT NULL,
+    nome_social varchar(100),
+    genero varchar(3) NOT NULL,
+    email varchar(100) NOT NULL,
+    senha varchar(255) NOT NULL,
+    registro_cref numeric(10) NOT NULL, -- COLUNA ADICIONADA
+    cpf numeric(11) NOT NULL, -- COLUNA ADICIONADA
+    data_nasc date NOT NULL, -- COLUNA ADICIONADA
+    dd1 numeric(3) NOT NULL, -- COLUNA ADICIONADA
+    telefone numeric(9) NOT NULL, -- COLUNA ADICIONADA
+    data_cadastro datetime NOT NULL, -- COLUNA ADICIONADA
+    data_inicio datetime NOT NULL,
+    data_alteracao datetime NOT NULL,
+    rua varchar(100) NOT NULL,
+    numero_endereco numeric(10) NOT NULL,
+    bairro varchar(50) NOT NULL,
+    cep numeric(8) NOT NULL,
+    cidade varchar(50) NOT NULL,
+    uf varchar(3) NOT NULL,
+    complemento varchar(100),
+    id_funcionarios int
+    -- REMOVIDO: id_agendaTreino para evitar dependência circular
+);
+GO
+
 CREATE TABLE tbl_agendaTreino(
     id_agendaTreino int PRIMARY KEY NOT NULL,
     segunda varchar(100) NOT NULL,
@@ -102,24 +120,13 @@ CREATE TABLE tbl_agendaTreino(
 );
 GO
 
-CREATE TABLE tbl_professor(
-    id_professor int PRIMARY KEY NOT NULL,
-    foto varbinary (max),
-    nome varchar(100) NOT NULL,
-    nome_social varchar(100),
-    genero varchar(3) NOT NULL,
-    email varchar(100) NOT NULL,
-    senha varchar(255) NOT NULL,
-    data_inicio datetime NOT NULL,
-    data_alteracao datetime NOT NULL,
-    rua varchar(100) NOT NULL,
-    numero_endereco numeric(10) NOT NULL,
-    bairro varchar(50) NOT NULL,
-    cep numeric(8) NOT NULL,
-    cidade varchar(50) NOT NULL,
-    uf varchar(3) NOT NULL,
-    complemento varchar(100),
-    id_agendaTreino int,
+CREATE TABLE tbl_plano(
+    id_plano int PRIMARY KEY NOT NULL,
+    nome_plano varchar(30) NOT NULL,
+    valor_plano int NOT NULL,
+    data_cadastro datetime NOT NULL,
+    observacao varchar(200) NOT NULL,
+    id_aluno int,
     id_funcionarios int
 );
 GO
@@ -210,7 +217,14 @@ VALUES
 (3, 'Ricardo Moura', NULL, 'M', 'ricardo.moura@nexus.com', 'Administrativo', 'Ativo', GETDATE(), 33344455566, '1978-11-30', 11, 933334444, GETDATE(), 333333, GETDATE(), GETDATE(), 'Rua Secundária', 300, 'Vila Olímpia', 33333333, 'São Paulo', 'SP', 'Casa 3', NULL, NULL);
 GO
 
--- 4. Quarto: tbl_agendaTreino (sem FKs iniciais)
+-- 4. Quarto: tbl_professor (agora com estrutura correta)
+INSERT INTO tbl_professor (id_professor, nome, nome_social, genero, email, senha, registro_cref, cpf, data_nasc, dd1, telefone, data_cadastro, data_inicio, data_alteracao, rua, numero_endereco, bairro, cep, cidade, uf, complemento, id_funcionarios)
+VALUES
+(1, 'Marcos Andrade', NULL, 'M', 'marcos.andrade@nexus.com', '444444', 123456, 44455566677, '1985-03-10', 11, 944445555, GETDATE(), GETDATE(), GETDATE(), 'Rua dos Professores', 400, 'Moema', 44444444, 'São Paulo', 'SP', 'Apto 401', 1),
+(2, 'Patrícia Santos', NULL, 'F', 'patricia.santos@nexus.com', '555555', 654321, 55566677788, '1990-07-22', 11, 955556666, GETDATE(), GETDATE(), GETDATE(), 'Alameda dos Esportes', 500, 'Itaim Bibi', 55555555, 'São Paulo', 'SP', 'Sala 10', 1);
+GO
+
+-- 5. Quinto: tbl_agendaTreino (agora pode referenciar professor existente)
 INSERT INTO tbl_agendaTreino (id_agendaTreino, segunda, terca, quarta, quinta, sexta, sabado, domingo, id_aluno, id_professor)
 VALUES
 (1, 'Peito e Tríceps', 'Costas e Bíceps', 'Pernas', 'Ombros e Abdomen', 'Braços', 'Cardio', 'Descanso', 1, 1),
@@ -218,13 +232,6 @@ VALUES
 (3, 'Push', 'Pull', 'Legs', 'Push', 'Pull', 'Cardio', 'Descanso', 3, 1),
 (4, 'Força Superior', 'Força Inferior', 'Hipertrofia Superior', 'Hipertrofia Inferior', 'Cardio', 'Descanso', 'Descanso', 4, 2),
 (5, 'ABC Full', 'ABC Full', 'ABC Full', 'ABC Full', 'ABC Full', 'Cardio', 'Descanso', 5, 1);
-GO
-
--- 5. Quinto: tbl_professor (agora pode referenciar agendaTreino e funcionarios)
-INSERT INTO tbl_professor (id_professor, nome, nome_social, genero, email, registro_cref, cpf, data_nasc, dd1, telefone, data_cadastro, senha, data_inicio, data_alteracao, rua, numero_endereco, bairro, cep, cidade, uf, complemento, id_agendaTreino, id_funcionarios)
-VALUES
-(1, 'Marcos Andrade', NULL, 'M', 'marcos.andrade@nexus.com', 123456, 44455566677, '1985-03-10', 11, 944445555, GETDATE(), 444444, GETDATE(), GETDATE(), 'Rua dos Professores', 400, 'Moema', 44444444, 'São Paulo', 'SP', 'Apto 401', 1, 1),
-(2, 'Patrícia Santos', NULL, 'F', 'patricia.santos@nexus.com', 654321, 55566677788, '1990-07-22', 11, 955556666, GETDATE(), 555555, GETDATE(), GETDATE(), 'Alameda dos Esportes', 500, 'Itaim Bibi', 55555555, 'São Paulo', 'SP', 'Sala 10', 2, 1);
 GO
 
 -- 6. Sexto: tbl_plano (agora pode referenciar aluno e funcionarios)
@@ -237,7 +244,7 @@ VALUES
 (5, 'Plano Premium', 149, GETDATE(), 'Acesso ilimitado + aulas especiais', 5, 1);
 GO
 
--- 7. Oitavo: tbl_pagamento (depende de aluno e plano)
+-- 7. Sétimo: tbl_pagamento (depende de aluno e plano)
 INSERT INTO tbl_pagamento (id_pagamento, dataPagamento, dataVencimento, valor, id_aluno, id_plano)
 VALUES
 (1, 20231005, 20231105, 89, 1, 1),
@@ -247,7 +254,7 @@ VALUES
 (5, 20231025, 20231125, 149, 5, 5);
 GO
 
--- 8. Nono: tbl_dadosSaude (depende apenas de aluno)
+-- 8. Oitavo: tbl_dadosSaude (depende apenas de aluno)
 INSERT INTO tbl_dadosSaude (id_dadosSaude, questionario, exame_bio, atestado_medico, data_alteracao, id_aluno)
 VALUES
 (1, '<questionario><problema_cardiaco>Não</problema_cardiaco><lesoes>Não</lesoes><medicamentos>Não</medicamentos></questionario>', NULL, NULL, GETDATE(), 1),
@@ -257,7 +264,7 @@ VALUES
 (5, '<questionario><problema_cardiaco>Sim</problema_cardiaco><lesoes>Não</lesoes><medicamentos>Não</medicamentos></questionario>', NULL, NULL, GETDATE(), 5);
 GO
 
--- 9. Décimo: tbl_fisicoAluno (depende de professor e aluno)
+-- 9. Nono: tbl_fisicoAluno (depende de professor e aluno)
 INSERT INTO tbl_fisicoAluno (id_fisicoAluno, altura, peso, braco, abdomen, perna, data_alteracao, id_professor, id_aluno)
 VALUES
 (1, 1.75, 75.5, 35.5, 85.0, 55.5, GETDATE(), 1, 1),
@@ -267,7 +274,7 @@ VALUES
 (5, 1.78, 79.0, 36.0, 88.0, 56.0, GETDATE(), 1, 5);
 GO
 
--- 10. Décimo primeiro: tbl_permissao (depende de professor, aluno e funcionarios)
+-- 10. Décimo: tbl_permissao (depende de professor, aluno e funcionarios)
 INSERT INTO tbl_permissao (id_permissao, nome_funcionario, tipo_permissao, descricao, dataPermissao, id_professor, id_aluno, id_funcionarios)
 VALUES
 (1, 'Roberto Alves', 'Administrador', 'Acesso total ao sistema', GETDATE(), NULL, NULL, 1),
@@ -275,7 +282,7 @@ VALUES
 (3, 'Ricardo Moura', 'Atendente', 'Acesso para operações básicas', GETDATE(), NULL, NULL, 3);
 GO
 
--- 11. Décimo segundo: tbl_modalidade (depende de funcionarios)
+-- 11. Décimo primeiro: tbl_modalidade (depende de funcionarios)
 INSERT INTO tbl_modalidade (id_modalidade, nome_modal, descricao_modal, data_cadastro, modal_situacao, id_funcionarios)
 VALUES
 (1, 'Musculação', 'Treinamento com pesos livres e máquinas', GETDATE(), 'Ativo', 1),
@@ -304,10 +311,6 @@ GO
 
 ALTER TABLE tbl_agendaTreino ADD CONSTRAINT FK_Agenda_Professor 
 FOREIGN KEY (id_professor) REFERENCES tbl_professor(id_professor);
-GO
-
-ALTER TABLE tbl_professor ADD CONSTRAINT FK_Professor_Agenda 
-FOREIGN KEY (id_agendaTreino) REFERENCES tbl_agendaTreino(id_agendaTreino);
 GO
 
 ALTER TABLE tbl_professor ADD CONSTRAINT FK_Professor_Funcionarios 
