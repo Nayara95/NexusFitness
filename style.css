@@ -233,13 +233,16 @@ main {
 /* pagina de cadastro */
 
 
+.main-cadastro{
+    margin-left: 200px;
+}
+
 
 .cadastro_container{
-   display: flex;
-   margin-left: 400px;
-    width: 900px; /* Largura total da caixa */
-    height: 850px; /* Altura total da caixa */
-   background-color: var(--CorFundoTotal);
+    display: flex;
+    width: 800px; /* Largura total da caixa */
+    height: 650px; /* Altura total da caixa */
+    background-color: rgb(41, 32, 13);
     box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
     border-radius: 15px; /* Borda arredondada */
     overflow: hidden; /* Garante que as sub-áreas fiquem dentro do raio */
@@ -250,24 +253,19 @@ main {
 
 .cadastro_esquerdo{
     flex: 0 0 25%; /* Ocupa 35% da largura */
-    background-color: var(--CorFundoElementos2);
-    color: white;
-    width: auto;
-    height: auto;
-    padding: 40px;
     display: flex;
     flex-direction: column;
-
-
+    justify-content: center;
+    padding: 20px;
+    
+    background-color: var(--CorFundoElementos2);
+    color: white;
     align-items: center;
     text-align: center;
-    justify-content: space-around; /* Distribui o conteúdo (logo, texto, botão) */
+    /*justify-content: space-around; /* Distribui o conteúdo (logo, texto, botão) */
 }
 
-.cadastro_esquerdo img{
-  padding-top: 120px;
-  
-}
+
 
 
 .alunoTxt {
@@ -297,9 +295,12 @@ main {
 /* CADASTRO LADO DIREITO  */
 
 .cadastro_direito{
-  flex: 1; /* Ocupa o restante do espaço (65%) */
+  flex: 1  ; /* Ocupa o restante (65%) */
+  display: flex;
+  padding: 5px 40px;
+  flex-direction: column;
   background-color: rgb(246, 240, 233);
-  padding: 0px 30px 0px 20px;
+
   color: var(--cor-texto-escuro);
 }
 
@@ -343,16 +344,21 @@ main {
 
 /* Botão de Cadastro (Cadastro de Senha) */
 .btnCadastar {
-    display: block;
+   /* display: block;*/
     width: 60%; /* menor que a largura total */
    margin: 0 auto; /* Centraliza o botão */
-   padding: 15px 30px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: var(--CorFundoElementos2) 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
 }
 .btnCadastar button{
+  padding: 10px 20px;
+  border-radius: 20px;
   color: var(--CorFundoTotal);
   background-color: var(--CorFundoElementos);
 }
@@ -856,8 +862,8 @@ input[type="file"]{
 /* Coluna Esquerda: Vermelha */
 .logo-left {
     flex: 0 0 25%; /* Ocupa 35% da largura */
-    background-color: #f24455; /* Cor vermelha do logo */
-    color: white;
+    background-color: var(--CorFundoElementos2); /* Cor vermelha do logo */
+    /*color: white;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -878,6 +884,7 @@ input[type="file"]{
     padding: 20px;
     display: flex;
     flex-direction: column;
+     
 }
 
 /* Seção de Valores (Topo) */

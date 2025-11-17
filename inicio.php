@@ -25,7 +25,9 @@
             Um pioneirismo que alia força e inovação. Aqui, sua evolução é o
             nosso combustível diário!
           </p>
-          <button class="btn-principal">Saiba mais</button>
+          <button class="btn-principal">
+             <a href="sabiaMais.html">Saiba mais </a>
+          </button>
         </div>
         <div class="img-banner">
           <img src="imagens/banner1.png" alt="Tecnologia Fitness" />
