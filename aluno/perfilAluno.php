@@ -23,6 +23,10 @@ if (!$aluno) {
 }
 ?>
 
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -81,16 +85,6 @@ if (!$aluno) {
       </button>
     </div>
 
-
-
-    <div class="checkIn">
-      <form action="treinoAluno">
-        <label for="status">Check-ins</label>
-        <input type="number" id="status" name="status" required>
-      </form>
-      <img src="../imagens/checkIn.png" alt="Imagem de check-in">
-
-    </div>
 
 
 

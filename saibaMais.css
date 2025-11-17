@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+/* ======== VARIÁVEIS DE COR ======== */
+:root {
+  --CorTextoBTN: #ffffff;
+  --CortextoPadrao: #000000;
+  --CorTextoElementos: #6ffed1;
+  --CorFundoTotal: #ffffff;
+  --CorFundoElementos: #660f24;
+  --CorFundoElementos2: #f24455;
+  --CorFundoDesativado: #949494;
+}
+
+/* ======== ESTILO GLOBAL ======== */
+body {
+ /* Ativa o layout lado a lado (horizontal) */
+display: flex; 
+min-height: 100vh;
+margin: 0; 
+font-family: 'Poppins', sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+  color: var(--CorTextoBTN);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 100px;
+}
+
+/* Botões do cabeçalho */
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ======== DROPDOWN ======== */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: var(--CorFundoElementos2);
+  color: var(--CorTextoBTN);
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: var(--CorFundoTotal);
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: var(--CortextoPadrao);
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--CorFundoElementos);
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media (max-width: 768px) {
+            
+ body {
+     /* Desativa o Flexbox, fazendo os elementos voltarem a ser blocos */
+   display: block; 
+  min-height: auto; /* A altura se ajusta ao conteúdo empilhado */
+}
+
+.saiba-mais,.video {
+    /* Garante que ambas ocupem a largura total em modo empilhado */
+     width: 100%;
+  /* Remove a proporção e o comportamento flexível que tínhamos antes */
+    flex: none; 
+}
+
+}
+
+
+.saiba-mais{
+padding: 50px;
+box-sizing: border-box; 
+min-height: 100%; /* Garante que preencha a altura do body */
+/* Define a PROPORÇÃO do layout lado a lado (2 para 1)  */
+flex: 2; /* um pouco mais da medade da tela */
+ background-color: rgba(247, 215, 215, 0.466);
+ text-align: center;
+
+}
+
+.video {
+flex: 1; 
+height: 100%;
+
+ }
+
+
+
+/* ======== ESTILO ESPECÍFICO DA PÁGINA ======== */
+
+.saiba-mais-destaque{
+  /*background-color: rgb(207, 207, 247);*/
+  padding: 10px;
+  margin: 10px 20px 20px;
+
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 15px; 
+  box-shadow: 10px 10px 5px rgba(211, 245, 234, 0.63);
+}
+
+.saiba-mais-destaque h1,p, h2, ul{
+    margin-bottom: 30px; /*margin entre todas as tags*/
+}
+
+.saiba-mais-destaque p,ul{
+    margin-bottom: 60px;
+     text-align: justify;
+}
+
+.servicos-lista{
+   list-style-type: none; /*tira os pontos da lista*/
+   padding: 0;
+}
+
+.contato{
+ display: flex;
+    justify-content: center; /* Centraliza o grupo de ícones horizontalmente */
+    gap: 15px; /* Espaço entre os ícones */
+    align-items: center; /* Centraliza os itens verticalmente, se o container tiver altura */
+    margin-bottom: 20px;
+
+}
+
+.contato img{
+  width: 40px; /* **Defina a largura desejada para o ícone** */
+    height: 40px; /* **Defina a altura desejada para o ícone (para ser quadrado)** */
+    object-fit: contain; /* Garante que a imagem se ajuste ao box sem cortar */
+}
+.contato a {
+    display: block; /* Para que width/height funcionem nos links se necessário */
+}
+
+
+

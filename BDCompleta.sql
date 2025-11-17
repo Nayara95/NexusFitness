@@ -45,6 +45,9 @@ CREATE TABLE tbl_aluno(
     id_aluno INT PRIMARY KEY IDENTITY(1,1),
     id_enderecoAluno int
 );
+
+SELECT * FROM tbl_aluno;
+
 GO
 
 CREATE TABLE tbl_funcionarios(
@@ -351,6 +354,10 @@ GO
 
 ALTER TABLE tbl_modalidade ADD CONSTRAINT FK_Modalidade_Funcionarios 
 FOREIGN KEY (id_funcionarios) REFERENCES tbl_funcionarios(id_funcionarios);
+GO
+
+ALTER TABLE tbl_aluno
+ADD nome_social VARCHAR(100) NULL;
 GO
 
 -- SELECTS PARA VISUALIZAR OS DADOS
