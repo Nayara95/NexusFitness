@@ -183,6 +183,7 @@ function exibirValor($array, $chave, $padrao = '') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Professor - Nexus Fitness</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="perfil-professor.css">
 </head>
 <body>
     <header>
@@ -223,12 +224,10 @@ function exibirValor($array, $chave, $padrao = '') {
             <div class="perfil-header">
                 <div class="foto-perfil">
                     <?php
-                        // Define a fonte da imagem. Se o campo 'foto' não estiver vazio, usa o script.
-                        // Adiocinado um timestamp para evitar problemas de cache do navegador após o upload.
                         $fotoSrc = !empty($professor_info['foto']) ? 'get_professor_image.php?t=' . time() : '../imagens/semfoto.png';
                     ?>
-                    <img src="<?php echo $fotoSrc; ?>" alt="Foto do Professor" id="fotoPreview"></br>
-                    <button class="btn-alterar-foto" onclick="abrirModalFoto()">Alterar Foto</button>
+                    <img src="<?php echo $fotoSrc; ?>" alt="Foto do Professor" id="fotoPreview"><br>
+                    <button onclick="abrirModalFoto()" class="btn-alterar-foto">Alterar Foto</button>
                 </div>
                 
                 <div class="info-basica">
@@ -323,13 +322,13 @@ function exibirValor($array, $chave, $padrao = '') {
                         <div class="input-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" value="<?php echo exibirValor($professor_info, 'email'); ?>" required readonly>
-                            <small style="color: #666;">Email não pode ser alterado</small>
+                            <small>Email não pode ser alterado</small>
                         </div>
 
                         <div class="input-group">
                             <label for="cpf">CPF</label>
                             <input type="text" id="cpf" name="cpf" value="<?php echo exibirValor($professor_info, 'cpf'); ?>" required readonly>
-                            <small style="color: #666;">CPF não pode ser alterado</small>
+                            <small>CPF não pode ser alterado</small>
                         </div>
 
                         <div class="input-group">
@@ -437,7 +436,7 @@ function exibirValor($array, $chave, $padrao = '') {
                     <div class="input-group">
                         <label for="foto">Selecionar Nova Foto</label>
                         <input type="file" id="foto" name="foto" accept="image/*" required>
-                        <small style="color: #666;">Formatos permitidos: JPG, JPEG, PNG, GIF</small>
+                        <small>Formatos permitidos: JPG, JPEG, PNG, GIF</small>
                     </div>
                     
                     <div class="form-actions">
