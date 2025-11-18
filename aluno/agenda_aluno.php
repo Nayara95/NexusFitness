@@ -1,14 +1,42 @@
 <?php
-session_start();
 
-// Verifica se o usuário está logado e se é um professor
-if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true)
+       {
     header('Location: ../login.php');
     exit;
 }
 
-require_once('../autenticacao/conexao.php');
-$conn = conectar();
+  //conexão com o banco de dados
+  require_once '../autenticacao/conexao.php';
+  //id de quem está logado
+  $id_aluno = (int)$_SESSION['id_aluno'] ?? null; 
+  $nome_aluno = $_SESSION['nome'] ?? 'Aluno';
+
+  $agenda_semanal = [];
+
+//chamando o comando para buscar a agenda do aluno
+if ($id_aluno) {
+    try {
+     $conn = conectar();
+
+   $sql = "SELECT segunda, terca, quarta, quinta, sexta, sabado, domingo FROM tbl_agendaTreino WHERE id_aluno = :id_aluno";
+
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':id_aluno', $id_aluno, PDO::PARAM_INT);
+
+      $stmt->execute();
+
+      $treinos_aluno = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      $agenda_semanal = $treinos_aluno ?: [];
+
+ } catch (PDOException $e){
+        error_log("Erro ao buscar agenda: " . $e->getMessage());
+        // Em caso de falha, a agenda permanece vazia
+    }
+  }   
 
 ?>
 
@@ -58,7 +86,7 @@ $conn = conectar();
 
     
     <div class="agenda-semanal">
-        <h1>Minha Agenda Semanal</h1>
+        <h1>Minha Agenda Semanal <?php echo htmlspecialchars($nome_aluno); ?></h1>
         
         <div class="botoes-dias" id="btnDias">
             <button class="botao-dia" data-dia="segunda">Segunda-feira</button>
@@ -80,15 +108,6 @@ $conn = conectar();
         </div>
     </div>
 
-
-
-
-
-
-    
-
-
-
 </main>
 
 <!-- ======== RODAPÉ/FOOTER ======== -->
@@ -99,6 +118,74 @@ $conn = conectar();
       ?>
 
  <script src="../script.js"></script>
+
+ <script>
+
+  // Definir a variável JS a partir do PHP 
+    const nomeAlunoJS = "<?php echo htmlspecialchars($nome_aluno); ?>";
+
+    // 1. Recebe os dados da agenda do PHP (em formato JSON)
+    const agendaTreinos = <?php echo json_encode($agenda_semanal); ?>;
+    
+    const listaAulas = document.getElementById('listaAulas');
+    const tituloDia = document.getElementById('tituloDia');
+    const botoesDias = document.querySelectorAll('.botao-dia');
+
+    // Mapeamento para nomes de exibição e chaves do BD
+    const nomesDias = {
+        'segunda': 'Segunda-feira',
+        'terca': 'Terça-feira',
+        'quarta': 'Quarta-feira',
+        'quinta': 'Quinta-feira',
+        'sexta': 'Sexta-feira',
+        'sabado': 'Sábado',
+        'domingo': 'Domingo'
+    };
+
+    function mostrarTreino(dia) {
+        // Remove a classe 'ativo' de todos os botões
+        botoesDias.forEach(btn => btn.classList.remove('ativo'));
+        
+        // Adiciona a classe 'ativo' ao botão clicado
+        const botaoAtivo = document.querySelector(`.botao-dia[data-dia="${dia}"]`);
+        if (botaoAtivo) {
+            botaoAtivo.classList.add('ativo');
+        }
+
+        // Obtém o texto do treino diretamente pela chave do dia
+        const treinoTexto = agendaTreinos[dia] || ''; 
+        let htmlLista = '';
+
+        tituloDia.textContent = nomesDias[dia] || 'Dia Selecionado';
+
+        if (treinoTexto && treinoTexto.trim() !== '') {
+            // Divide o texto por quebras de linha ou algum separador (se o conteúdo for formatado)
+            // Se for apenas um bloco de texto, exibe em uma lista simples
+            htmlLista = `<li>${treinoTexto.replace(/\n/g, '</li><li>')}</li>`;
+        } else {
+            htmlLista = `<li>Nenhum treino agendado para ${nomesDias[dia]}.</li>`;
+        }
+
+        listaAulas.innerHTML = htmlLista;
+    }
+
+    // Adiciona o evento de clique a todos os botões de dias
+    botoesDias.forEach(botao => {
+        botao.addEventListener('click', function() {
+            const diaSelecionado = this.getAttribute('data-dia');
+            mostrarTreino(diaSelecionado);
+        });
+    });
+    
+    // Opcional: Mostra o treino da Segunda-feira por padrão, se houver dados
+    if (Object.keys(agendaTreinos).length > 0) {
+        mostrarTreino('segunda'); 
+    } else {
+        tituloDia.textContent = `Agenda de Treinos de ${nomeAlunoJS}`;
+    }
+</script>
+
+
 
 </body>
 </html>

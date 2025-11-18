@@ -12,8 +12,9 @@
 
           <button class="dropbtn">Minha Conta▾</button>
             <div class="dropdown-content">
-              <a href="../login.php">Login</a>
-              <a href="../inicio.php">Voltar</a>
+              <a href="boasvindasAluno.php">Área do Aluno</a>
+              <a href="perfilAluno.php">Meu Perfil</a>
+              <a href="../autenticacao/logout.php">Sair</a>
             </div>
         </div>
       </div>

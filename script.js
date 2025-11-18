@@ -1,4 +1,5 @@
-/* ======== AGENDA ======== */
+/*
+/* ======== AGENDA ======== 
 
 // 1. Base de Dados: Atividades para a semana
 const atividadesSemanais = {
@@ -98,14 +99,40 @@ function inicializar() {
         // Se for domingo (índice 6), mas não estiver na lista de botões ou erro, clique em Segunda
         botoes[0].click();
     }
-}
+} */
 
 // Inicializa a aplicação
 //inicializar();
 
 /* ======== FIM AGENDA ======== */
 
+// A variável agendaTreinos é global (definida pelo PHP)
 
+function exibirAtividades(diaSelecionado) {
+    // 3.1. Limpa a lista atual
+    listaAulasEl.innerHTML = ''; 
+
+    // 3.2. Atualiza o título
+    tituloDiaEl.textContent = `Treino de ${nomesDias[diaSelecionado]}`;
+
+    // 3.3. Obtém o texto do treino diretamente do objeto do BD
+    // O nome da chave deve ser minúsculo (segunda, terca, etc.)
+    const treinoTexto = agendaTreinos[diaSelecionado] || ''; // AGORA USA agendaTreinos
+
+    // 3.4. Processa o texto (se for um único bloco)
+    if (treinoTexto && treinoTexto.trim() !== '') {
+        // Assume que o conteúdo da coluna (varchar) pode ser exibido em um <li>
+        // Se houver múltiplas linhas de treino na coluna, trate aqui
+        let htmlLista = `<li>${treinoTexto.replace(/\n/g, '</li><li>')}</li>`; 
+        listaAulasEl.innerHTML = htmlLista;
+    } else {
+        const li = document.createElement('li');
+        li.textContent = 'Nenhuma atividade agendada.';
+        listaAulasEl.appendChild(li);
+    }
+
+    // Nota: O código de seleção de botão (função selecionarDia) pode permanecer o mesmo.
+}
 
 /* ======== TELA DE PAGAMENTO ======== */
 
@@ -130,11 +157,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById(`conteudo-${metodo}`).classList.add('ativo');
         });
     });
+}); 
 
 
  // DO PIX (Copia e Cola)
 
-    const btnCopiar = document.getElementById('btnCopiar');
+ // 1. Defina a variável fora do 'if'. Se o elemento não existe, a variável será null.
+const btnCopiar = document.getElementById('btnCopiar');
+const chavePixInput = document.getElementById('chavePix'); // Assumindo que esta variável também precisa de correção
+
+    if (btnCopiar){ document.getElementById('btnCopiar');
 
     btnCopiar.addEventListener('click', () => {
         chavePixInput.select();
@@ -223,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inicializa a validação do cartão no carregamento
     //validarNumeroCartao(numeroCartaoInput);
-});
+}
 
 
 //VALIDAÇÃO DOS DADOS DOS CAMPOS DA PAGINA CADASTRO_ALUNO
