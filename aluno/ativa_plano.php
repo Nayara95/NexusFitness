@@ -1,14 +1,10 @@
 <?php
-session_start();
-
-// Verifica se o usuário está logado e se é um professor
-if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
+    session_start();
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true)
+       {
     header('Location: ../login.php');
     exit;
 }
-
-require_once('../autenticacao/conexao.php');
-$conn = conectar();
 
 ?>
 
@@ -112,7 +108,8 @@ $conn = conectar();
 
 
 
-
+  <!--
+   CHECK-IN - FUTURA IMPLEMENTAÇÃO
     <div class="checkIn">
       <form action="treinoAluno">
         <label for="status">Check-ins</label>
@@ -122,6 +119,7 @@ $conn = conectar();
       
 
     </div>
+ -->
 
 </main>
 

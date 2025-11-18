@@ -1,24 +1,10 @@
-<?php
-session_start();
-
-// Verifica se o usuário está logado e se é um professor
-if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
-    header('Location: ../login.php');
-    exit;
-}
-
-require_once('../autenticacao/conexao.php');
-$conn = conectar();
-
-?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seja Bem-Vindo!</title>
+    <title>Seja Bem-Vindo! <?php echo htmlspecialchars($email); ?> </title>
     <link rel="shortcut icon" href="../imagens/faviconNexus.png" type="logo Nexus Fitness">
 
     <link rel="stylesheet" href="../style.css" />
@@ -57,25 +43,30 @@ $conn = conectar();
     <!-- ======== escolha do plano - pós cadastro======== -->
 
     <div class="ativaAgenda_container">
-        <button type="submit" onclick="redirecionar1('ativa_plano.php')" class="btn-ativa-plano">Ative seu plano</button>
+        <button type="submit" onclick="redirecionar('ativa_plano.php')" class="btn-ativa-plano">Ative seu plano</button>
 
         <button type="submit" onclick="redirecionar('agenda_aluno.php')" class="btn-agenda">Agenda de treino</button>
 
-        <button type="submit" onclick="redirecionar1('perfilAluno.php')" class="btn-agenda">Perfil(provisório)</button>
     </div>
 
 
 
    
+    <!--
     <div class="checkIn">
       <form action="treinoAluno">
         <label for="status">Check-ins</label>
         <input type="number" id="status" name="status" required>
       </form>
       <img src="../imagens/checkIn.png" alt="Imagem de check-in">
-      
-
     </div>
+     -->
+
+     <script>
+    function redirecionar(url) {
+        window.location.href = url;
+    }
+</script>
 
 </main>
 
@@ -87,13 +78,5 @@ $conn = conectar();
         include ('footer.php');      
       
       ?>
-
-
-      <script> //direcionado os botões para suas paginas
-        function redirecionar1(url) {
-            window.location.href = url;
-        }
-    </script>
-
 </body>
 </html>

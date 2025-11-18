@@ -675,10 +675,11 @@ footer {
 
 }
 
-.ativaAgenda_container button[type="submit"]{
+.ativaAgenda_container button{
  max-width: 700px;
  margin: 20px;
  background-color: #b0afaf;
+
 
 }
 
