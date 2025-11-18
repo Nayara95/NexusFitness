@@ -28,7 +28,7 @@ if (isset($_GET['id']) || isset($_SESSION['id_professor'])) {
 
 // Se não houver foto ou ID, exibe uma imagem padrão
 // O caminho deve ser relativo ao local do script get_professor_image.php
-$defaultImage = '../imagens/professor-nexus.png';
+$defaultImage = '../imagens/semfoto.png';
 if (file_exists($defaultImage)) {
     header('Content-Type: image/png');
     readfile($defaultImage);
