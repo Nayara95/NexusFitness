@@ -1,9 +1,9 @@
 <?php
 
 function conectar() {
-    $local_server = "DESKTOP-HSJ09OO\SQLEXPRESS1";
+    $local_server = "DANNYPC";
 	$usuario_server = "sa";
-	$senha_server = "loey";
+	$senha_server = "etesp";
 	$banco_de_dados = "BD_Nexus";
      // As in BDCompleta.sql
 

@@ -64,9 +64,9 @@ if (isset($_GET['excluir_id']) && $alunoSelecionado) {
 $resultados = [];
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $termo = '%' . strtolower($_GET['search']) . '%';
-    $sql_search = "SELECT id_aluno, nome, email FROM tbl_aluno WHERE LOWER(nome) LIKE :termo OR LOWER(email) LIKE :termo";
+    $sql_search = "SELECT id_aluno, nome, email FROM tbl_aluno WHERE LOWER(nome) LIKE :termoNome OR LOWER(email) LIKE :termoEmail";
     $stmt_search = $conn->prepare($sql_search);
-    $stmt_search->execute(['termo' => $termo]);
+    $stmt_search->execute(['termoNome' => $termo, 'termoEmail' => $termo]);
     $resultados = $stmt_search->fetchAll(PDO::FETCH_ASSOC);
 } else {
     // Se não houver pesquisa, carrega todos os alunos
@@ -80,6 +80,7 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliação Física - Nexus Fitness</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="treino-alunos.css">
     <link rel="stylesheet" href="medicoes-alunos.css"> 
 </head>
 <body>
@@ -102,10 +103,10 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
 
     <main>
         <div class="avaliacao-container">
-            <h1>Avaliação Física</h1>
+            <h1>Medições de Alunos</h1>
             
-            <div class="content-wrapper">
-                <div class="left-card">
+            <div class="content-wrapper" id="main-content-area">
+                <div class="left-card" id="left-card">
                     <div class="pesquisa-section">
                         <h2>Pesquisar Aluno</h2>
                         <form method="GET" class="search-form">
@@ -118,23 +119,18 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                         <div class="resultados-pesquisa">
                             <h3>Resultados da Pesquisa</h3>
                             <?php if (count($resultados) > 0): ?>
-                            <div class="tabela-alunos">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Aluno</th>
-                                            <th>Matrícula</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($resultados as $aluno): ?>
-                                        <tr class="aluno-row" data-aluno-id="<?php echo $aluno['id_aluno']; ?>">
-                                            <td><?php echo htmlspecialchars($aluno['nome']); ?></td>
-                                            <td><?php echo htmlspecialchars($aluno['email']); ?></td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                            <div class="alunos-lista">
+                                <?php foreach ($resultados as $aluno): ?>
+                                    <a href="?aluno_id=<?php echo $aluno['id_aluno']; ?>" class="aluno-item-link" data-aluno-id="<?php echo $aluno['id_aluno']; ?>">
+                                        <div class="aluno-item">
+                                            <div class="aluno-info-basica">
+                                                <span class="aluno-id">ID: <?php echo $aluno['id_aluno']; ?></span>
+                                                <strong><?php echo htmlspecialchars($aluno['nome']); ?></strong>
+                                                <span class="aluno-email"><?php echo htmlspecialchars($aluno['email']); ?></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <?php endforeach; ?>
                             </div>
                             <?php else: ?>
                             <p class="no-results">Nenhum aluno encontrado.</p>
@@ -143,9 +139,10 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                     </div>
                 </div>
 
-                <div class="right-card">
+                <div class="right-card" id="right-card">
                     <?php if ($alunoSelecionado): ?>
                     <div class="aluno-selecionado-section">
+                        <button id="backToListBtn" class="btn-voltar-lista" style="display: none;">← Voltar para a Lista</button>
                         <div class="aluno-header">
                             <div class="aluno-info">
                                 <h2><?php echo htmlspecialchars($alunoSelecionado['nome']); ?></h2>

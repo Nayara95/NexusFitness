@@ -22,12 +22,14 @@ $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $alunoSelecionado = null;
 $treinoAluno = null;
 $saudeAluno = null;
+$dadosSaude = null;
+$questionario = [];
 
 if (isset($_GET['aluno_id']) && !empty($_GET['aluno_id'])) {
     $alunoId = intval($_GET['aluno_id']);
     
     // Busca o aluno selecionado
-    $stmt = $conn->prepare("SELECT id_aluno as id, nome, email, 'ativo' as status FROM tbl_aluno WHERE id_aluno = :id");
+    $stmt = $conn->prepare("SELECT id_aluno as id, nome, email FROM tbl_aluno WHERE id_aluno = :id");
     $stmt->execute(['id' => $alunoId]);
     $alunoSelecionado = $stmt->fetch(PDO::FETCH_ASSOC);
     
@@ -40,6 +42,20 @@ if (isset($_GET['aluno_id']) && !empty($_GET['aluno_id'])) {
         $stmt = $conn->prepare("SELECT peso, altura FROM tbl_fisicoAluno WHERE id_aluno = :id ORDER BY data_alteracao DESC");
         $stmt->execute(['id' => $alunoId]);
         $saudeAluno = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Busca dados de saúde
+        $stmt = $conn->prepare("SELECT questionario, exame_bio, atestado_medico FROM tbl_dadosSaude WHERE id_aluno = :id");
+        $stmt->execute(['id' => $alunoId]);
+        $dadosSaude = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($dadosSaude && !empty($dadosSaude['questionario'])) {
+            $xml = simplexml_load_string($dadosSaude['questionario']);
+            if ($xml) {
+                foreach ($xml->children() as $key => $value) {
+                    $questionario[(string)$key] = (string)$value;
+                }
+            }
+        }
     }
 }
 
@@ -53,7 +69,7 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
 
     // Use a single query to search across ID, nome, and email
     // CAST id_aluno to VARCHAR for LIKE comparison
-    $stmt = $conn->prepare("SELECT id_aluno as id, nome, email, 'ativo' as status FROM tbl_aluno WHERE CAST(id_aluno AS VARCHAR) LIKE :termoId OR LOWER(nome) LIKE :termoNome OR LOWER(email) LIKE :termoEmail");
+    $stmt = $conn->prepare("SELECT id_aluno as id, nome, email FROM tbl_aluno WHERE CAST(id_aluno AS VARCHAR) LIKE :termoId OR LOWER(nome) LIKE :termoNome OR LOWER(email) LIKE :termoEmail");
     $stmt->execute([
         'termoId' => $termoPesquisaLike,
         'termoNome' => $termoPesquisaLike,
@@ -93,129 +109,180 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
     <main>
         <div class="treinos-container">
             <h1>Gerenciar Treinos dos Alunos</h1>
-            
-            <!-- Seção de Pesquisa -->
-            <div class="pesquisa-section">
-                <h2>Pesquisar Aluno</h2>
-                <form method="GET" class="search-form">
-                    <input type="text" name="search" id="searchInput" 
-                           placeholder="Digite ID, nome ou email do aluno..." 
-                           value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                    <button type="submit" class="btn-pesquisar">Pesquisar</button>
-                </form>
-                
-                <?php 
-                $listaAlunos = (isset($_GET['search']) && !empty($_GET['search'])) ? $resultadosPesquisa : $alunos;
-                ?>
-                <div class="resultados-pesquisa">
-                    <h3><?php echo (isset($_GET['search']) && !empty($_GET['search'])) ? 'Resultados da Pesquisa para "' . htmlspecialchars($_GET['search']) . '"' : 'Todos os Alunos'; ?></h3>
-                    
-                    <?php if (count($listaAlunos) > 0): ?>
-                    <div class="alunos-lista">
-                        <?php foreach ($listaAlunos as $aluno): ?>
-                            <div class="aluno-item">
-                                <div class="aluno-info-basica">
-                                    <div class="aluno-id">ID: <?php echo $aluno['id']; ?></div>
-                                    <strong><?php echo $aluno['nome']; ?></strong>
-                                    <span class="aluno-email"><?php echo $aluno['email']; ?></span>
-                                    <span class="status status-ativo">
-                                        Ativo
-                                    </span>
-                                </div>
-                                <a href="?aluno_id=<?php echo $aluno['id']; ?>" class="btn-selecionar">Selecionar</a>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <?php else: ?>
-                        <p class="no-results">Nenhum aluno encontrado.</p>
-                    <?php endif; ?>
-                </div>
-            </div>
-            
-            <!-- Seção do Aluno Selecionado -->
-            <?php if ($alunoSelecionado): ?>
-            <div class="aluno-selecionado-section">
-                <div class="aluno-header">
-                    <div class="aluno-titulo">
-                        <h2>Ficha de Treino - <?php echo $alunoSelecionado['nome']; ?></h2>
-                        <div class="aluno-meta">
-                            <span class="aluno-id">ID: <?php echo $alunoSelecionado['id']; ?></span>
-                            <span class="aluno-email"><?php echo $alunoSelecionado['email']; ?></span>
-                        </div>
-                    </div>
-                    <span class="status status-<?php echo $alunoSelecionado['status']; ?>">
-                        <?php echo ucfirst($alunoSelecionado['status']); ?>
-                    </span>
-                </div>
-                
-                <!-- Informações de Saúde -->
-                <?php if ($saudeAluno): ?>
-                <div class="info-saude">
-                    <h3>Informações de Saúde</h3>
-                    <div class="saude-grid">
-                        <div class="info-item">
-                            <label>Peso:</label>
-                            <span><?php echo $saudeAluno['peso']; ?></span>
-                        </div>
-                        <div class="info-item">
-                            <label>Altura:</label>
-                            <span><?php echo $saudeAluno['altura']; ?></span>
-                        </div>
-                    </div>
-                </div>
-                <?php else: ?>
-                <div class="info-saude">
-                    <h3>Informações de Saúde</h3>
-                    <p class="no-info">Nenhuma informação de saúde cadastrada.</p>
-                </div>
-                <?php endif; ?>
-                
-                <!-- Ficha de Treinos -->
-                <div class="ficha-treinos">
-                    <div class="ficha-header">
-                        <h3>Ficha de Treinos</h3>
-                        <div class="ficha-actions">
-                            <button class="btn-editar" onclick="editarFicha(<?php echo $alunoSelecionado['id']; ?>)">Editar Ficha</button>
-                            <button class="btn-enviar" onclick="enviarFicha(<?php echo $alunoSelecionado['id']; ?>)">Enviar para Aluno</button>
-                        </div>
-                    </div>
-                    
-                    <div class="dias-treino">
-                        <?php 
-                        $diasSemana = [
-                            'segunda' => 'Segunda-feira',
-                            'terca' => 'Terça-feira',
-                            'quarta' => 'Quarta-feira',
-                            'quinta' => 'Quinta-feira',
-                            'sexta' => 'Sexta-feira',
-                            'sabado' => 'Sábado',
-                            'domingo' => 'Domingo'
-                        ];
-                        
-                        foreach ($diasSemana as $diaKey => $diaNome): 
-                            $exerciciosDia = isset($treinoAluno[$diaKey]) ? $treinoAluno[$diaKey] : [];
+
+            <div class="content-wrapper">
+                <div class="left-card">
+                    <!-- Seção de Pesquisa -->
+                    <div class="pesquisa-section">
+                        <h2>Pesquisar Aluno</h2>
+                        <form method="GET" class="search-form">
+                            <input type="text" name="search" id="searchInput"
+                                   placeholder="Digite ID, nome ou email do aluno..."
+                                   value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                            <button type="submit" class="btn-pesquisar">Pesquisar</button>
+                        </form>
+
+                        <?php
+                        $listaAlunos = (isset($_GET['search']) && !empty($_GET['search'])) ? $resultadosPesquisa : $alunos;
                         ?>
-                        <div class="dia-treino">
-                            <h4><?php echo $diaNome; ?></h4>
-                            <div class="exercicios-lista">
-                                <?php if (!empty($treinoAluno[$diaKey])): ?>
-                                    <div class="exercicio-item">
-                                        <div class="exercicio-nome"><?php echo $treinoAluno[$diaKey]; ?></div>
+                        <div class="resultados-pesquisa">
+                            <h3><?php echo (isset($_GET['search']) && !empty($_GET['search'])) ? 'Resultados da Pesquisa para "' . htmlspecialchars($_GET['search']) . '"' : 'Todos os Alunos'; ?></h3>
+
+                            <?php if (count($listaAlunos) > 0): ?>
+                            <div class="alunos-lista">
+                                <?php foreach ($listaAlunos as $aluno): ?>
+                                    <a href="?aluno_id=<?php echo $aluno['id']; ?>" class="aluno-item-link">
+                                        <div class="aluno-item">
+                                            <div class="aluno-info-basica">
+                                                <span class="aluno-id">ID: <?php echo $aluno['id']; ?></span>
+                                                <strong><?php echo $aluno['nome']; ?></strong>
+                                                <span class="aluno-email"><?php echo $aluno['email']; ?></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php else: ?>
+                                <p class="no-results">Nenhum aluno encontrado.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-card">
+                    <!-- Seção do Aluno Selecionado -->
+                    <?php if ($alunoSelecionado): ?>
+                    <div class="aluno-selecionado-section">
+                        <div class="aluno-header">
+                            <div class="aluno-titulo">
+                                <h2>Ficha de Treino - <?php echo $alunoSelecionado['nome']; ?></h2>
+                                <div class="aluno-meta">
+                                    <span class="aluno-id">ID: <?php echo $alunoSelecionado['id']; ?></span>
+                                    <span class="aluno-email"><?php echo $alunoSelecionado['email']; ?></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Informações de Saúde -->
+                        <?php if ($saudeAluno || $dadosSaude): ?>
+                        <div class="info-saude">
+                            <h3>Informações de Saúde</h3>
+                            <div class="saude-grid">
+                                <?php if ($saudeAluno): ?>
+                                <div class="info-item">
+                                    <label>Peso:</label>
+                                    <span><?php echo htmlspecialchars($saudeAluno['peso']); ?> kg</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Altura:</label>
+                                    <span><?php echo htmlspecialchars($saudeAluno['altura']); ?> m</span>
+                                </div>
+                                <?php endif; ?>
+
+                                <?php if ($dadosSaude): ?>
+                                    <?php if (!empty($questionario)): ?>
+                                        <?php foreach ($questionario as $pergunta => $resposta): ?>
+                                        <div class="info-item">
+                                            <label><?php echo htmlspecialchars(ucfirst(str_replace('_', ' ', $pergunta))); ?>:</label>
+                                            <span><?php echo htmlspecialchars($resposta); ?></span>
+                                        </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    <div class="info-item">
+                                        <label>Exame Bioimpedância:</label>
+                                        <span>
+                                            <?php if (!empty($dadosSaude['exame_bio'])): ?>
+                                                <a href="../uploads/<?php echo htmlspecialchars($dadosSaude['exame_bio']); ?>" target="_blank">Ver Exame</a>
+                                            <?php else: ?>
+                                                Não informado
+                                            <?php endif; ?>
+                                        </span>
                                     </div>
-                                <?php else: ?>
-                                    <p class="sem-treino">Sem treino cadastrado</p>
+                                    <div class="info-item">
+                                        <label>Atestado Médico:</label>
+                                        <span>
+                                            <?php if (!empty($dadosSaude['atestado_medico'])): ?>
+                                                <a href="../uploads/<?php echo htmlspecialchars($dadosSaude['atestado_medico']); ?>" target="_blank">Ver Atestado</a>
+                                            <?php else: ?>
+                                                Não informado
+                                            <?php endif; ?>
+                                        </span>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                         </div>
-                        <?php endforeach; ?>
+                        <?php else: ?>
+                        <div class="info-saude">
+                            <h3>Informações de Saúde</h3>
+                            <p class="no-info">Nenhuma informação de saúde cadastrada.</p>
+                        </div>
+                        <?php endif; ?>
+
+                        <!-- Ficha de Treinos -->
+                        <div class="ficha-treinos">
+                            <?php $isEditMode = isset($_GET['mode']) && $_GET['mode'] === 'edit'; ?>
+                            <form action="atualizar-treino.php" method="POST">
+                                <input type="hidden" name="aluno_id" value="<?php echo $alunoSelecionado['id']; ?>">
+
+                                <div class="ficha-header">
+                                    <h3>Ficha de Treinos</h3>
+                                    <div class="ficha-actions">
+                                        <?php if ($isEditMode): ?>
+                                            <button type="submit" class="btn-salvar">Salvar Alterações</button>
+                                            <a href="?aluno_id=<?php echo $alunoSelecionado['id']; ?>" class="btn-cancelar">Cancelar</a>
+                                        <?php else: ?>
+                                            <a href="?aluno_id=<?php echo $alunoSelecionado['id']; ?>&mode=edit" class="btn-editar">Editar Ficha</a>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
+                                <div class="dias-treino">
+                                    <?php
+                                    $diasSemana = [
+                                        'segunda' => 'Segunda-feira',
+                                        'terca' => 'Terça-feira',
+                                        'quarta' => 'Quarta-feira',
+                                        'quinta' => 'Quinta-feira',
+                                        'sexta' => 'Sexta-feira',
+                                        'sabado' => 'Sábado',
+                                        'domingo' => 'Domingo'
+                                    ];
+
+                                    foreach ($diasSemana as $diaKey => $diaNome):
+                                        $exerciciosDia = isset($treinoAluno[$diaKey]) ? $treinoAluno[$diaKey] : '';
+                                    ?>
+                                    <div class="dia-treino">
+                                        <h4><?php echo $diaNome; ?></h4>
+                                        <div class="exercicios-lista">
+                                            <?php if ($isEditMode): ?>
+                                                <textarea name="<?php echo $diaKey; ?>" class="exercicio-input"><?php echo htmlspecialchars($exerciciosDia); ?></textarea>
+                                            <?php else: ?>
+                                                <?php if (!empty($exerciciosDia)): ?>
+                                                    <div class="exercicio-item">
+                                                        <div class="exercicio-nome"><?php echo nl2br(htmlspecialchars($exerciciosDia)); ?></div>
+                                                    </div>
+                                                <?php else: ?>
+                                                    <p class="sem-treino">Sem treino cadastrado</p>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+                    <?php elseif (isset($_GET['aluno_id'])): ?>
+                    <div class="no-aluno">
+                        <p>Aluno não encontrado.</p>
+                    </div>
+                    <?php else: ?>
+                    <div class="no-aluno">
+                        <p>Selecione um aluno para ver suas informações.</p>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
-            <?php elseif (isset($_GET['aluno_id'])): ?>
-            <div class="no-aluno">
-                <p>Aluno não encontrado.</p>
-            </div>
-            <?php endif; ?>
         </div>
     </main>
     <footer>
