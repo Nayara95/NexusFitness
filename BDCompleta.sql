@@ -180,12 +180,11 @@ CREATE TABLE tbl_permissao(
 GO
 
 CREATE TABLE tbl_modalidade(
-    id_modalidade int PRIMARY KEY NOT NULL,
+    id_modalidade int identity PRIMARY KEY NOT NULL,
     nome_modal varchar(100),
     descricao_modal varchar(100),
     data_cadastro datetime,
     modal_situacao varchar(100),
-    foto varbinary (max),
     id_funcionarios int
 );
 GO
@@ -286,13 +285,13 @@ VALUES
 GO
 
 -- 11. Décimo primeiro: tbl_modalidade (depende de funcionarios)
-INSERT INTO tbl_modalidade (id_modalidade, nome_modal, descricao_modal, data_cadastro, modal_situacao, id_funcionarios)
+INSERT INTO tbl_modalidade (nome_modal, descricao_modal, data_cadastro, modal_situacao, id_funcionarios)
 VALUES
-(1, 'Musculação', 'Treinamento com pesos livres e máquinas', GETDATE(), 'Ativo', 1),
-(2, 'Pilates', 'Método de exercícios para fortalecimento', GETDATE(), 'Ativo', 1),
-(3, 'Yoga', 'Prática de posturas e respiração', GETDATE(), 'Ativo', 1),
-(4, 'Spinning', 'Aula de ciclismo indoor', GETDATE(), 'Inativo', 1),
-(5, 'Cross Training', 'Treinamento funcional intenso', GETDATE(), 'Ativo', 1);
+('Musculação', 'Treinamento com pesos livres e máquinas', GETDATE(), 'Ativo', 1),
+('Pilates', 'Método de exercícios para fortalecimento', GETDATE(), 'Ativo', 1),
+('Yoga', 'Prática de posturas e respiração', GETDATE(), 'Ativo', 1),
+('Spinning', 'Aula de ciclismo indoor', GETDATE(), 'Inativo', 1),
+('Cross Training', 'Treinamento funcional intenso', GETDATE(), 'Ativo', 1);
 GO
 
 -- AGORA ADICIONAR AS FKs APÓS TODOS OS INSERTS
@@ -370,7 +369,7 @@ SELECT * FROM tbl_professor;
 GO
 
 SELECT '=== FUNCIONÁRIOS CADASTRADOS ===' AS Info;
-SELECT id_funcionarios, nome, cargo, situacao FROM tbl_funcionarios;
+SELECT * FROM tbl_funcionarios;
 GO
 
 SELECT '=== PLANOS CONTRATADOS ===' AS Info;
