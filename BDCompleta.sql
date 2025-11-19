@@ -126,7 +126,7 @@ GO
 CREATE TABLE tbl_plano(
     id_plano int PRIMARY KEY NOT NULL,
     nome_plano varchar(30) NOT NULL,
-    valor_plano int NOT NULL,
+    valor_plano decimal(10,2) NOT NULL,
     data_cadastro datetime NOT NULL,
     observacao varchar(200) NOT NULL,
     id_aluno int,
