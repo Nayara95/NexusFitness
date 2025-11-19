@@ -111,10 +111,13 @@
 
 
     </div> <!-- FIM div completa -->
+
 </main>
 
-  <script src="../script.js"></script>
-  <script>
+
+
+  <script src="../script.js"></script> <!-- linkando o script js externo -->
+  <script> //script interno 
    
     // ponteiro de referencia,escuta de evento
     document.addEventListener('DOMContentLoaded', () => {
@@ -125,13 +128,12 @@
         const btnFinalizarCadastro = document.getElementById('btn-finalizar-cadastro');
         const formPrincipal = document.getElementById('formCadastrar');
         
-        // --- REFERÊNCIAS CORRIGIDAS PARA O POP-UP ---
-        // Acessamos o formulário do pop-up e seus campos internos
+        // Acessando o formulário do pop-up e seus campos internos
         const formSenha = document.getElementById('form-senha'); 
         const inputSenha = formSenha.querySelector('#senha');         // O input da SENHA
         const inputConfSenha = formSenha.querySelector('#conf-senha'); // O input de CONFIRMAR SENHA
 
-        // 🎯 GARANTA QUE ESTA LINHA ESTEJA PRESENTE 🎯
+    
         const senhaConteudo = dadoSenha.querySelector('.senha-conteudo');
         // ---------------------------------------------
         
@@ -174,7 +176,7 @@
 
             erroSenha.style.display = 'none';
 
-            // 🎯 Lógica para enviar os dados da senha junto com o formulário principal 🎯
+            // Lógica para enviar os dados da senha junto com o formulário principal
             
             // 3.1. Cria campos de input HIDDEN para a senha e anexa-os ao formulário principal
            // let inputSenhaHidden = document.createElement('input');
@@ -229,7 +231,7 @@
                     
                     // Redireciona para o próximo passo após 3 segundos
                     setTimeout(() => {
-                         window.location.href = '../login.php'; 
+                         window.location.href = data.redirect_url;; 
                     }, 3000);
 
                 } else {

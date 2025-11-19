@@ -1,18 +1,3 @@
-<?php
-session_start();
-
-// Verifica se o usuário está logado e se é um professor
-if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
-    header('Location: ../login.php');
-    exit;
-}
-
-require_once('../autenticacao/conexao.php');
-$conn = conectar();
-
-?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
