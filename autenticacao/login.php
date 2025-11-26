@@ -12,41 +12,62 @@ if (empty($email) || empty($senha)) {
 
 $conn = conectar();
 
-// Verifica se é um aluno
-$stmt = $conn->prepare("SELECT id_aluno, nome, senha FROM tbl_aluno WHERE email = :email");
+
+// =========================
+// LOGIN DO ALUNO
+// =========================
+$stmt = $conn->prepare("
+    SELECT id_aluno, nome, senha 
+    FROM tbl_aluno 
+    WHERE email = :email
+");
 $stmt->bindParam(':email', $email);
 $stmt->execute();
 $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($aluno && $senha == $aluno['senha']) {
-    // Login de aluno bem-sucedido
     $_SESSION['loggedin'] = true;
     $_SESSION['email'] = $email;
     $_SESSION['permissao'] = 'aluno';
     $_SESSION['id_aluno'] = $aluno['id_aluno'];
     $_SESSION['nome'] = $aluno['nome'];
+
     header('Location: ../aluno/perfilAluno.php');
     exit;
 }
 
-// Verifica se é um professor
-$stmt = $conn->prepare("SELECT id_professor, nome, senha FROM tbl_professor WHERE email = :email");
+
+// =========================
+// LOGIN DO PROFESSOR
+// (Funcionários com id_professor preenchido)
+// =========================
+$stmt = $conn->prepare("
+    SELECT id_funcionarios, id_professor, nome, senha
+    FROM tbl_funcionarios
+    WHERE email = :email
+      AND id_professor IS NOT NULL
+");
 $stmt->bindParam(':email', $email);
 $stmt->execute();
 $professor = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($professor && $senha == $professor['senha']) {
-    // Login de professor bem-sucedido
+
     $_SESSION['loggedin'] = true;
     $_SESSION['email'] = $email;
     $_SESSION['permissao'] = 'professor';
     $_SESSION['id_professor'] = $professor['id_professor'];
+    $_SESSION['id_funcionario'] = $professor['id_funcionarios'];
     $_SESSION['nome'] = $professor['nome'];
+
     header('Location: ../professor/index-professor.php');
     exit;
 }
-echo("Falha no login");
-// Falha no login
+
+
+// =========================
+// FALHA NO LOGIN
+// =========================
 header('Location: ../login.php?error=1');
 exit;
 ?>
