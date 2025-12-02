@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true)
+       {
+    header('Location: ../login.php');
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -98,7 +108,8 @@
 
 
 
-
+  <!--
+   CHECK-IN - FUTURA IMPLEMENTAÇÃO
     <div class="checkIn">
       <form action="treinoAluno">
         <label for="status">Check-ins</label>
@@ -108,6 +119,7 @@
       
 
     </div>
+ -->
 
 </main>
 

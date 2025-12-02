@@ -1,0 +1,84 @@
+
+body {
+    
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.profile-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px auto;
+    border: none;
+}
+.profile-card h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+.profile-card p {
+    margin: 5px 0 0 0;
+    color: #777;
+    font-size: 0.9em;
+}
+.actions-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.action-card {
+    background-color: var(--CorFundoElementos);
+    color: white;
+    border-radius: 15px;
+    padding: 40px;
+    width: 280px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.3em;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(102, 15, 36, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+}
+.action-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(102, 15, 36, 0.4);
+}
+.action-card:last-child {
+    background-color: var(--CorFundoElementos2);
+    box-shadow: 0 4px 15px rgba(242, 68, 85, 0.3);
+}
+.action-card:last-child:hover {
+    box-shadow: 0 8px 25px rgba(242, 68, 85, 0.4);
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+}

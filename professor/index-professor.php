@@ -1,13 +1,39 @@
 <?php
 session_start();
+require_once '../autenticacao/conexao.php';
 
 // Verifica se o usuário está logado e se é um professor
-if (!isset($_SESSION['loggedin']) || $_SESSION['tipo'] !== 'professor') {
+if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
     header('Location: ../login.php');
     exit;
 }
 
 $email = $_SESSION['email'];
+$id_professor = $_SESSION['id_professor'] ?? 0;
+
+$nome_professor = '';
+if ($id_professor > 0) {
+    try {
+        $conn = conectar();
+        $stmt = $conn->prepare("SELECT nome FROM tbl_professor WHERE id_professor = :id");
+        $stmt->bindParam(':id', $id_professor, PDO::PARAM_INT);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($resultado && isset($resultado['nome'])) {
+            $nome_professor = $resultado['nome'];
+        }
+    } catch (PDOException $e) {
+        // Em caso de erro, podemos logar e continuar com o nome em branco
+        error_log("Erro ao buscar nome do professor: " . $e->getMessage());
+    }
+}
+
+// Fallback para o email caso o nome não seja encontrado
+if (empty($nome_professor)) {
+    $nome_professor = htmlspecialchars($email);
+} else {
+    $nome_professor = htmlspecialchars($nome_professor);
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,13 +42,13 @@ $email = $_SESSION['email'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel do Professor - Nexus Fitness</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="painel-professor.css">
 </head>
 <body>
      <header>
       <div class="logo">
         <img src="../imagens/nexus.png" alt="Logo Nexus Fitness" />
       </div>
-
       <div class="header-buttons">
         <div class="dropdown">
           <button class="dropbtn">Minha Conta▾</button>
@@ -36,17 +62,25 @@ $email = $_SESSION['email'];
     </header>
 
     <main>
-        <div class="painel-simples">
-            <h1>Painel do Professor</h1>
-            <p class="bem-vindo">Bem-vindo, <?php echo htmlspecialchars($email); ?>!</p>
-            
-            <div class="botoes-simples">
-                <a href="medicoes-alunos.php" class="btn-simples btn-medicoes">Medições dos Alunos</a>
-                <a href="treino-alunos.php" class="btn-simples">Treinos dos Alunos</a>
-            </div>
+        <div class="profile-card">
+            <img src="get_professor_image.php" alt="Foto do Professor" class="profile-pic">
+            <h2><?php echo $nome_professor; ?></h2>
+            <p><?php echo htmlspecialchars($email); ?></p>
+        </div>
+
+        <div class="actions-container">
+            <a href="medicoes-alunos.php" class="action-card">
+                Medições dos Alunos
+            </a>
+            <a href="treino-alunos.php" class="action-card">
+                Treinos dos Alunos
+            </a>
         </div>
     </main>
 
-    <?php include ('../footer1.php'); ?>
+    <footer>
+      <a>© 2025 Nexus Fitness — Todos os direitos reservados.</a>
+    </footer>
+  
 </body>
 </html>

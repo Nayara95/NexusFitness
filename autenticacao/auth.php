@@ -11,7 +11,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     if (basename(dirname($_SERVER['PHP_SELF'])) == basename(dirname(__DIR__))) {
         $login_path = 'login.php';
     }
-
+    echo '<p style="color: red; text-align: center; margin-bottom: 10px;">Login ou senha incorretos.</p>';
     // Redireciona para a página de login e encerra o script
     header('Location: ' . $login_path . '?auth_error=1');
     exit;

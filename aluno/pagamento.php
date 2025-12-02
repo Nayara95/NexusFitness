@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -122,12 +123,7 @@
    
     <script src="../script.js"></script>
 
-      <script> //direcionado os botões para suas paginas
-        function bemvindo(url) {
-            window.location.href = url;
-        }
-        
-    </script>
+
 
 </body>
 </html>

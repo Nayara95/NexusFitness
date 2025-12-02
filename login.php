@@ -10,6 +10,8 @@
 
 
 </head>
+
+
 <body>
 
     <div class="login-container">
@@ -17,6 +19,12 @@
         <!-- ======== LADO ESQUERDO ======== -->
         <div class="login-left">
             <h2>Área do cliente</h2>
+
+            <?php
+            if (isset($_GET['error']) && $_GET['error'] == 1) {
+                echo '<p style="color: red; text-align: center; margin-bottom: 10px;">Login ou senha incorretas.</p>';
+            }
+            ?>
 
             <form action="autenticacao/login.php" method="POST">
                 <label for="email">Email ou CPF</label>

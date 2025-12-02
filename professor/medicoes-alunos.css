@@ -1,0 +1,497 @@
+/* Estilos para a página de medições de alunos */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.avaliacao-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.avaliacao-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.left-card, .right-card {
+    flex: 1;
+    min-width: 300px; /* Minimum width for cards before wrapping */
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.left-card {
+    flex: 0.4; /* Make left card (search) a bit smaller */
+}
+
+.right-card {
+    flex: 0.6; /* Make right card (student details) larger */
+}
+
+/* Seção de Pesquisa */
+.pesquisa-section h2 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn-pesquisar {
+    padding: 10px 15px;
+    background-color: var(--CorFundoElementos);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-pesquisar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+.resultados-pesquisa h3 {
+    color: #555;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.alunos-lista {
+    max-height: 400px; /* Limit height for scrollable list */
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.aluno-item-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.aluno-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.aluno-item:last-child {
+    border-bottom: none;
+}
+
+.aluno-item:hover {
+    background-color: #eef;
+}
+
+.aluno-info-basica {
+    flex-grow: 1;
+}
+
+.aluno-info-basica strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--CorFundoElementos);
+}
+
+.aluno-id, .aluno-email {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.no-results {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+}
+
+/* Seção do Aluno Selecionado */
+.aluno-selecionado-section {
+    padding: 10px;
+}
+
+.aluno-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.aluno-info h2 {
+    margin-top: 0;
+    color: var(--CorFundoElementos);
+    font-size: 1.8rem;
+}
+
+.aluno-meta {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.aluno-meta span {
+    margin-right: 15px;
+}
+
+/* Form Section */
+.form-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.form-section h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.input-group input[type="number"],
+.input-group input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+}
+
+.form-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.btn-salvar {
+    padding: 10px 20px;
+    background-color: var(--CorFundoElementos);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-salvar:hover {
+    background-color: var(--CorFundoElementos2);
+}
+
+/* Historico Section (Table) */
+.historico-section {
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 30px;
+}
+
+.historico-section h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.tabela-dados {
+    overflow-x: auto; /* Enable horizontal scroll for small screens */
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabela-dados table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.tabela-dados th, .tabela-dados td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tabela-dados th {
+    background-color: var(--CorFundoElementos);
+    color: white;
+    font-weight: bold;
+}
+
+.tabela-dados tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabela-dados tr:hover {
+    background-color: #ddd;
+}
+
+.tabela-dados .acoes {
+    white-space: nowrap; /* Prevent buttons from wrapping */
+}
+
+.tabela-dados .btn-editar-js,
+.tabela-dados .btn-excluir {
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.tabela-dados .btn-editar-js {
+    background-color: #007bff;
+    color: white;
+}
+
+.tabela-dados .btn-editar-js:hover {
+    background-color: #0056b3;
+}
+
+.tabela-dados .btn-excluir {
+    background-color: #dc3545;
+    color: white;
+}
+
+.tabela-dados .btn-excluir:hover {
+    background-color: #c82333;
+}
+
+.no-data, .no-aluno {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 1.1rem;
+}
+
+/* Alerts */
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.alert-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Estilo para campos inválidos */
+.campo-invalido {
+    border-color: #dc3545 !important;
+    background-color: #fff5f5 !important;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.1) !important;
+}
+
+/* Estilo para erros rápidos */
+.erro-rapido {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botão voltar lista (hidden by default, shown by JS) */
+.btn-voltar-lista {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.btn-voltar-lista:hover {
+    background-color: #5a6268;
+}
+
+
+/* Media Queries para Responsividade */
+
+/* Para telas menores que 1024px (tablets e desktops pequenos) */
+@media (max-width: 1024px) {
+    .content-wrapper {
+        flex-direction: column; /* Empilha os cards verticalmente */
+        gap: 30px; /* Aumenta o espaçamento entre os cards empilhados */
+    }
+
+    .left-card, .right-card {
+        max-width: 100%; /* Ocupa a largura total disponível */
+        flex: none; /* Remove a flexibilidade para que ocupem 100% */
+    }
+
+    .left-card {
+        order: 2; /* Coloca o left-card abaixo do right-card em telas menores */
+    }
+
+    .right-card {
+        order: 1; /* Coloca o right-card acima do left-card em telas menores */
+    }
+
+    .avaliacao-container {
+        padding: 15px; /* Ajusta o padding geral do container */
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr; /* Coloca os campos do formulário em uma única coluna */
+    }
+
+    .tabela-dados {
+        overflow-x: auto; /* Adiciona scroll horizontal para a tabela */
+        -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos iOS */
+    }
+
+    .tabela-dados table {
+        width: 100%; /* Garante que a tabela ocupe a largura total do container */
+        min-width: 700px; /* Define uma largura mínima para a tabela para evitar quebras */
+    }
+}
+
+/* Para telas menores que 768px (celulares) */
+@media (max-width: 768px) {
+    .avaliacao-container h1 {
+        font-size: 1.8em; /* Reduz o tamanho do título principal */
+    }
+
+    .pesquisa-section h2, .form-section h3, .historico-section h3 {
+        font-size: 1.4em; /* Reduz o tamanho dos subtítulos */
+    }
+
+    .left-card, .right-card {
+        padding: 15px; /* Reduz o padding interno dos cards */
+    }
+
+    .search-form {
+        flex-direction: column; /* Empilha o input e o botão de pesquisa */
+    }
+
+    .search-form input {
+        margin-bottom: 10px; /* Adiciona espaço entre o input e o botão */
+    }
+
+    .aluno-item {
+        flex-direction: column; /* Empilha as informações do aluno */
+        align-items: flex-start; /* Alinha as informações à esquerda */
+    }
+
+    .aluno-info-basica {
+        width: 100%; /* Ocupa a largura total */
+    }
+
+    .aluno-meta {
+        flex-direction: column; /* Empilha as meta informações do aluno */
+        align-items: flex-start;
+    }
+
+    .aluno-meta span {
+        margin-bottom: 5px; /* Espaçamento entre as meta informações */
+    }
+
+    .form-actions {
+        text-align: center;
+    }
+
+    .form-actions .btn-salvar {
+        width: 100%; /* Botões de ação ocupam a largura total */
+    }
+
+    .tabela-dados table {
+        min-width: 600px; /* Ajusta a largura mínima da tabela para telas menores */
+    }
+
+    .tabela-dados th, .tabela-dados td {
+        padding: 8px; /* Reduz o padding das células da tabela */
+        font-size: 0.9em; /* Reduz o tamanho da fonte da tabela */
+    }
+}
+
+/* Para telas muito pequenas (ex: 480px) */
+@media (max-width: 480px) {
+    .avaliacao-container {
+        padding: 10px;
+    }
+
+    .left-card, .right-card {
+        padding: 10px;
+    }
+
+    .tabela-dados table {
+        min-width: 500px; /* Mais um ajuste para telas muito pequenas */
+    }
+}
