@@ -14,10 +14,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate aluno_id
     if (!isset($_POST['aluno_id']) || !filter_var($_POST['aluno_id'], FILTER_VALIDATE_INT)) {
-        header('Location: medicoes-alunos.php?erro=aluno_invalido');
+        $_SESSION['mensagem_erro'] = 'Aluno inválido!';
+        header('Location: medicoes-alunos.php');
         exit;
     }
     $aluno_id = (int)$_POST['aluno_id'];
+    
+    // Salvar o aluno selecionado na sessão
+    $_SESSION['aluno_selecionado_id'] = $aluno_id;
 
     // Sanitize and validate measurement values
     $bracos_input = $_POST['bracos'];
@@ -29,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $errors = [];
 
-    // *** CORREÇÃO COMPLETA: Processamento robusto da data ***
+    // Processamento robusto da data
     $data_medida_obj = DateTime::createFromFormat('Y-m-d', $data_medida_str);
     
     // Se a data for inválida ou futura, usar data atual
@@ -38,8 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data_medida_obj = $hoje;
     }
 
-    // *** FORMATO ESPECÍFICO PARA SQL SERVER ***
-    // Tentativa 1: Formato ISO básico (apenas data)
+    // Formato para SQL Server
     $data_medida = $data_medida_obj->format('Y-m-d');
 
     if (!empty($bracos_input) && !is_numeric($bracos_input)) {
@@ -73,13 +76,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!empty($errors)) {
-        header('Location: medicoes-alunos.php?aluno_id=' . $aluno_id . '&erro=' . urlencode(implode(', ', $errors)));
+        $_SESSION['mensagem_erro'] = implode(', ', $errors);
+        header('Location: medicoes-alunos.php');
         exit;
     }
 
     try {
         if (isset($_POST['dado_id']) && !empty($_POST['dado_id'])) {
-            // Atualizar dados COM CONVERT explícito
+            // Atualizar dados
             $dado_id = $_POST['dado_id'];
             $sql = "UPDATE tbl_fisicoAluno SET braco = :braco, abdomen = :abdomen, peso = :peso, altura = :altura, perna = :perna, 
                     data_alteracao = CONVERT(DATETIME, :data_medida, 120) WHERE id_fisicoAluno = :dado_id";
@@ -99,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_max_id = $conn->query($sql_max_id);
             $new_id_fisicoAluno = $stmt_max_id->fetch(PDO::FETCH_ASSOC)['new_id'];
 
-            // Inserir novos dados COM CONVERT explícito
+            // Inserir novos dados
             $id_professor = $_SESSION['id_professor'];
             $sql = "INSERT INTO tbl_fisicoAluno (id_fisicoAluno, id_aluno, id_professor, braco, abdomen, peso, altura, perna, data_alteracao) 
                     VALUES (:id_fisicoAluno, :id_aluno, :id_professor, :braco, :abdomen, :peso, :altura, :perna, CONVERT(DATETIME, :data_medida, 120))";
@@ -117,12 +121,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
         }
 
-        header('Location: medicoes-alunos.php?aluno_id=' . $aluno_id . '&sucesso=1');
+        $_SESSION['mensagem_sucesso'] = 'Dados salvos com sucesso!';
+        header('Location: medicoes-alunos.php');
         exit;
+        
     } catch (PDOException $e) {
-        // *** TENTATIVA ALTERNATIVA SE A PRIMEIRA FALHAR ***
+        // Tentativa alternativa com formato diferente
         try {
-            // Formato alternativo: YYYYMMDD (sem separadores)
             $data_medida_alt = $data_medida_obj->format('Ymd');
             
             if (isset($_POST['dado_id']) && !empty($_POST['dado_id'])) {
@@ -161,15 +166,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
             }
 
-            header('Location: medicoes-alunos.php?aluno_id=' . $aluno_id . '&sucesso=1');
+            $_SESSION['mensagem_sucesso'] = 'Dados salvos com sucesso!';
+            header('Location: medicoes-alunos.php');
             exit;
 
         } catch (PDOException $e2) {
-            echo "Erro ao salvar dados (todas as tentativas falharam): " . $e2->getMessage();
-            echo "<br>Primeira tentativa - Data: " . $data_medida;
-            echo "<br>Segunda tentativa - Data: " . $data_medida_alt;
-            echo "<br>Data original do POST: " . $_POST['data_medida'];
-            echo "<br>SQL State: " . $e2->getCode();
+            $_SESSION['mensagem_erro'] = 'Erro ao salvar dados: ' . $e2->getMessage();
+            header('Location: medicoes-alunos.php');
             exit;
         }
     }
