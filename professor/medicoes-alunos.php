@@ -9,6 +9,38 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
     exit;
 }
 
+// Processar ações POST antes de qualquer saída HTML
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Limpar aluno selecionado
+    if (isset($_POST['limpar_aluno'])) {
+        unset($_SESSION['aluno_selecionado_id']);
+        unset($_SESSION['resultados_pesquisa']);
+        unset($_SESSION['termo_pesquisa']);
+        header('Location: medicoes-alunos.php');
+        exit;
+    }
+    
+    // Limpar pesquisa
+    if (isset($_POST['limpar_pesquisa'])) {
+        unset($_SESSION['resultados_pesquisa']);
+        unset($_SESSION['termo_pesquisa']);
+        header('Location: medicoes-alunos.php');
+        exit;
+    }
+    
+    // Processar exclusão
+    if (isset($_POST['excluir_id']) && isset($_SESSION['aluno_selecionado_id'])) {
+        $excluirId = intval($_POST['excluir_id']);
+        $sql_excluir = "DELETE FROM tbl_fisicoAluno WHERE id_fisicoAluno = :id";
+        $stmt_excluir = $conn->prepare($sql_excluir);
+        if ($stmt_excluir->execute(['id' => $excluirId])) {
+            $_SESSION['mensagem_sucesso'] = 'Dados excluídos com sucesso!';
+            header('Location: medicoes-alunos.php');
+            exit;
+        }
+    }
+}
+
 $alunoSelecionado = null;
 $dadosAluno = [];
 $editarDado = null;
@@ -22,9 +54,15 @@ if ($stmt_alunos) {
     $alunos = $stmt_alunos->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Processar seleção de aluno
-if (isset($_GET['aluno_id'])) {
-    $alunoId = intval($_GET['aluno_id']);
+// Processar seleção de aluno via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aluno_id_selecionado'])) {
+    $alunoId = intval($_POST['aluno_id_selecionado']);
+    $_SESSION['aluno_selecionado_id'] = $alunoId;
+} elseif (isset($_SESSION['aluno_selecionado_id'])) {
+    $alunoId = $_SESSION['aluno_selecionado_id'];
+}
+
+if (isset($alunoId)) {
     $sql_aluno_selecionado = "SELECT id_aluno, nome, email FROM tbl_aluno WHERE id_aluno = :id";
     $stmt_aluno_selecionado = $conn->prepare($sql_aluno_selecionado);
     $stmt_aluno_selecionado->execute(['id' => $alunoId]);
@@ -38,9 +76,9 @@ if (isset($_GET['aluno_id'])) {
     }
 }
 
-// Processar edição
-if (isset($_GET['editar_id']) && $alunoSelecionado) {
-    $editarId = intval($_GET['editar_id']);
+// Processar edição via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_id']) && $alunoSelecionado) {
+    $editarId = intval($_POST['editar_id']);
     foreach ($dadosAluno as $dado) {
         if ($dado['id_fisicoAluno'] === $editarId) {
             $editarDado = $dado;
@@ -49,28 +87,33 @@ if (isset($_GET['editar_id']) && $alunoSelecionado) {
     }
 }
 
-// Processar exclusão
-if (isset($_GET['excluir_id']) && $alunoSelecionado) {
-    $excluirId = intval($_GET['excluir_id']);
-    $sql_excluir = "DELETE FROM tbl_fisicoAluno WHERE id_fisicoAluno = :id";
-    $stmt_excluir = $conn->prepare($sql_excluir);
-    if ($stmt_excluir->execute(['id' => $excluirId])) {
-        header('Location: ?aluno_id=' . $alunoSelecionado['id_aluno'] . '&excluido=1');
-        exit;
-    }
-}
-
-// Lógica de pesquisa
+// Lógica de pesquisa via POST
 $resultados = [];
-if (isset($_GET['search']) && !empty($_GET['search'])) {
-    $termo = '%' . strtolower($_GET['search']) . '%';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search']) && !empty($_POST['search'])) {
+    $termo = '%' . strtolower($_POST['search']) . '%';
     $sql_search = "SELECT id_aluno, nome, email FROM tbl_aluno WHERE LOWER(nome) LIKE :termoNome OR LOWER(email) LIKE :termoEmail";
     $stmt_search = $conn->prepare($sql_search);
     $stmt_search->execute(['termoNome' => $termo, 'termoEmail' => $termo]);
     $resultados = $stmt_search->fetchAll(PDO::FETCH_ASSOC);
+    $_SESSION['resultados_pesquisa'] = $resultados;
+    $_SESSION['termo_pesquisa'] = $_POST['search'];
+} elseif (isset($_SESSION['resultados_pesquisa'])) {
+    $resultados = $_SESSION['resultados_pesquisa'];
 } else {
     // Se não houver pesquisa, carrega todos os alunos
     $resultados = $alunos;
+}
+
+// Verificar mensagens de sucesso e erro
+$mensagem_sucesso = '';
+$mensagem_erro = '';
+if (isset($_SESSION['mensagem_sucesso'])) {
+    $mensagem_sucesso = $_SESSION['mensagem_sucesso'];
+    unset($_SESSION['mensagem_sucesso']);
+}
+if (isset($_SESSION['mensagem_erro'])) {
+    $mensagem_erro = $_SESSION['mensagem_erro'];
+    unset($_SESSION['mensagem_erro']);
 }
 ?>
 <!DOCTYPE html>
@@ -105,15 +148,30 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
         <div class="avaliacao-container">
             <h1>Medições de Alunos</h1>
             
+            <?php if ($mensagem_sucesso): ?>
+            <div class="alert alert-sucesso" style="margin-bottom: 20px;">
+                <?php echo htmlspecialchars($mensagem_sucesso); ?>
+            </div>
+            <?php endif; ?>
+            
+            <?php if ($mensagem_erro): ?>
+            <div class="alert alert-erro" style="margin-bottom: 20px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; padding: 12px;">
+                <?php echo htmlspecialchars($mensagem_erro); ?>
+            </div>
+            <?php endif; ?>
+            
             <div class="content-wrapper" id="main-content-area">
                 <div class="left-card" id="left-card">
                     <div class="pesquisa-section">
                         <h2>Pesquisar Aluno</h2>
-                        <form method="GET" class="search-form">
+                        <form method="POST" class="search-form" id="searchForm">
                             <input type="text" name="search" id="searchInput" 
                                    placeholder="Digite nome ou matrícula do aluno..." 
-                                   value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                                   value="<?php echo isset($_SESSION['termo_pesquisa']) ? htmlspecialchars($_SESSION['termo_pesquisa']) : ''; ?>">
                             <button type="submit" class="btn-pesquisar">Pesquisar</button>
+                            <?php if (isset($_SESSION['termo_pesquisa'])): ?>
+                            <button type="submit" name="limpar_pesquisa" value="1" class="btn-limpar">Limpar</button>
+                            <?php endif; ?>
                         </form>
                         
                         <div class="resultados-pesquisa">
@@ -121,15 +179,18 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                             <?php if (count($resultados) > 0): ?>
                             <div class="alunos-lista">
                                 <?php foreach ($resultados as $aluno): ?>
-                                    <a href="?aluno_id=<?php echo $aluno['id_aluno']; ?>" class="aluno-item-link" data-aluno-id="<?php echo $aluno['id_aluno']; ?>">
-                                        <div class="aluno-item">
-                                            <div class="aluno-info-basica">
-                                                <span class="aluno-id">ID: <?php echo $aluno['id_aluno']; ?></span>
-                                                <strong><?php echo htmlspecialchars($aluno['nome']); ?></strong>
-                                                <span class="aluno-email"><?php echo htmlspecialchars($aluno['email']); ?></span>
+                                    <form method="POST" class="aluno-select-form" style="margin: 0;">
+                                        <input type="hidden" name="aluno_id_selecionado" value="<?php echo $aluno['id_aluno']; ?>">
+                                        <button type="submit" class="aluno-item-link" style="width: 100%; text-align: left; background: none; border: none; cursor: pointer;">
+                                            <div class="aluno-item">
+                                                <div class="aluno-info-basica">
+                                                    <span class="aluno-id">ID: <?php echo $aluno['id_aluno']; ?></span>
+                                                    <strong><?php echo htmlspecialchars($aluno['nome']); ?></strong>
+                                                    <span class="aluno-email"><?php echo htmlspecialchars($aluno['email']); ?></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </button>
+                                    </form>
                                 <?php endforeach; ?>
                             </div>
                             <?php else: ?>
@@ -142,7 +203,9 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                 <div class="right-card" id="right-card">
                     <?php if ($alunoSelecionado): ?>
                     <div class="aluno-selecionado-section">
-                        <button id="backToListBtn" class="btn-voltar-lista" style="display: none;">← Voltar para a Lista</button>
+                        <form method="POST" style="display: inline;">
+                            <button type="submit" name="limpar_aluno" value="1" class="btn-voltar-lista" style="margin-bottom: 15px;">← Voltar para a Lista</button>
+                        </form>
                         <div class="aluno-header">
                             <div class="aluno-info">
                                 <h2><?php echo htmlspecialchars($alunoSelecionado['nome']); ?></h2>
@@ -152,18 +215,6 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                                 </div>
                             </div>
                         </div>
-
-                        <?php if (isset($_GET['sucesso'])): ?>
-                        <div class="alert alert-sucesso">
-                            Dados salvos com sucesso!
-                        </div>
-                        <?php endif; ?>
-
-                        <?php if (isset($_GET['excluido'])): ?>
-                        <div class="alert alert-sucesso">
-                            Dados excluídos com sucesso!
-                        </div>
-                        <?php endif; ?>
 
                         <div class="form-section">
                             <h3><?php echo $editarDado ? 'Editar Dados Físicos' : 'Inserir Novos Dados Físicos'; ?></h3>
@@ -255,9 +306,14 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                                                 <td><?php echo number_format($dado['altura'], 2, ',', '.'); ?></td>
                                                 <td><?php echo number_format($dado['perna'], 2, ',', '.'); ?></td>
                                                 <td class="acoes">
-                                                    <a href="?aluno_id=<?php echo $alunoSelecionado['id_aluno']; ?>&editar_id=<?php echo $dado['id_fisicoAluno']; ?>" class="btn-editar-js">Editar</a>
-                                                    <a href="?aluno_id=<?php echo $alunoSelecionado['id_aluno']; ?>&excluir_id=<?php echo $dado['id_fisicoAluno']; ?>" class="btn-excluir" 
-                                                       onclick="return confirm('Tem certeza que deseja excluir estes dados?')">Excluir</a>
+                                                    <form method="POST" style="display: inline;">
+                                                        <input type="hidden" name="editar_id" value="<?php echo $dado['id_fisicoAluno']; ?>">
+                                                        <button type="submit" class="btn-editar-js" style="background: none; border: none; color: #007bff; cursor: pointer; text-decoration: underline; padding: 0;">Editar</button>
+                                                    </form>
+                                                    <form method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir estes dados?')">
+                                                        <input type="hidden" name="excluir_id" value="<?php echo $dado['id_fisicoAluno']; ?>">
+                                                        <button type="submit" class="btn-excluir" style="background: none; border: none; color: #dc3545; cursor: pointer; text-decoration: underline; padding: 0;">Excluir</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -271,7 +327,7 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
                         </div>
                         <?php endif; ?>
                     </div>
-                    <?php elseif (isset($_GET['aluno_id'])): ?>
+                    <?php elseif (isset($_POST['aluno_id_selecionado']) && !$alunoSelecionado): ?>
                     <div class="no-aluno">
                         <p>Aluno não encontrado.</p>
                     </div>
@@ -284,6 +340,7 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
     <footer>
       <a>© 2025 Nexus Fitness — Todos os direitos reservados.</a>
     </footer>
+    
     <script src="medicoes-alunos.js"></script>
 </body>
 </html>

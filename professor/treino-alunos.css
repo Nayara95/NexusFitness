@@ -1,408 +1,92 @@
-/* Estilos para a página de treinos dos alunos */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
-
-.treinos-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.treinos-container h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
-}
-
-.content-wrapper {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-}
-
-.left-card, .right-card {
-    flex: 1;
-    min-width: 300px; /* Minimum width for cards before wrapping */
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-}
-
-.left-card {
-    flex: 0.4; /* Make left card (search) a bit smaller */
-}
-
-.right-card {
-    flex: 0.6; /* Make right card (student details) larger */
-}
-
-/* Seção de Pesquisa */
-.pesquisa-section h2 {
-    margin-top: 0;
-    color: #333;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.search-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.search-form input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
+/* Estilos adicionais para mensagens e botões POST */
+.alert {
+    padding: 12px;
     border-radius: 4px;
-    font-size: 1rem;
+    margin-bottom: 20px;
 }
-
-.btn-pesquisar {
-    padding: 10px 15px;
-    background-color: var(--CorFundoElementos);
+.alert-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.alert-erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.btn-limpar, .btn-voltar-lista {
+    background-color: #6c757d;
     color: white;
     border: none;
+    padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-pesquisar:hover {
-    background-color: var(--CorFundoElementos2);
-}
-
-.resultados-pesquisa h3 {
-    color: #555;
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-.alunos-lista {
-    max-height: 400px; /* Limit height for scrollable list */
-    overflow-y: auto;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    padding: 10px;
-    background-color: #fff;
-}
-
-.aluno-item-link {
-    text-decoration: none;
-    color: inherit;
-}
-
-.aluno-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    transition: background-color 0.2s;
-}
-
-.aluno-item:last-child {
-    border-bottom: none;
-}
-
-.aluno-item:hover {
-    background-color: #eef;
-}
-
-.aluno-info-basica {
-    flex-grow: 1;
-}
-
-.aluno-info-basica strong {
-    display: block;
-    font-size: 1.1rem;
-    color: var(--CorFundoElementos);
-}
-
-.aluno-id, .aluno-email {
-    font-size: 0.85rem;
-    color: #777;
-}
-
-.no-results {
-    text-align: center;
-    color: #777;
-    padding: 20px;
-}
-
-/* Seção do Aluno Selecionado */
-.aluno-selecionado-section {
-    padding: 10px;
-}
-
-.aluno-header {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-}
-
-.aluno-titulo h2 {
-    margin-top: 0;
-    color: var(--CorFundoElementos);
-    font-size: 1.8rem;
-}
-
-.aluno-meta {
-    font-size: 0.9rem;
-    color: #777;
-}
-
-.aluno-meta span {
-    margin-right: 15px;
-}
-
-/* Informações de Saúde - Using info-grid concept */
-.info-saude {
-    margin-bottom: 30px;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-.info-saude h3 {
-    margin-top: 0;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.saude-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-}
-
-.info-item {
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #eee;
-}
-
-.info-item label {
-    font-weight: bold;
-    color: #555;
-    display: block;
-    margin-bottom: 3px;
-    font-size: 0.9rem;
-}
-
-.info-item span {
-    color: #333;
-    font-size: 0.95rem;
-}
-
-.info-item a {
-    color: var(--CorFundoElementos);
-    text-decoration: none;
-}
-
-.info-item a:hover {
-    text-decoration: underline;
-}
-
-.no-info {
-    text-align: center;
-    color: #777;
-    padding: 10px;
-}
-
-/* Ficha de Treinos */
-.ficha-treinos {
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-.ficha-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-}
-
-.ficha-header h3 {
-    margin: 0;
-    color: white;
-}
-
-.ficha-actions .btn-editar,
-.ficha-actions .btn-salvar,
-.ficha-actions .btn-cancelar {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    text-decoration: none;
-    display: inline-block;
     margin-left: 10px;
 }
-
-.ficha-actions .btn-editar {
-    background-color: #007bff; /* Blue for edit */
-    color: white;
-}
-
-.ficha-actions .btn-editar:hover {
-    background-color: #0056b3;
-}
-
-.ficha-actions .btn-salvar {
-    background-color: var(--CorFundoElementos); /* Green for save */
-    color: white;
-}
-
-.ficha-actions .btn-salvar:hover {
-    background-color: var(--CorFundoElementos2);
-}
-
-.ficha-actions .btn-cancelar {
-    background-color: #6c757d; /* Gray for cancel */
-    color: white;
-}
-
-.ficha-actions .btn-cancelar:hover {
+.btn-limpar:hover, .btn-voltar-lista:hover {
     background-color: #5a6268;
 }
-
-.dias-treino {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.dia-treino {
-    border: 1px solid #eee;
-    border-radius: 5px;
-    padding: 15px;
-    background-color: #fdfdfd;
-}
-
-.dia-treino h4 {
-    margin-top: 0;
-    color: var(--CorFundoElementos);
-    border-bottom: 1px dashed #eee;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-}
-
-.exercicios-lista {
-    font-size: 0.95rem;
-    color: #444;
-}
-
-.exercicio-input {
+.aluno-item-link {
+    text-decoration: none;
+    display: block;
     width: 100%;
-    min-height: 100px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    box-sizing: border-box;
-    resize: vertical;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
-
-.sem-treino {
-    color: #777;
-    font-style: italic;
-}
-
-.no-aluno {
-    text-align: center;
-    padding: 50px;
-    color: #555;
-    font-size: 1.1rem;
-}
-
-/* Responsividade */
-@media (max-width: 992px) {
-    .content-wrapper {
-        flex-direction: column;
-    }
-
-    .left-card, .right-card {
-        flex: none;
-        width: 100%;
-    }
-}
-
+/* Ajuste responsivo para os novos botões */
 @media (max-width: 768px) {
-    .treinos-container {
-        width: 95%;
-        padding: 15px;
-    }
-
-    .search-form {
-        flex-direction: column;
-    }
-
-    .search-form input[type="text"],
-    .btn-pesquisar {
-        width: 100%;
-    }
-
-    .saude-grid, .dias-treino {
-        grid-template-columns: 1fr;
-    }
-
-    .ficha-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .ficha-actions .btn-editar,
-    .ficha-actions .btn-salvar,
-    .ficha-actions .btn-cancelar {
+    .btn-limpar, .btn-voltar-lista {
         width: 100%;
         margin-left: 0;
+        margin-top: 10px;
     }
 }
 
-@media (max-width: 480px) {
-    .treinos-container h1 {
-        font-size: 1.5rem;
-    }
-
-    .aluno-titulo h2 {
-        font-size: 1.5rem;
-    }
-
-    .aluno-meta {
-        font-size: 0.8rem;
-    }
-
-    .aluno-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .aluno-info-basica strong {
-        font-size: 1rem;
-    }
-
-    .aluno-id, .aluno-email {
-        font-size: 0.75rem;
+/* Estilos para os alertas e botões separados */
+.alert {
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.alert-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.alert-erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.btn-limpar, .btn-voltar-lista {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.btn-limpar:hover, .btn-voltar-lista:hover {
+    background-color: #5a6268;
+}
+.aluno-item-link {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+@media (max-width: 768px) {
+    .btn-limpar, .btn-voltar-lista {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
     }
 }
