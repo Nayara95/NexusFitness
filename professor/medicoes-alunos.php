@@ -203,18 +203,28 @@ if (isset($_SESSION['mensagem_erro'])) {
                 <div class="right-card" id="right-card">
                     <?php if ($alunoSelecionado): ?>
                     <div class="aluno-selecionado-section">
-                        <form method="POST" style="display: inline;">
-                            <button type="submit" name="limpar_aluno" value="1" class="btn-voltar-lista" style="margin-bottom: 15px;">← Voltar para a Lista</button>
-                        </form>
-                        <div class="aluno-header">
-                            <div class="aluno-info">
-                                <h2><?php echo htmlspecialchars($alunoSelecionado['nome']); ?></h2>
-                                <div class="aluno-meta">
-                                    <span>Matrícula: <?php echo htmlspecialchars($alunoSelecionado['email']); ?></span>
-                                    <span>N° Dados Físicos: <?php echo count($dadosAluno); ?></span>
-                                </div>
-                            </div>
-                        </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <form method="POST" style="display: inline;">
+            <button type="submit" name="limpar_aluno" value="1" class="btn-voltar-lista">← Voltar para a Lista</button>
+        </form>
+
+        <form method="POST" action="gerar-pdf-aluno.php" target="_blank">
+            <input type="hidden" name="id" value="<?php echo $alunoSelecionado['id_aluno']; ?>">
+            <button type="submit" class="btn-pdf" style="background-color: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+                📄 Gerar PDF
+            </button>
+        </form>
+    </div>
+
+    <div class="aluno-header">
+        <div class="aluno-info">
+            <h2><?php echo htmlspecialchars($alunoSelecionado['nome']); ?></h2>
+            <div class="aluno-meta">
+                <span>Matrícula: <?php echo htmlspecialchars($alunoSelecionado['email']); ?></span>
+                <span>N° Dados Físicos: <?php echo count($dadosAluno); ?></span>
+            </div>
+        </div>
+    </div>
 
                         <div class="form-section">
                             <h3><?php echo $editarDado ? 'Editar Dados Físicos' : 'Inserir Novos Dados Físicos'; ?></h3>
