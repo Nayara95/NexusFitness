@@ -80,7 +80,7 @@ if (isset($alunoId)) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_id']) && $alunoSelecionado) {
     $editarId = intval($_POST['editar_id']);
     foreach ($dadosAluno as $dado) {
-        if ($dado['id_fisicoAluno'] === $editarId) {
+        if ($dado['id_fisicoAluno'] == $editarId) {
             $editarDado = $dado;
             break;
         }
@@ -225,65 +225,63 @@ if (isset($_SESSION['mensagem_erro'])) {
             </div>
         </div>
     </div>
-
-                        <div class="form-section">
-                            <h3><?php echo $editarDado ? 'Editar Dados Físicos' : 'Inserir Novos Dados Físicos'; ?></h3>
+        <div class="form-section">
+            <h3><?php echo $editarDado ? 'Editar Dados Físicos' : 'Inserir Novos Dados Físicos'; ?></h3>
                             
-                            <form method="POST" action="salvar-dados.php" class="dados-form">
-                                <input type="hidden" name="aluno_id" value="<?php echo $alunoSelecionado['id_aluno']; ?>">
-                                <input type="hidden" name="dado_id" value="<?php echo $editarDado ? htmlspecialchars($editarDado['id_fisicoAluno']) : ''; ?>">
+                <form method="POST" action="salvar-dados.php" class="dados-form">
+                    <input type="hidden" name="aluno_id" value="<?php echo $alunoSelecionado['id_aluno']; ?>">
+                    <input type="hidden" name="dado_id" value="<?php echo $editarDado ? htmlspecialchars($editarDado['id_fisicoAluno']) : ''; ?>">
 
-                                <div class="form-grid">
-                                    <div class="form-column">
-                                        <div class="input-group">
-                                            <label for="bracos">Braços (CM)</label>
-                                            <input type="number" id="bracos" name="bracos" step="0.01" 
-                                                   value="<?php echo $editarDado ? htmlspecialchars($editarDado['braco']) : ''; ?>" required>
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="abdomen">Abdômen (CM)</label>
-                                            <input type="number" id="abdomen" name="abdomen" step="0.01"
-                                                   value="<?php echo $editarDado ? htmlspecialchars($editarDado['abdomen']) : ''; ?>" required>
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="peso">Peso (KG)</label>
-                                            <input type="number" id="peso" name="peso" step="0.01"
-                                                   value="<?php echo $editarDado ? htmlspecialchars($editarDado['peso']) : ''; ?>" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-column">
-                                        <div class="input-group">
-                                            <label for="altura">Altura (M)</label>
-                                            <input type="number" id="altura" name="altura" step="0.01"
-                                                   value="<?php echo $editarDado ? htmlspecialchars($editarDado['altura']) : ''; ?>" required>
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="pernas">Pernas (CM)</label>
-                                            <input type="number" id="pernas" name="pernas" step="0.01"
-                                                   value="<?php echo $editarDado ? htmlspecialchars($editarDado['perna']) : ''; ?>" required>
-                                        </div>
-                                        <div class="input-group data-group">
-                                        <label>Data da Medida</label>
-                                        <input type="date" id="data_medida" name="data_medida" 
-                                            value="<?php 
-                                                date_default_timezone_set('America/Sao_Paulo');
-                                                if ($editarDado && !empty($editarDado['data_alteracao'])) {
-                                                    echo date('Y-m-d', strtotime($editarDado['data_alteracao']));
-                                                } else {
-                                                    echo date('Y-m-d');
-                                                }
-                                            ?>" max="<?php echo date('Y-m-d'); ?>" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-actions">
-                                    <button type="submit" class="btn-salvar">Salvar Dados</button>
-                                </div>
-                            </form>
+                    <div class="form-grid">
+                        <div class="form-column">
+                            <div class="input-group">
+                                <label for="bracos">Braços (CM)</label>
+                                <input type="number" id="bracos" name="bracos" step="0.01" 
+                                        value="<?php echo $editarDado ? htmlspecialchars($editarDado['braco']) : ''; ?>" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="abdomen">Abdômen (CM)</label>
+                                <input type="number" id="abdomen" name="abdomen" step="0.01"
+                                        value="<?php echo $editarDado ? htmlspecialchars($editarDado['abdomen']) : ''; ?>" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="peso">Peso (KG)</label>
+                                <input type="number" id="peso" name="peso" step="0.01"
+                                        value="<?php echo $editarDado ? htmlspecialchars($editarDado['peso']) : ''; ?>" required>
+                            </div>
                         </div>
+                        <div class="form-column">
+                            <div class="input-group">
+                                <label for="altura">Altura (M)</label>
+                                <input type="number" id="altura" name="altura" step="0.01"
+                                        value="<?php echo $editarDado ? htmlspecialchars($editarDado['altura']) : ''; ?>" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="pernas">Pernas (CM)</label>
+                                <input type="number" id="pernas" name="pernas" step="0.01"
+                                        value="<?php echo $editarDado ? htmlspecialchars($editarDado['perna']) : ''; ?>" required>
+                            </div>
+                            <div class="input-group data-group">
+                            <label>Data da Medida</label>
+                            <input type="date" id="data_medida" name="data_medida" 
+                                value="<?php 
+                                    date_default_timezone_set('America/Sao_Paulo');
+                                    if ($editarDado && !empty($editarDado['data_alteracao'])) {
+                                        echo date('Y-m-d', strtotime($editarDado['data_alteracao']));
+                                    } else {
+                                        echo date('Y-m-d');
+                                    }
+                                ?>" max="<?php echo date('Y-m-d'); ?>" required>
+                            </div>
+                        </div>
+                    </div>
 
-                        <?php if (count($dadosAluno) > 0): ?>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-salvar">Salvar Dados</button>
+                    </div>
+                </form>
+            </div>
+                    <?php if (count($dadosAluno) > 0): ?>
                         <div class="historico-section">
                             <h3>Histórico de Dados Físicos</h3>
                             <div class="tabela-dados">
@@ -303,11 +301,11 @@ if (isset($_SESSION['mensagem_erro'])) {
                                             <?php foreach ($dadosAluno as $dado): ?>
                                             <tr class="data-row" 
                                                 data-id="<?php echo $dado['id_fisicoAluno']; ?>"
-                                                data-braco="<?php echo htmlspecialchars(number_format($dado['braco'], 2, ',', '.')); ?>"
-                                                data-abdomen="<?php echo htmlspecialchars(number_format($dado['abdomen'], 2, ',', '.')); ?>"
-                                                data-peso="<?php echo htmlspecialchars(number_format($dado['peso'], 2, ',', '.')); ?>"
-                                                data-altura="<?php echo htmlspecialchars(number_format($dado['altura'], 2, ',', '.')); ?>"
-                                                data-perna="<?php echo htmlspecialchars(number_format($dado['perna'], 2, ',', '.')); ?>"
+                                                data-braco="<?php echo $dado['braco']; ?>"
+                                                data-abdomen="<?php echo $dado['abdomen']; ?>"
+                                                data-peso="<?php echo $dado['peso']; ?>"
+                                                data-altura="<?php echo $dado['altura']; ?>"
+                                                data-perna="<?php echo $dado['perna']; ?>"
                                                 data-data="<?php echo date('Y-m-d', strtotime($dado['data_alteracao'])); ?>">
                                                 <td><?php echo date('d/m/Y', strtotime($dado['data_alteracao'])); ?></td>
                                                 <td><?php echo number_format($dado['braco'], 2, ',', '.'); ?></td>
@@ -316,10 +314,7 @@ if (isset($_SESSION['mensagem_erro'])) {
                                                 <td><?php echo number_format($dado['altura'], 2, ',', '.'); ?></td>
                                                 <td><?php echo number_format($dado['perna'], 2, ',', '.'); ?></td>
                                                 <td class="acoes">
-                                                    <form method="POST" style="display: inline;">
-                                                        <input type="hidden" name="editar_id" value="<?php echo $dado['id_fisicoAluno']; ?>">
-                                                        <button type="submit" class="btn-editar-js" style="background: none; border: none; color: #007bff; cursor: pointer; text-decoration: underline; padding: 0;">Editar</button>
-                                                    </form>
+                                                    <button type="button" class="btn-editar-js">Editar</button>
                                                     <form method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir estes dados?')">
                                                         <input type="hidden" name="excluir_id" value="<?php echo $dado['id_fisicoAluno']; ?>">
                                                         <button type="submit" class="btn-excluir" style="background: none; border: none; color: #dc3545; cursor: pointer; text-decoration: underline; padding: 0;">Excluir</button>

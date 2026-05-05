@@ -210,12 +210,22 @@ $termoPesquisaAtual = isset($_SESSION['treino_termo_pesquisa']) ? $_SESSION['tre
                 <div class="right-card">
                     <?php if ($alunoSelecionado): ?>
                         <div class="aluno-selecionado-section">
-                            <form method="POST" style="display:inline">
-                                <button type="submit" name="limpar_aluno" value="1" class="btn-voltar-lista">← Voltar para a Lista</button>
-                            </form>
+                            <div class="topo-ficha">
+                                <form method="POST" style="display:inline">
+                                    <button type="submit" name="limpar_aluno" value="1" class="btn-voltar-lista">← Voltar para a Lista</button>
+                                </form>
+
+                                <form method="POST" action="gerar-pdf-treino.php" target="_blank">
+                                    <input type="hidden" name="id" value="<?php echo $alunoSelecionado['id']; ?>">
+                                    <button type="submit" class="btn-pdf" style="background-color: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+                                        Gerar PDF
+                                    </button>
+                                </form>
+                            </div>
 
                             <div class="aluno-header">
                                 <div class="aluno-titulo">
+                                    <br/>
                                     <h2>Ficha de Treino - <?php echo htmlspecialchars($alunoSelecionado['nome']); ?></h2>
                                     <div class="aluno-meta">
                                         <span class="aluno-id">ID: <?php echo htmlspecialchars($alunoSelecionado['id']); ?></span>
@@ -257,82 +267,6 @@ $termoPesquisaAtual = isset($_SESSION['treino_termo_pesquisa']) ? $_SESSION['tre
                                 <div class="info-saude"><h3>Informações de Saúde</h3><p class="no-info">Nenhuma informação de saúde cadastrada.</p></div>
                             <?php endif; ?>
 
-                            <!-- Ficha de Treinos -->
-<div class="ficha-treinos">
-    <?php if ($isEditMode): ?>
-        <form action="atualizar-treino.php" method="POST" id="formEdicaoTreino">
-            <input type="hidden" name="aluno_id" value="<?php echo $alunoSelecionado['id']; ?>">
-            <div class="ficha-header">
-                <h3>Ficha de Treinos</h3>
-                <div class="ficha-actions">
-                    <button type="submit" class="btn-salvar">Salvar Alterações</button>
-                    <button type="button" id="btnCancelarEdicao" class="btn-cancelar">Cancelar</button>
-                </div>
-            </div>
-            <div class="dias-treino">
-                <?php
-                $diasSemana = [
-                    'segunda' => 'Segunda-feira', 'terca' => 'Terça-feira', 'quarta' => 'Quarta-feira',
-                    'quinta' => 'Quinta-feira', 'sexta' => 'Sexta-feira', 'sabado' => 'Sábado', 'domingo' => 'Domingo'
-                ];
-                foreach ($diasSemana as $diaKey => $diaNome):
-                    $exerciciosDia = isset($treinoAluno[$diaKey]) ? $treinoAluno[$diaKey] : '';
-                ?>
-                    <div class="dia-treino">
-                        <h4><?php echo $diaNome; ?></h4>
-                        <div class="exercicios-lista">
-                            <textarea name="<?php echo $diaKey; ?>" class="exercicio-input" rows="4"><?php echo htmlspecialchars($exerciciosDia); ?></textarea>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </form>
-        <script>
-            document.getElementById('btnCancelarEdicao').addEventListener('click', function() {
-                var form = document.createElement('form');
-                form.method = 'POST';
-                var input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'cancelar_edicao';
-                input.value = '1';
-                form.appendChild(input);
-                document.body.appendChild(form);
-                form.submit();
-            });
-        </script>
-    <?php else: ?>
-        <div class="ficha-header">
-            <h3>Ficha de Treinos</h3>
-            <div class="ficha-actions">
-                <form method="POST" style="display:inline">
-                    <button type="submit" name="editar_treino" value="1" class="btn-editar">Editar Ficha</button>
-                </form>
-            </div>
-        </div>
-        <div class="dias-treino">
-            <?php
-            $diasSemana = [
-                'segunda' => 'Segunda-feira', 'terca' => 'Terça-feira', 'quarta' => 'Quarta-feira',
-                'quinta' => 'Quinta-feira', 'sexta' => 'Sexta-feira', 'sabado' => 'Sábado', 'domingo' => 'Domingo'
-            ];
-            foreach ($diasSemana as $diaKey => $diaNome):
-                $exerciciosDia = isset($treinoAluno[$diaKey]) ? $treinoAluno[$diaKey] : '';
-            ?>
-                <div class="dia-treino">
-                    <h4><?php echo $diaNome; ?></h4>
-                    <div class="exercicios-lista">
-                        <?php if (!empty($exerciciosDia)): ?>
-                            <div class="exercicio-item"><div class="exercicio-nome"><?php echo nl2br(htmlspecialchars($exerciciosDia)); ?></div></div>
-                        <?php else: ?>
-                            <p class="sem-treino">Sem treino cadastrado</p>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
-</div>
-
 
     <?php if ($isEditMode): ?>
         <!-- Formulário de edição (envia para atualizar-treino.php) -->
@@ -340,13 +274,28 @@ $termoPesquisaAtual = isset($_SESSION['treino_termo_pesquisa']) ? $_SESSION['tre
             <input type="hidden" name="aluno_id" value="<?php echo $alunoSelecionado['id']; ?>">
             <div class="ficha-header">
                 <h3>Ficha de Treinos</h3>
+                
                 <div class="ficha-actions">
                     <button type="submit" class="btn-salvar">Salvar Alterações</button>
-                    <!-- Botão Cancelar (formulário separado) -->
-                    <form method="POST" style="display:inline">
-                        <button type="submit" name="cancelar_edicao" value="1" class="btn-cancelar">Cancelar</button>
-                    </form>
+                    <button type="button" onclick="cancelarEdicao()" class="btn-cancelar">Cancelar</button>
                 </div>
+
+                <script>
+                function cancelarEdicao() {
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'cancelar_edicao';
+                    input.value = '1';
+
+                    form.appendChild(input);
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+                </script>
+
             </div>
             <div class="dias-treino">
                 <?php

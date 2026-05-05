@@ -14,7 +14,7 @@
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
-.btn-limpar, .btn-voltar-lista {
+.btn-limpar {
     background-color: #6c757d;
     color: white;
     border: none;
@@ -23,9 +23,44 @@
     cursor: pointer;
     margin-left: 10px;
 }
-.btn-limpar:hover, .btn-voltar-lista:hover {
+.btn-limpar:hover {
     background-color: #5a6268;
 }
+.btn-voltar-lista {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+
+    width: auto !important;      /* 🔥 mata o width:100% */
+    display: inline-block !important;
+}
+
+.btn-voltar-lista:hover {
+    background-color: #5a6268;
+}
+.topo-ficha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.btn-pdf {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: auto; 
+    width: auto !important;     
+    display: inline-block !important;
+}
+
 .aluno-item-link {
     text-decoration: none;
     display: block;
@@ -36,16 +71,17 @@
     cursor: pointer;
     padding: 0;
 }
-/* Ajuste responsivo para os novos botões */
+
 @media (max-width: 768px) {
-    .btn-limpar, .btn-voltar-lista {
+    .btn-limpar {
         width: 100%;
-        margin-left: 0;
-        margin-top: 10px;
+    }
+
+    .btn-voltar-lista {
+        width: fit-content;
     }
 }
 
-/* Estilos para os alertas e botões separados */
 .alert {
     padding: 12px;
     border-radius: 4px;
@@ -61,7 +97,7 @@
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
-.btn-limpar, .btn-voltar-lista {
+.btn-limpar{
     background-color: #6c757d;
     color: white;
     border: none;
@@ -70,7 +106,7 @@
     cursor: pointer;
     margin-left: 10px;
 }
-.btn-limpar:hover, .btn-voltar-lista:hover {
+.btn-limpar:hover {
     background-color: #5a6268;
 }
 .aluno-item-link {
@@ -88,5 +124,33 @@
         width: 100%;
         margin-left: 0;
         margin-top: 10px;
+    }
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.left-card {
+    width: 30%;
+    min-width: 280px;
+}
+
+.right-card {
+    width: 70%;
+    flex-grow: 1;
+    
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .left-card,
+    .right-card {
+        width: 100%;
     }
 }
