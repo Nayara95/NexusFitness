@@ -25,12 +25,12 @@ body {
 .content-wrapper {
     display: flex;
     gap: 20px;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap;
 }
 
 .left-card, .right-card {
     flex: 1;
-    min-width: 300px; /* Minimum width for cards before wrapping */
+    min-width: 300px;
     padding: 20px;
     background: #f9f9f9;
     border-radius: 8px;
@@ -38,11 +38,11 @@ body {
 }
 
 .left-card {
-    flex: 0.4; /* Make left card (search) a bit smaller */
+    flex: 0.4;
 }
 
 .right-card {
-    flex: 0.6; /* Make right card (student details) larger */
+    flex: 0.6;
 }
 
 /* Seção de Pesquisa */
@@ -89,7 +89,7 @@ body {
 }
 
 .alunos-lista {
-    max-height: 400px; /* Limit height for scrollable list */
+    max-height: 400px;
     overflow-y: auto;
     border: 1px solid #eee;
     border-radius: 4px;
@@ -139,7 +139,6 @@ body {
     padding: 20px;
 }
 
-/* Seção do Aluno Selecionado */
 .aluno-selecionado-section {
     padding: 10px;
 }
@@ -165,7 +164,6 @@ body {
     margin-right: 15px;
 }
 
-/* Form Section */
 .form-section {
     margin-bottom: 30px;
     padding: 15px;
@@ -234,7 +232,6 @@ body {
     background-color: var(--CorFundoElementos2);
 }
 
-/* Historico Section (Table) */
 .historico-section {
     padding: 15px;
     border: 1px solid #e0e0e0;
@@ -252,7 +249,7 @@ body {
 }
 
 .tabela-dados {
-    overflow-x: auto; /* Enable horizontal scroll for small screens */
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -284,7 +281,7 @@ body {
 }
 
 .tabela-dados .acoes {
-    white-space: nowrap; /* Prevent buttons from wrapping */
+    white-space: nowrap;
 }
 
 .tabela-dados .btn-editar-js,
@@ -298,12 +295,12 @@ body {
 }
 
 .tabela-dados .btn-editar-js {
-    background-color: #007bff;
+    background-color: #777;
     color: white;
 }
 
 .tabela-dados .btn-editar-js:hover {
-    background-color: #0056b3;
+    background-color: #777;
 }
 
 .tabela-dados .btn-excluir {
@@ -322,7 +319,6 @@ body {
     font-size: 1.1rem;
 }
 
-/* Alerts */
 .alert {
     padding: 10px;
     margin-bottom: 15px;
@@ -342,14 +338,12 @@ body {
     border: 1px solid #f5c6cb;
 }
 
-/* Estilo para campos inválidos */
 .campo-invalido {
     border-color: #dc3545 !important;
     background-color: #fff5f5 !important;
     box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.1) !important;
 }
 
-/* Estilo para erros rápidos */
 .erro-rapido {
     color: #dc3545;
     font-size: 0.8rem;
@@ -363,7 +357,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Botão voltar lista (hidden by default, shown by JS) */
 .btn-voltar-lista {
     background-color: #6c757d;
     color: white;
@@ -381,86 +374,81 @@ body {
     background-color: #5a6268;
 }
 
-
-/* Media Queries para Responsividade */
-
-/* Para telas menores que 1024px (tablets e desktops pequenos) */
 @media (max-width: 1024px) {
     .content-wrapper {
-        flex-direction: column; /* Empilha os cards verticalmente */
-        gap: 30px; /* Aumenta o espaçamento entre os cards empilhados */
+        flex-direction: column; 
+        gap: 30px; 
     }
 
     .left-card, .right-card {
-        max-width: 100%; /* Ocupa a largura total disponível */
-        flex: none; /* Remove a flexibilidade para que ocupem 100% */
+        max-width: 100%; 
+        flex: none; 
     }
 
     .left-card {
-        order: 2; /* Coloca o left-card abaixo do right-card em telas menores */
+        order: 2; 
     }
 
     .right-card {
-        order: 1; /* Coloca o right-card acima do left-card em telas menores */
+        order: 1; 
     }
 
     .avaliacao-container {
-        padding: 15px; /* Ajusta o padding geral do container */
+        padding: 15px;
     }
 
     .form-grid {
-        grid-template-columns: 1fr; /* Coloca os campos do formulário em uma única coluna */
+        grid-template-columns: 1fr; 
     }
 
     .tabela-dados {
-        overflow-x: auto; /* Adiciona scroll horizontal para a tabela */
-        -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos iOS */
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch; 
     }
 
     .tabela-dados table {
-        width: 100%; /* Garante que a tabela ocupe a largura total do container */
-        min-width: 700px; /* Define uma largura mínima para a tabela para evitar quebras */
+        width: 100%; 
+        min-width: 700px; 
     }
 }
 
-/* Para telas menores que 768px (celulares) */
 @media (max-width: 768px) {
     .avaliacao-container h1 {
-        font-size: 1.8em; /* Reduz o tamanho do título principal */
+        font-size: 1.8em; 
     }
 
     .pesquisa-section h2, .form-section h3, .historico-section h3 {
-        font-size: 1.4em; /* Reduz o tamanho dos subtítulos */
+        font-size: 1.4em; 
     }
 
     .left-card, .right-card {
-        padding: 15px; /* Reduz o padding interno dos cards */
+        padding: 15px; 
     }
 
     .search-form {
-        flex-direction: column; /* Empilha o input e o botão de pesquisa */
+        flex-direction: column; 
     }
 
     .search-form input {
-        margin-bottom: 10px; /* Adiciona espaço entre o input e o botão */
+        margin-bottom: 10px; 
     }
 
     .aluno-item {
-        flex-direction: column; /* Empilha as informações do aluno */
-        align-items: flex-start; /* Alinha as informações à esquerda */
+        flex-direction: column; 
+        align-items: flex-start; 
     }
 
     .aluno-info-basica {
-        width: 100%; /* Ocupa a largura total */
+        width: 100%; 
     }
 
     .aluno-meta {
-        flex-direction: column; /* Empilha as meta informações do aluno */
+        flex-direction: column; 
         align-items: flex-start;
     }
 
     .aluno-meta span {
-        margin-bottom: 5px; /* Espaçamento entre as meta informações */
+        margin-bottom: 5px; 
     }
 
     .form-actions {
@@ -468,20 +456,19 @@ body {
     }
 
     .form-actions .btn-salvar {
-        width: 100%; /* Botões de ação ocupam a largura total */
+        width: 100%; 
     }
 
     .tabela-dados table {
-        min-width: 600px; /* Ajusta a largura mínima da tabela para telas menores */
+        min-width: 600px; 
     }
 
     .tabela-dados th, .tabela-dados td {
-        padding: 8px; /* Reduz o padding das células da tabela */
-        font-size: 0.9em; /* Reduz o tamanho da fonte da tabela */
+        padding: 8px; 
+        font-size: 0.9em; 
     }
 }
 
-/* Para telas muito pequenas (ex: 480px) */
 @media (max-width: 480px) {
     .avaliacao-container {
         padding: 10px;
@@ -492,6 +479,6 @@ body {
     }
 
     .tabela-dados table {
-        min-width: 500px; /* Mais um ajuste para telas muito pequenas */
+        min-width: 500px; 
     }
 }

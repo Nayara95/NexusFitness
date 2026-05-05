@@ -48,11 +48,11 @@ $html = '
     <title>Relatório de Medições - ' . htmlspecialchars($aluno['nome']) . '</title>
     <style>
         body { font-family: DejaVu Sans, sans-serif; margin: 20px; }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #c82333; padding-bottom: 5px; }
         .info-aluno { margin-bottom: 20px; background: #f5f5f5; padding: 10px; border-radius: 5px; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-        th { background-color: #3498db; color: white; }
+        th { background-color: #c82333; color: white; }
         tr:nth-child(even) { background-color: #f9f9f9; }
         .footer { margin-top: 30px; font-size: 12px; text-align: center; color: #7f8c8d; }
     </style>
