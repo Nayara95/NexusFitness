@@ -3,9 +3,25 @@
 require_once(__DIR__ . "/dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 
-// Captura os dados 
-$nomePlano = $_GET['nome_plano'] ?? 'Plano Nexus';
-$valorPlano = $_GET['valor_plano'] ?? '0,00';
+// 1. Conexão com SQL Server
+require_once('../autenticacao/conexao.php');
+$conn = conectar();
+
+try {
+    $conn = new PDO("sqlsrv:server=$serverName;Database=$database", $uid, $pwd);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // 2. Buscar Dados
+    $query = "SELECT id, nome, email FROM Usuarios";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    die("Erro na conexão: " . $e->getMessage());
+}
+
+
 
 //  design do que vai aparecer no PDF
 $html = "
@@ -34,7 +50,7 @@ $html = "
 
 <div class='footer'>
     Gerado em: " . date('d/m/Y H:i:s') . "<br>
-    Nexus Fitness - Inovação e Força
+    Nexus Fitness - Um ponto de conexão inabalável!
 </div>
 ";
 

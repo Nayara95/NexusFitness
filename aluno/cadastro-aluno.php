@@ -1,3 +1,6 @@
+<?php
+session_start(); ?> <!-- Iniciando a sessão para armazenar dados do usuário -->
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -81,11 +84,12 @@
               <div class="adastro_direito">
                 <form action="/BDCompleto_php" method="POST" id="formCadastrar">
                     <div class="btnCadastar">
-
-                        <button type="button" name="criar_cookie" class="btn-cadastra" id="btn-mostrar-senha">Cadastrar</button>
+                        <button type="button" id="btn-mostrar-senha" class="btn-cadastra">Cadastrar</button>    
                     </div>
                 </form>
              </div>
+             <button type="submit" name="criar_cookie" value = "cookie">Criar Cookie</button>
+
 
 
 
@@ -231,16 +235,6 @@
             .then(data => {
                 // Resposta de SUCESSO recebida do PHP
                 if (data.status === 'sucesso') {
-
-                // --- CRIAÇÃO DO COOKIE NO PC DO USUÁRIO ---
-                // Cria um cookie chamado 'cadastro_realizado' que dura 24 horas
-                const dataExpiracao = new Date();
-                dataExpiracao.setTime(dataExpiracao.getTime() + (24 * 60 * 60 * 1000));
-                document.cookie = "nexus_user=" + formData.get('nome') + "; expires=" + dataExpiracao.toUTCString() + "; path=/";
-                // --- FIM DA CRIAÇÃO DO COOKIE ---
-
-
-
                     
                     // Exibir a mensagem de sucesso no pop-up
                     senhaConteudo.innerHTML = `
@@ -249,10 +243,14 @@
                             <p>${data.mensagem}</p>
                         </div>
                     `;
-                    
+
+                    const configRedirecionamento = {
+                        redirect_url: 'escolha_plano.php', // URL para onde o usuário será redirecionado
+                    };
+                
                     // Redireciona para o próximo passo após 3 segundos - direcinando para a tela login novamente
                     setTimeout(() => {
-                         window.location.href = data.redirect_url; 
+                         window.location.href = configRedirecionamento.redirect_url;
                     }, 3000);
 
                 } else {

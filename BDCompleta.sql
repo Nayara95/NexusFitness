@@ -426,3 +426,28 @@ GO
 ALTER TABLE tbl_professor
 ALTER COLUMN telefone NVARCHAR(12);
 GO
+
+select * from tbl_aluno;
+
+-- Altera a coluna para que o padrão seja a data/hora atual
+ALTER TABLE tbl_aluno 
+ADD CONSTRAINT DF_DataCadastro 
+DEFAULT GETDATE() FOR data_cadastro ;
+
+
+SELECT name 
+FROM sys.default_constraints 
+WHERE parent_object_id = OBJECT_ID('tbl_aluno');
+
+-- Apaga a regra antiga que estava travando o banco
+ALTER TABLE tbl_aluno DROP CONSTRAINT DF__tbl_aluno__data___4CA06362;
+
+ALTER TABLE tbl_aluno ADD CONSTRAINT DF_DataCadastro 
+DEFAULT GETDATE() FOR data_cadastro;
+
+
+
+
+
+
+
