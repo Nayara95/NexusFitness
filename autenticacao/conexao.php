@@ -1,10 +1,10 @@
 <?php
 
 function conectar() {
-    $local_server = "DANNYPC";
-	$usuario_server = "sa";
-	$senha_server = "etesp";
-	$banco_de_dados = "BD_Nexus";
+    $local_server = "tcp:127.0.0.1,1433";
+    $usuario_server = "sa";
+    $senha_server = "7556";
+    $banco_de_dados = "BD_Nexus";
      // As in BDCompleta.sql
 
     $dns = "sqlsrv:Server=$local_server;Database=$banco_de_dados";

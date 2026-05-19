@@ -542,6 +542,36 @@ footer {
 /* ======== Escolha plano e detalhe plano ======== */
 
 
+/* Adicione isso ao seu CSS */
+.planos {
+  display: flex;           /* Alinha os cards na horizontal */
+  flex-wrap: wrap;        /* Permite que pulem de linha se a tela for pequena */
+  justify-content: center; /* Centraliza o grupo de planos */
+  gap: 20px;              /* Cria espaço entre os planos sem precisar de margin manual */
+  padding: 20px;
+  width: 100%;
+}
+
+/* Adicione ou substitua no seu CSS */
+.nexus_plano {
+  border: 3px solid var(--CortextoPadrao);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;           /* Define uma largura fixa para cada card */
+  display: flex;
+  flex-direction: column; /* Faz o conteúdo interno (título, preço, botão) ficar em coluna */
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.nexus_plano img {
+  width: 50px;
+  display: block;
+  margin: 0 auto;        /* Centraliza a logo do plano */
+}
+
+
+
 
 .escolha_plano_container{
   display: flex;
@@ -574,7 +604,7 @@ footer {
   /*padding: auto;*/
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 800px;
+ /* width: 800px; */
   height: 290px;
 }
 
@@ -622,20 +652,21 @@ footer {
 
 .btn-escolha{
  
-  width: 200px;
-  font-size: 0.9em;
-  margin-left: 40%;
-  margin-bottom: 10px;
-  align-self: flex-start;
+ width: 100%;           /* Ocupa a largura total do card */
+  margin-left: 0;        /* Remove o 40% anterior */
+  text-align: center;    /* Centraliza o botão */
+  margin-top: 15px;
 }
 
 .btn-escolha-plano{
+ width: 80%;            /* Botão um pouco menor que o card */
+  padding: 10px;
   border: 1px solid;
   border-radius: 10px;
   background-color: var(--CorFundoElementos);
   color: var(--CorTextoBTN);
+  cursor: pointer;
 }
-
 
 
 .btn-assinar{

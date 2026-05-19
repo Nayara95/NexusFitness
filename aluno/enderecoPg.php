@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -66,19 +69,19 @@
                 </div>
 
                 <label for="bairro">Bairro</label>
-                <input type="text" id="bairro" name="bairro" readonly>
+                <input type="text" id="bairro" name="bairro" readonly value="<?php echo htmlspecialchars($aluno['bairro']); ?>" >
 
                 <label for="rua">Rua</label>
-                <input type="text" id="rua" name="rua" readonly>
+                <input type="text" id="rua" name="rua" readonly value="<?php echo htmlspecialchars($aluno['rua']); ?>" >
 
                 <div class="input-row">
                     <div class="input-field">
                         <label for="numero">Número</label>
-                        <input type="text" id="numero" name="numero">
+                        <input type="text" id="numero" name="numero" value="<?php echo htmlspecialchars($aluno['numero']); ?>">
                     </div>
                     <div class="input-field">
                         <label for="complemento">Complemento</label>
-                        <input type="text" id="complemento" name="complemento">
+                        <input type="text" id="complemento" name="complemento" value="<?php echo htmlspecialchars($aluno['complemento']); ?>">
                     </div>
                 </div>
 
@@ -87,6 +90,11 @@
 
         </div>
     </div>
+
+
+
+
+
 
 
 

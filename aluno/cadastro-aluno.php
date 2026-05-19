@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -35,13 +36,13 @@
         <form action="BDCadastro.php" method="POST" id="formCadastrar">
 
                 <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
 
                 <label for="nomeSocial">Nome social</label>
                 <input type="text" id="nome_social" name="nome_social">
 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                <input type="email" id="email" name="email" placeholder="Digite seu email">
 
                 <label for="cpf">CPF</label>
                 <input type="text" id="cpf" name="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"title="000.000.000-00" > <!--definindo campo de cep com tipo de dado especifico -->
@@ -77,14 +78,19 @@
         </form>
       <!-- BTN DE ENVIO -->
 
-              <div class="cadastro_direito">
+              <div class="adastro_direito">
                 <form action="/BDCompleto_php" method="POST" id="formCadastrar">
                     <div class="btnCadastar">
 
-                        <button type="button" class="btn-cadastra" id="btn-mostrar-senha">Cadastrar</button>
+                        <button type="button" name="criar_cookie" class="btn-cadastra" id="btn-mostrar-senha">Cadastrar</button>
                     </div>
                 </form>
              </div>
+
+
+
+
+
 
        <!-- POP UP DE CADASTRO DE SENHA -->
 
@@ -112,7 +118,12 @@
 
     </div> <!-- FIM div completa -->
 
+
+
+
 </main>
+
+
 
 
 
@@ -150,13 +161,13 @@
             }
         });
 
-        // 2. Fechar 
+        // Fechar 
         btnFecharModal.addEventListener('click', () => {
             dadoSenha.classList.remove('ativo');
             erroSenha.style.display = 'none'; // Esconde a mensagem de erro
         });
 
-        // 3. Finalizar o Cadastro 
+        //  Finalizar o Cadastro 
         btnFinalizarCadastro.addEventListener('click', () => {
             // Agora, estas referências estão garantidas de serem do pop-up
             const senha = inputSenha.value;
@@ -177,31 +188,31 @@
             erroSenha.style.display = 'none';
 
             // Lógica para enviar os dados da senha junto com o formulário principal
-            
-            // 3.1. Cria campos de input HIDDEN para a senha e anexa-os ao formulário principal
+    
+            //  Cria campos de input HIDDEN para a senha e anexa-os ao formulário principal
            // let inputSenhaHidden = document.createElement('input');
            // inputSenhaHidden.type = 'hidden';
            // inputSenhaHidden.name = 'senha'; // Nome esperado pelo PHP ($_POST['senha'])
            // inputSenhaHidden.value = senha;
            // formPrincipal.appendChild(inputSenhaHidden);
             
-            // 3.2. Submete o formulário principal
+            //  Submete o formulário principal
            // formPrincipal.submit(); 
             // O formulário principal (formCadastrar) agora contém todos os campos + o campo 'senha' oculto
-        // 1. Coleta TODOS os dados do formulário principal
+        //  Coleta TODOS os dados do formulário principal
             const formData = new FormData(formPrincipal);
             
-            // 2. Adiciona a senha do pop-up ao objeto FormData
+            //  Adiciona a senha do pop-up ao objeto FormData
             formData.append('senha', senha);
 
-            // 3. OBTÉM o URL de destino do formulário (BDCadastro.php)
+            //  OBTÉM o URL de destino do formulário (BDCadastro.php)
             const actionUrl = formPrincipal.action;
 
             // Desabilita o botão para evitar cliques duplicados
             btnFinalizarCadastro.disabled = true;
             btnFinalizarCadastro.textContent = 'Enviando...';
             
-            // 4. Envia os dados via Fetch API (AJAX)
+            //  Envia os dados via Fetch API (AJAX)
             fetch(actionUrl, {
                 method: 'POST',
                 body: formData // Envia os dados coletados
@@ -220,6 +231,16 @@
             .then(data => {
                 // Resposta de SUCESSO recebida do PHP
                 if (data.status === 'sucesso') {
+
+                // --- CRIAÇÃO DO COOKIE NO PC DO USUÁRIO ---
+                // Cria um cookie chamado 'cadastro_realizado' que dura 24 horas
+                const dataExpiracao = new Date();
+                dataExpiracao.setTime(dataExpiracao.getTime() + (24 * 60 * 60 * 1000));
+                document.cookie = "nexus_user=" + formData.get('nome') + "; expires=" + dataExpiracao.toUTCString() + "; path=/";
+                // --- FIM DA CRIAÇÃO DO COOKIE ---
+
+
+
                     
                     // Exibir a mensagem de sucesso no pop-up
                     senhaConteudo.innerHTML = `
@@ -229,9 +250,9 @@
                         </div>
                     `;
                     
-                    // Redireciona para o próximo passo após 3 segundos
+                    // Redireciona para o próximo passo após 3 segundos - direcinando para a tela login novamente
                     setTimeout(() => {
-                         window.location.href = data.redirect_url;; 
+                         window.location.href = data.redirect_url; 
                     }, 3000);
 
                 } else {
