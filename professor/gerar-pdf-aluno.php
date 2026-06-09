@@ -8,19 +8,16 @@ use Dompdf\Options;
 
 $conn = conectar();
 
-// Verifica permissão
 if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
     header('Location: ../login.php');
     exit;
 }
 
-// Recebe o ID do aluno (pode vir via POST ou GET)
 $alunoId = isset($_POST['id']) ? intval($_POST['id']) : (isset($_GET['id']) ? intval($_GET['id']) : 0);
 if ($alunoId <= 0) {
     die('Aluno inválido.');
 }
 
-// Busca dados do aluno
 $sqlAluno = "SELECT id_aluno, nome, email FROM tbl_aluno WHERE id_aluno = :id";
 $stmtAluno = $conn->prepare($sqlAluno);
 $stmtAluno->execute(['id' => $alunoId]);
@@ -30,7 +27,6 @@ if (!$aluno) {
     die('Aluno não encontrado.');
 }
 
-// Busca medições físicas do aluno
 $sqlMedicoes = "SELECT altura, peso, braco, abdomen, perna, data_alteracao 
                 FROM tbl_fisicoAluno 
                 WHERE id_aluno = :id 

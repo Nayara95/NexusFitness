@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         erros.push(`${nomeCampo} deve conter um número válido`);
                     } else {
                         input.classList.remove('campo-invalido');
-                        input.value = valorFormatado; // Garante formatação correta
+                        input.value = valorFormatado;
                     }
                 });
                 
@@ -149,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function mostrarErroRapido(input, mensagem) {
-            // Remove erro anterior
             const erroAnterior = input.parentNode.querySelector('.erro-rapido');
             if (erroAnterior) {
                 erroAnterior.remove();
@@ -177,10 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.addEventListener('paste', function(e) {
             if (camposNumericos.includes(e.target)) {
-                // Pega o texto colado
                 const textoColado = (e.clipboardData || window.clipboardData).getData('text');
                 
-                // Verifica se contém letras
                 if (/[a-zA-Z]/.test(textoColado)) {
                     e.preventDefault();
                     alert('Não é permitido colar texto com letras nos campos de medição.');
@@ -218,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const editButtons = document.querySelectorAll('.btn-editar-js');
         editButtons.forEach(button => {
             button.addEventListener('click', (event) => {
-                // The form will be submitted via POST, no need for preventDefault
                 const row = button.closest('.data-row');
                 
                 const id = row.dataset.id;

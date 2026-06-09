@@ -2,7 +2,6 @@
 session_start();
 require_once '../autenticacao/conexao.php';
 
-// Verifica se o usuário está logado e se é um professor
 if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
     header('Location: ../login.php');
     exit;
@@ -23,12 +22,10 @@ if ($id_professor > 0) {
             $nome_professor = $resultado['nome'];
         }
     } catch (PDOException $e) {
-        // Em caso de erro, podemos logar e continuar com o nome em branco
         error_log("Erro ao buscar nome do professor: " . $e->getMessage());
     }
 }
 
-// Fallback para o email caso o nome não seja encontrado
 if (empty($nome_professor)) {
     $nome_professor = htmlspecialchars($email);
 } else {

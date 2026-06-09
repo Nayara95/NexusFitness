@@ -12,7 +12,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate aluno_id
     if (!isset($_POST['aluno_id']) || !filter_var($_POST['aluno_id'], FILTER_VALIDATE_INT)) {
         $_SESSION['mensagem_erro'] = 'Aluno inválido!';
         header('Location: medicoes-alunos.php');
@@ -20,10 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $aluno_id = (int)$_POST['aluno_id'];
     
-    // Salvar o aluno selecionado na sessão
     $_SESSION['aluno_selecionado_id'] = $aluno_id;
 
-    // Sanitize and validate measurement values
     $bracos_input = $_POST['bracos'];
     $abdomen_input = $_POST['abdomen'];
     $peso_input = $_POST['peso'];
@@ -33,16 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $errors = [];
 
-    // Processamento robusto da data
     $data_medida_obj = DateTime::createFromFormat('Y-m-d', $data_medida_str);
     
-    // Se a data for inválida ou futura, usar data atual
     $hoje = new DateTime();
     if ($data_medida_obj === false || $data_medida_obj > $hoje) {
         $data_medida_obj = $hoje;
     }
 
-    // Formato para SQL Server
     $data_medida = $data_medida_obj->format('Y-m-d');
 
     if (!empty($bracos_input) && !is_numeric($bracos_input)) {
@@ -83,7 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         if (isset($_POST['dado_id']) && !empty($_POST['dado_id'])) {
-            // Atualizar dados
             $dado_id = $_POST['dado_id'];
             $sql = "UPDATE tbl_fisicoAluno SET braco = :braco, abdomen = :abdomen, peso = :peso, altura = :altura, perna = :perna, 
                     data_alteracao = CONVERT(DATETIME, :data_medida, 120) WHERE id_fisicoAluno = :dado_id";
@@ -98,12 +91,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'dado_id' => $dado_id
             ]);
         } else {
-            // Gerar um novo id_fisicoAluno
             $sql_max_id = "SELECT ISNULL(MAX(id_fisicoAluno), 0) + 1 AS new_id FROM tbl_fisicoAluno";
             $stmt_max_id = $conn->query($sql_max_id);
             $new_id_fisicoAluno = $stmt_max_id->fetch(PDO::FETCH_ASSOC)['new_id'];
 
-            // Inserir novos dados
             $id_professor = $_SESSION['id_professor'];
             $sql = "INSERT INTO tbl_fisicoAluno (id_fisicoAluno, id_aluno, id_professor, braco, abdomen, peso, altura, perna, data_alteracao) 
                     VALUES (:id_fisicoAluno, :id_aluno, :id_professor, :braco, :abdomen, :peso, :altura, :perna, CONVERT(DATETIME, :data_medida, 120))";
@@ -126,7 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
         
     } catch (PDOException $e) {
-        // Tentativa alternativa com formato diferente
         try {
             $data_medida_alt = $data_medida_obj->format('Ymd');
             
