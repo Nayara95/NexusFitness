@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -29,6 +29,10 @@
             <form action="autenticacao/login.php" method="POST">
                 <label for="email">Email ou CPF</label>
                 <input type="text" id="email" name="email" placeholder="Digite seu email ou CPF" required>
+
+            
+
+
 
                 <label for="senha">Senha</label>
                 <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>

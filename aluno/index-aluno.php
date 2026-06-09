@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado e se é um professor
+// Verifica se o usuário está logado e se é um aluno
 if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
     header('Location: ../login.php');
     exit;

@@ -246,6 +246,9 @@ VALUES
 (5, 'Plano Premium', 149, GETDATE(), 'Acesso ilimitado + aulas especiais', 5, 1);
 GO
 
+
+
+
 -- 7. Sétimo: tbl_pagamento (depende de aluno e plano)
 INSERT INTO tbl_pagamento (id_pagamento, dataPagamento, dataVencimento, valor, id_aluno, id_plano)
 VALUES
@@ -384,3 +387,67 @@ FROM tbl_agendaTreino a
 INNER JOIN tbl_aluno al ON a.id_aluno = al.id_aluno 
 INNER JOIN tbl_professor p ON a.id_professor = p.id_professor;
 GO
+
+
+-- mudanças nas tabelas
+
+ALTER TABLE tbl_aluno 
+ALTER COLUMN CPF NVARCHAR(20);
+GO
+
+ALTER TABLE tbl_aluno 
+ALTER COLUMN dd1 NVARCHAR(3);
+GO
+
+ALTER TABLE tbl_aluno 
+ALTER COLUMN telefone NVARCHAR(12);
+GO
+
+ALTER TABLE tbl_funcionarios 
+ALTER COLUMN CPF NVARCHAR(20);
+GO
+
+ALTER TABLE tbl_funcionarios 
+ALTER COLUMN dd1 NVARCHAR(3);
+GO
+
+ALTER TABLE tbl_funcionarios 
+ALTER COLUMN telefone NVARCHAR(12);
+GO
+
+ALTER TABLE tbl_professor
+ALTER COLUMN CPF NVARCHAR(20);
+GO
+
+ALTER TABLE tbl_professor 
+ALTER COLUMN dd1 NVARCHAR(3);
+GO
+
+ALTER TABLE tbl_professor
+ALTER COLUMN telefone NVARCHAR(12);
+GO
+
+select * from tbl_aluno;
+
+-- Altera a coluna para que o padrão seja a data/hora atual
+ALTER TABLE tbl_aluno 
+ADD CONSTRAINT DF_DataCadastro 
+DEFAULT GETDATE() FOR data_cadastro ;
+
+
+SELECT name 
+FROM sys.default_constraints 
+WHERE parent_object_id = OBJECT_ID('tbl_aluno');
+
+-- Apaga a regra antiga que estava travando o banco
+ALTER TABLE tbl_aluno DROP CONSTRAINT DF__tbl_aluno__data___4CA06362;
+
+ALTER TABLE tbl_aluno ADD CONSTRAINT DF_DataCadastro 
+DEFAULT GETDATE() FOR data_cadastro;
+
+
+
+
+
+
+

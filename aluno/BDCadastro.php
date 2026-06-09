@@ -2,9 +2,9 @@
 // Função para conectar ao banco de dados
 function conectar() {
     // CONEXÃO COM O BANCO DE DADOS
-    $local_server = "DESKTOP-HSJ09OO\SQLEXPRESS1";
+    $local_server = "tcp:127.0.0.1,1433";
     $usuario_server = "sa";
-    $senha_server = "loey";
+    $senha_server = "7556";
     $banco_de_dados = "BD_Nexus";
 
     $dns = "sqlsrv:Server=$local_server;Database=$banco_de_dados";
@@ -29,7 +29,7 @@ $tabela = "tbl_aluno";
 header('Content-Type: application/json');
 
 try {
-    // 1. CAPTURA DOS DADOS
+    //  CAPTURA DOS DADOS
     $novonome = $_POST["nome"] ?? '';
     $novosocial = $_POST["nome_social"] ?? '';
     $novoemail = $_POST["email"] ?? '';
@@ -38,10 +38,10 @@ try {
     $novoDataNasc = $_POST["data_nasc"] ?? null;
     $novaddd = $_POST["dd1"] ?? '';
     $novacelular = $_POST["telefone"] ?? '';
-    $senha_pura = filter_input(INPUT_POST, 'senha', FILTER_DEFAULT);
-    $senha_db = $senha_pura; // Senha pura (INSEGURO, mas conforme o código)
+    $senha_pura = filter_input(INPUT_POST, 'senha', FILTER_DEFAULT); //
+    $senha_db = $senha_pura; 
 
-    // 2. PREPARED STATEMENT
+    // PREPARED STATEMENT
     $stmt = $conn->prepare(
         "INSERT INTO " . $tabela . " (nome, nome_social, email, cpf, genero, data_nasc, dd1, telefone, senha) " .
         "VALUES (:nome, :nome_social, :email, :cpf, :genero, :data_nasc, :dd1, :telefone, :senha);"
@@ -57,11 +57,11 @@ try {
     $stmt->bindValue(":telefone", $novacelular);
     $stmt->bindValue(":senha", $senha_db);
 
-    // 3. EXECUÇÃO E OBTENÇÃO DO ID
+    //  EXECUÇÃO E OBTENÇÃO DO ID
     $stmt->execute();
     $novo_aluno_id = $conn->lastInsertId();
 
-    // 4. VERIFICAÇÃO CONDICIONAL DE PLANO
+    //  VERIFICAÇÃO CONDICIONAL DE PLANO
     $stmtPlano = $conn->prepare("SELECT COUNT(id_plano) FROM tbl_plano WHERE id_aluno = :id_aluno");
     $stmtPlano->bindParam(':id_aluno', $novo_aluno_id, PDO::PARAM_INT);
     $stmtPlano->execute();
@@ -76,7 +76,7 @@ try {
         $url_redirecionamento = '../escolha_plano.php?aluno_id=' . $novo_aluno_id;
     }
 
-    // 5. RESPOSTA DE SUCESSO JSON
+    //  RESPOSTA DE SUCESSO JSON
     echo json_encode([
         'status' => 'sucesso',
         'mensagem' => 'Cadastro realizado! Redirecionando para a próxima etapa.',
@@ -85,7 +85,7 @@ try {
     exit;
 
 } catch (PDOException $e) {
-    // 6. TRATAMENTO DE ERRO PDO
+    //  TRATAMENTO DE ERRO PDO
     http_response_code(500);
     echo json_encode([
         'status' => 'erro',

@@ -75,7 +75,7 @@ try {
 
 
       <?php 
-            // 4. LOOP PARA GERAR OS BLOCOS DE PLANO DINAMICAMENTE
+            // LOOP PARA GERAR OS BLOCOS DE PLANO DINAMICAMENTE
             if (!empty($planos)): 
                 foreach ($planos as $plano):
                     // Formata o valor para exibição em moeda (R$ 0,00)
@@ -103,13 +103,21 @@ try {
 
                 <form action="enderecoPg.php" method="GET" class="form-plano">
                     
-                    <input type="hidden" name="id_plano" value="<?php echo $plano['id_plano']; ?>">
+                    <input type="hidden" name="id_plano" value="<?php echo htmlspecialchars ($plano['id_plano']); ?>">
                     <input type="hidden" name="nome_plano" value="<?php echo htmlspecialchars($plano['nome_plano']); ?>">
-                    <input type="hidden" name="valor_plano" value="<?php echo $plano['valor_plano']; ?>">
+                    <input type="hidden" name="valor_plano" value="<?php echo htmlspecialchars($plano['valor_plano']); ?>">
                     <input type="hidden" name="aluno_id" value="<?php echo htmlspecialchars($aluno_id); ?>">
                     
                     <div class="btn-escolha">
-                        <button type="submit" class="btn-escolha-plano">Assinar</button>
+                       
+                    <button type="submit" class="btn-escolha-plano">Assinar</button>
+    
+    
+                    <a href="gerar_pdf.php?nome_plano=<?php echo urlencode($plano['nome_plano']); ?>&valor_plano=<?php echo $valor_formatado; ?>" 
+                    style="display:block; margin-top:15px; text-decoration:none; color: #f03c3c; font-weight: bold; font-size: 14px;">
+                    📄 Baixar Detalhes (PDF)
+                    </a>
+                    
                     </div>
                 </form>
             </div>
@@ -124,6 +132,9 @@ try {
         </div>
     </div>
 </main>
-    <?php include ('footer.php'); ?>
+    <?php include ('footer.php');
+    
+    ?>
 </body>
 </html>
+

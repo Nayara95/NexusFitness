@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); // Inicia a sessão para acessar as variáveis de sessão
 require_once '../autenticacao/conexao.php';
 
 // Verifica se o usuário está logado e se é um aluno
@@ -56,7 +56,7 @@ if (!$aluno) {
     <div class="perfil_container">
       <form action="cadastro" method="#">
         <label for="nome">Nome Completo</label>
-        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($aluno['nome']); ?>" readonly />
+        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($aluno['nome']); ?>" readonly /> <!-- O atributo readonly torna o campo não editável -->
 
         <label for="NomeSocial">Nome Social</label>
         <input type="text" id="NomeSocial" name="NomeSocial" value="<?php echo htmlspecialchars($aluno['nome_social']); ?>" readonly />
