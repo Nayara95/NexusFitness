@@ -9,24 +9,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
 
 require_once '../autenticacao/conexao.php';
 $conn = conectar();
-
-// Busca os dados do professor no banco de dados
 $stmt = $conn->prepare("SELECT * FROM tbl_professor WHERE id_professor = :id");
 $stmt->bindParam(':id', $_SESSION['id_professor']);
 $stmt->execute();
 $professor_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Se não encontrar o professor, redireciona para o login
 if (!$professor_info) {
     header('Location: ../login.php?error=not_found');
     exit;
 }
 
-// Processar upload de foto
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
     $uploadDir = '../uploads/professores/';
     
-    // Criar diretório se não existir
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
@@ -34,30 +29,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
     $fileName = 'professor_' . $professor_info['id_professor'] . '_' . time() . '_' . basename($_FILES['foto']['name']);
     $uploadFile = $uploadDir . $fileName;
     
-    // Verificar se é uma imagem
     $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
     $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
     
     if (in_array($imageFileType, $allowedTypes)) {
         if (move_uploaded_file($_FILES['foto']['tmp_name'], $uploadFile)) {
-            // Ler o conteúdo do arquivo para salvar como varbinary
             $fotoData = file_get_contents($uploadFile);
 
-            // Atualizar o blob da foto no banco de dados
             $stmt_update = $conn->prepare("UPDATE tbl_professor SET foto = :foto WHERE id_professor = :id");
-            // Especificar o tipo de encoding para dados binários para o driver SQLSRV
             $stmt_update->bindParam(':foto', $fotoData, PDO::PARAM_LOB, 0, PDO::SQLSRV_ENCODING_BINARY);
             $stmt_update->bindParam(':id', $professor_info['id_professor'], PDO::PARAM_INT);
             
             if ($stmt_update->execute()) {
-                // Não precisamos mais do arquivo temporário, o blob está no banco
                 unlink($uploadFile); 
                 $mensagem = "Foto atualizada com sucesso!";
-                // Recarregar a página para que a nova imagem seja exibida corretamente
                 header("Location: perfil-professor.php");
                 exit;
             } else {
-                // Se a atualização do banco falhar, remove o arquivo que foi upado
                 unlink($uploadFile);
                 $erro = "Erro ao atualizar a foto no banco de dados.";
             }
@@ -69,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
     }
 }
 
-// Processar atualização de dados
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['acao'] === 'atualizar') {
     $nome = $_POST['nome'] ?? $professor_info['nome'];
     $nome_social = $_POST['nome_social'] ?? null;
@@ -123,7 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
 
         if ($stmt_update->execute()) {
             $mensagem = "Dados atualizados com sucesso!";
-            // Recarregar as informações do professor após a atualização
             $stmt = $conn->prepare("SELECT * FROM tbl_professor WHERE id_professor = :id");
             $stmt->bindParam(':id', $_SESSION['id_professor']);
             $stmt->execute();
@@ -136,13 +122,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
     }
 }
 
-// Processar alteração de senha
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['acao'] === 'alterar_senha') {
     $senha_atual = $_POST['senha_atual'] ?? '';
     $nova_senha = $_POST['nova_senha'] ?? '';
     $confirmar_senha = $_POST['confirmar_senha'] ?? '';
-    
-    // Re-fetch professor info to get the current plain text password
     $stmt_current_pass = $conn->prepare("SELECT senha FROM tbl_professor WHERE id_professor = :id");
     $stmt_current_pass->bindParam(':id', $_SESSION['id_professor']);
     $stmt_current_pass->execute();
@@ -171,7 +154,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['ac
     }
 }
 
-// Função auxiliar para exibir valores de forma segura
 function exibirValor($array, $chave, $padrao = '') {
     return isset($array[$chave]) ? htmlspecialchars($array[$chave]) : $padrao;
 }

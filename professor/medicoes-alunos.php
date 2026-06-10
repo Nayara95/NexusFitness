@@ -9,9 +9,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
     exit;
 }
 
-// Processar ações POST antes de qualquer saída HTML
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Limpar aluno selecionado
     if (isset($_POST['limpar_aluno'])) {
         unset($_SESSION['aluno_selecionado_id']);
         unset($_SESSION['resultados_pesquisa']);
@@ -20,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     
-    // Limpar pesquisa
     if (isset($_POST['limpar_pesquisa'])) {
         unset($_SESSION['resultados_pesquisa']);
         unset($_SESSION['termo_pesquisa']);
@@ -28,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     
-    // Processar exclusão
     if (isset($_POST['excluir_id']) && isset($_SESSION['aluno_selecionado_id'])) {
         $excluirId = intval($_POST['excluir_id']);
         $sql_excluir = "DELETE FROM tbl_fisicoAluno WHERE id_fisicoAluno = :id";
@@ -47,14 +43,12 @@ $editarDado = null;
 $alunos = [];
 $dadosFisicos = [];
 
-// Buscar todos os alunos para a lista
 $sql_alunos = "SELECT id_aluno, nome, email FROM tbl_aluno";
 $stmt_alunos = $conn->query($sql_alunos);
 if ($stmt_alunos) {
     $alunos = $stmt_alunos->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Processar seleção de aluno via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aluno_id_selecionado'])) {
     $alunoId = intval($_POST['aluno_id_selecionado']);
     $_SESSION['aluno_selecionado_id'] = $alunoId;
@@ -76,7 +70,6 @@ if (isset($alunoId)) {
     }
 }
 
-// Processar edição via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_id']) && $alunoSelecionado) {
     $editarId = intval($_POST['editar_id']);
     foreach ($dadosAluno as $dado) {
@@ -87,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editar_id']) && $alun
     }
 }
 
-// Lógica de pesquisa via POST
 $resultados = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search']) && !empty($_POST['search'])) {
     $termo = '%' . strtolower($_POST['search']) . '%';
@@ -100,11 +92,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search']) && !empty($
 } elseif (isset($_SESSION['resultados_pesquisa'])) {
     $resultados = $_SESSION['resultados_pesquisa'];
 } else {
-    // Se não houver pesquisa, carrega todos os alunos
     $resultados = $alunos;
 }
 
-// Verificar mensagens de sucesso e erro
 $mensagem_sucesso = '';
 $mensagem_erro = '';
 if (isset($_SESSION['mensagem_sucesso'])) {

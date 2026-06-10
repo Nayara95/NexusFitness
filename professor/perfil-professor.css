@@ -214,7 +214,7 @@ body {
     }
 
     .info-grid, .form-grid {
-        grid-template-columns: 1fr; /* Stack items in a single column */
+        grid-template-columns: 1fr;
     }
 
     .perfil-container {

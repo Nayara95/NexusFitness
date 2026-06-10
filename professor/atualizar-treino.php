@@ -22,12 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $diasSemana = ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo'];
     $treinos = [];
     foreach ($diasSemana as $dia) {
-        // O campo sempre existirá no POST (mesmo vazio)
         $treinos[$dia] = isset($_POST[$dia]) ? trim($_POST[$dia]) : '';
     }
 
     try {
-        // Verifica se já existe registro
         $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_agendaTreino WHERE id_aluno = :id_aluno");
         $stmt->execute(['id_aluno' => $alunoId]);
         $count = $stmt->fetchColumn();
