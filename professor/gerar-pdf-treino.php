@@ -8,20 +8,17 @@ use Dompdf\Options;
 
 $conn = conectar();
 
-// Verifica permissão
 if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
     header('Location: ../login.php');
     exit;
 }
 
-// Recebe ID
 $alunoId = isset($_POST['id']) ? intval($_POST['id']) : 0;
 
 if ($alunoId <= 0) {
     die('Aluno inválido.');
 }
 
-// Buscar aluno
 $stmt = $conn->prepare("SELECT id_aluno, nome, email FROM tbl_aluno WHERE id_aluno = :id");
 $stmt->execute(['id' => $alunoId]);
 $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -30,7 +27,6 @@ if (!$aluno) {
     die('Aluno não encontrado.');
 }
 
-// Buscar treino
 $stmt = $conn->prepare("
     SELECT segunda, terca, quarta, quinta, sexta, sabado, domingo 
     FROM tbl_agendaTreino 
@@ -39,7 +35,6 @@ $stmt = $conn->prepare("
 $stmt->execute(['id' => $alunoId]);
 $treino = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Buscar saúde (última medição)
 $stmt = $conn->prepare("
     SELECT peso, altura 
     FROM tbl_fisicoAluno 

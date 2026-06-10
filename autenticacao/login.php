@@ -59,10 +59,16 @@ if ($aluno && password_verify($senha, $aluno['senha'])) {
 // (Funcionários com id_professor preenchido)
 // =========================
 $stmt = $conn->prepare("
-    SELECT id_funcionarios, id_professor, nome, senha
+     SELECT
+        id_funcionarios,
+        id_professor,
+        nome,
+        senha,
+        cargo
     FROM tbl_funcionarios
     WHERE email = :email
-      AND id_professor IS NOT NULL
+      AND LTRIM(RTRIM(cargo)) = 'Professor'
+      AND situacao = 'Ativo'
 ");
 $stmt->bindParam(':email', $email);
 $stmt->execute();

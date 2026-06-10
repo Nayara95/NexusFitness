@@ -10,9 +10,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['permissao'] !== 'professor') {
 require_once('../autenticacao/conexao.php');
 $conn = conectar();
 
-// Processar ações POST antes de qualquer saída HTML
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Limpar aluno selecionado
     if (isset($_POST['limpar_aluno'])) {
         unset($_SESSION['treino_aluno_id']);
         unset($_SESSION['treino_resultados_pesquisa']);
@@ -22,22 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     
-    // Limpar pesquisa
     if (isset($_POST['limpar_pesquisa'])) {
         unset($_SESSION['treino_resultados_pesquisa']);
         unset($_SESSION['treino_termo_pesquisa']);
         header('Location: treino-alunos.php');
         exit;
     }
-    
-    // Sair do modo de edição
+ 
     if (isset($_POST['cancelar_edicao'])) {
         unset($_SESSION['treino_edit_mode']);
         header('Location: treino-alunos.php');
         exit;
     }
-    
-    // Entrar em modo de edição
+
     if (isset($_POST['editar_treino'])) {
         $_SESSION['treino_edit_mode'] = true;
         header('Location: treino-alunos.php');
@@ -45,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Busca todos os alunos
+
 $stmt = $conn->query("SELECT id_aluno as id, nome, email, data_cadastro as data_inicio FROM tbl_aluno");
 $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -55,7 +50,6 @@ $saudeAluno = null;
 $dadosSaude = null;
 $questionario = [];
 
-// Processar seleção de aluno via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aluno_id_selecionado'])) {
     $alunoId = intval($_POST['aluno_id_selecionado']);
     $_SESSION['treino_aluno_id'] = $alunoId;
@@ -64,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aluno_id_selecionado'
 }
 
 if (isset($alunoId)) {
-    // Busca o aluno selecionado
     $stmt = $conn->prepare("SELECT id_aluno as id, nome, email FROM tbl_aluno WHERE id_aluno = :id");
     $stmt->execute(['id' => $alunoId]);
     $alunoSelecionado = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -93,7 +86,6 @@ if (isset($alunoId)) {
     }
 }
 
-// Processa a pesquisa via POST
 $resultadosPesquisa = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search']) && !empty($_POST['search'])) {
     $termoPesquisa = trim($_POST['search']);
@@ -112,10 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search']) && !empty($
     $resultadosPesquisa = $_SESSION['treino_resultados_pesquisa'];
 }
 
-// Modo de edição via sessão
 $isEditMode = isset($_SESSION['treino_edit_mode']);
 
-// Mensagens de sucesso/erro via sessão
 $mensagem_sucesso = '';
 $mensagem_erro = '';
 if (isset($_SESSION['treino_mensagem_sucesso'])) {
