@@ -1,4 +1,18 @@
 
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Captura os dados que estão na barra de endereços (URL)
+$id_plano_final = $_GET['id_plano'] ?? '';
+$nome_plano_final = $_GET['nome_plano'] ?? 'Plano Selecionado';
+$valor_plano_final = $_GET['valor_plano'] ?? '0.00';
+$aluno_id = $_GET['aluno_id'] ?? ($_SESSION['id_aluno'] ?? '');
+
+// Formata o preço recebido para aparecer como R$ XX,XX na tela
+$valor_formatado = "R$ " . number_format((float)$valor_plano_final, 2, ',', '.');
+?>
 
 
 <!DOCTYPE html>
@@ -35,18 +49,25 @@
             <div class="resumo-cobranca">
                 
                 <div class="resumo-item">
-                    <span>Valor a pagar</span>
-                    <span class="valor">R$ 00,00</span>
+                    <span class="valor"><?php echo htmlspecialchars($valor_formatado); ?>
+                </span>
                 </div>
                 <div class="resumo-item">
                     <span>Plano</span>
-                    <span class="nomePlano">Nexus Elite</span>
+                    <span class="nomePlano"><?php echo htmlspecialchars($nome_plano_final); ?></span>
                 </div>
             </div>
 
-            <form id="id_aluno" name="id_aluno" value="<?php echo $_SESSION['id_aluno']; ?>">
+           <!-- <!<form action="pagamento.php" method="POST" id="id_aluno" name="id_aluno" value="<?php echo $_SESSION['id_aluno']; ?>" >
 
-                <h2>Endereço de cobrança:</h2>
+                <h2>Endereço de cobrança:</h2> -->
+
+                <form action="pagamento.php" method="GET" id="formEndereco">
+                    <input type="hidden" name="id_aluno" value="<?php echo $_SESSION['id_aluno'] ?? ''; ?>">
+                    <input type="hidden" id="input_id_plano" name="id_plano" value=""> 
+
+                    <h2>Endereço de cobrança:</h2>
+
 
                 <label for="cep">CEP</label>
                 <div class="input-group-cep">
@@ -64,28 +85,28 @@
                     </div>
                     <div class="input-field">
                         <label for="cidade">Cidade</label>
-                        <input type="text" id="cidade" name="cidade" readonly>
+                        <input type="text" id="cidade" name="cidade">
                     </div>
                 </div>
 
                 <label for="bairro">Bairro</label>
-                <input type="text" id="bairro" name="bairro" readonly value="<?php echo htmlspecialchars($aluno['bairro']); ?>" >
+                <input type="text" id="bairro" name="bairro" readonly >
 
                 <label for="rua">Rua</label>
-                <input type="text" id="rua" name="rua" readonly value="<?php echo htmlspecialchars($aluno['rua']); ?>" >
+                <input type="text" id="rua" name="rua" readonly >
 
                 <div class="input-row">
                     <div class="input-field">
                         <label for="numero">Número</label>
-                        <input type="text" id="numero" name="numero" value="<?php echo htmlspecialchars($aluno['numero']); ?>">
+                        <input type="text" id="numero" name="numero" >
                     </div>
                     <div class="input-field">
                         <label for="complemento">Complemento</label>
-                        <input type="text" id="complemento" name="complemento" value="<?php echo htmlspecialchars($aluno['complemento']); ?>">
+                        <input type="text" id="complemento" name="complemento" >
                     </div>
                 </div>
 
-                <button type="submit" class="btn-agenda payment-button">Forma de pagamento</button>
+                <button type="submit" class="btn-agenda payment-button" style="margin-top: 5px;">Forma de pagamento</button>
             </form>
 
         </div>
@@ -112,6 +133,11 @@ document.addEventListener('DOMContentLoaded',() =>{
     
     const nomePlano = urlParams.get('nome_plano');
     const valorPlano = urlParams.get('valor_plano');
+
+    const idPlano = urlParams.get('id_plano'); // Captura o ID vindo da URL
+        if (idPlano) {
+    document.getElementById('input_id_plano').value = idPlano; // Insere no formulário
+    }
     
     // Formata o valor para R$ XX,XX
     let valorFormatado = 'R$ 00,00';
@@ -238,26 +264,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. ENVIAR DADOS DO ENDEREÇO (AJAX) - Listener do Submit
+    //  ENVIAR DADOS DO ENDEREÇO (AJAX) 
     if (form) {
         form.addEventListener('submit', function(event) {
             event.preventDefault(); 
             
             const formData = new FormData(form);
+
+            // --- ADICIONE AS DUAS LINHAS ABAIXO ---
+            const urlParams = new URLSearchParams(window.location.search);
+            formData.append('id_aluno', urlParams.get('id_aluno'));
             
             // Requisita o PHP para salvar o endereço
-            fetch('../autenticacao/BDEndereco.php', { 
+            fetch('../autenticacao/BDEndereco.php', { //enviando os dados para o BDEndereco
                 method: 'POST',
                 body: formData
             })
             .then(response => {
-                if (!response.ok) {
+                if (!response.ok) { // Verifica se a resposta é OK (status 200-299)
                     throw new Error('Erro na requisição: ' + response.statusText);
                 }
                 return response.json(); 
             })
             .then(data => {
-                if (data.status === 'sucesso') {
+                if (data.status === 'sucesso') { // Se o PHP retornar sucesso direciona para a página de pagamento
                     alert(data.mensagem);
                     // Redireciona para o pagamento
                     window.location.href = data.redirect_url;
@@ -266,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(error => {
-                console.error('Erro de envio:', error);
+                console.error('Erro de envio:', error); // Exibe uma mensagem de erro genérica para o usuário
                 alert('Erro ao processar a solicitação. Verifique o console.');
             });
         });
