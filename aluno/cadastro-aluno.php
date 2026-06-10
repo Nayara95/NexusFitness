@@ -41,7 +41,7 @@ session_start(); ?> <!-- Iniciando a sessão para armazenar dados do usuário --
                 <label for="nome">Nome Completo</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
 
-                <label for="nomeSocial">Nome social</label>
+                <label for="nomeSocial" value="<?php echo htmlspecialchars($aluno['nome_social']); ?>">Nome social</label>
                 <input type="text" id="nome_social" name="nome_social">
 
                 <label for="email">Email</label>
@@ -121,8 +121,6 @@ session_start(); ?> <!-- Iniciando a sessão para armazenar dados do usuário --
 
 
     </div> <!-- FIM div completa -->
-
-
 
 
 </main>

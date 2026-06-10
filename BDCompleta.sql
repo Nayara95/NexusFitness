@@ -154,6 +154,8 @@ CREATE TABLE tbl_dadosSaude(
 );
 GO
 
+
+
 CREATE TABLE tbl_fisicoAluno(
     id_fisicoAluno int PRIMARY KEY NOT NULL,
     altura decimal (18,2),
@@ -218,7 +220,10 @@ VALUES
 (2, 'Fernanda Lima', NULL, 'F', 'fernanda.lima@nexus.com', 'Recepcionista', 'Ativo', GETDATE(), 22233344455, '1985-06-20', 11, 922223333, GETDATE(), 222222, GETDATE(), GETDATE(), 'Avenida Central', 200, 'Jardins', 22222222, 'São Paulo', 'SP', 'Apto 201', NULL, NULL),
 (3, 'Ricardo Moura', NULL, 'M', 'ricardo.moura@nexus.com', 'Administrativo', 'Ativo', GETDATE(), 33344455566, '1978-11-30', 11, 933334444, GETDATE(), 333333, GETDATE(), GETDATE(), 'Rua Secundária', 300, 'Vila Olímpia', 33333333, 'São Paulo', 'SP', 'Casa 3', NULL, NULL);
 GO
-
+select * from tbl_professor
+INSERT INTO tbl_funcionarios (id_funcionarios, nome, nome_social, genero, email, cargo, situacao, data_registro, cpf, data_nasc, dd1, telefone, data_cadastro, senha, data_inicio, data_alteracao, rua, numero_endereco, bairro, cep, cidade, uf, complemento, id_professor, id_permissao)
+VALUES
+(4, 'Roberto Alves', NULL, 'M', 'irineu@nexus.com', 'Professor', 'Ativo', GETDATE(), 11122233344, '1980-01-15', 11, 911112222, GETDATE(), 111111, GETDATE(), GETDATE(), 'Rua dos Gerentes', 100, 'Centro', 11111111, 'São Paulo', 'SP', 'Sala 1', NULL, NULL);
 -- 4. Quarto: tbl_professor (agora com estrutura correta)
 INSERT INTO tbl_professor (id_professor, nome, nome_social, genero, email, senha, registro_cref, cpf, data_nasc, dd1, telefone, data_cadastro, data_inicio, data_alteracao, rua, numero_endereco, bairro, cep, cidade, uf, complemento, id_funcionarios)
 VALUES
@@ -427,7 +432,25 @@ ALTER TABLE tbl_professor
 ALTER COLUMN telefone NVARCHAR(12);
 GO
 
+ALTER TABLE tbl_enderecoAluno
+ALTER COLUMN numero_endereco NVARCHAR(12);
+GO
+
+ALTER TABLE tbl_enderecoAluno
+ALTER COLUMN cep NVARCHAR(12);
+GO
+
+ALTER TABLE tbl_aluno
+ALTER COLUMN senha varchar(255) NOT NULL;
+GO
+
+
+
+
 select * from tbl_aluno;
+select * from tbl_enderecoAluno;
+select * from tbl_dadosSaude;
+
 
 -- Altera a coluna para que o padrão seja a data/hora atual
 ALTER TABLE tbl_aluno 

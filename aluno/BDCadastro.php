@@ -14,7 +14,6 @@ function conectar() {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $conn;
     } catch (PDOException $e) {
-        // CORREÇÃO: Enviar header JSON para o navegador entender a falha na conexão
         header('Content-Type: application/json');
         http_response_code(500);
         die(json_encode(['status' => 'erro', 'mensagem' => 'ERRO NA CONEXÃO: ' . $e->getMessage()]));
@@ -38,8 +37,11 @@ try {
     $novoDataNasc = $_POST["data_nasc"] ?? null;
     $novaddd = $_POST["dd1"] ?? '';
     $novacelular = $_POST["telefone"] ?? '';
-    $senha_pura = filter_input(INPUT_POST, 'senha', FILTER_DEFAULT); //
-    $senha_db = $senha_pura; 
+    
+    // GERANDO O HASH DA SENHA
+    $senha_pura = filter_input(INPUT_POST, 'senha', FILTER_DEFAULT); 
+    $senha_db = password_hash($senha_pura, PASSWORD_DEFAULT); 
+   
 
     // PREPARED STATEMENT
     $stmt = $conn->prepare(
@@ -55,7 +57,7 @@ try {
     $stmt->bindValue(":data_nasc", $novoDataNasc);
     $stmt->bindValue(":dd1", $novaddd);
     $stmt->bindValue(":telefone", $novacelular);
-    $stmt->bindValue(":senha", $senha_db);
+    $stmt->bindValue(":senha", $senha_db); // Grava o hash gerado
 
     //  EXECUÇÃO E OBTENÇÃO DO ID
     $stmt->execute();
@@ -69,10 +71,8 @@ try {
 
     $url_redirecionamento = '';
     if ($tem_plano > 0) {
-        // Se TEM plano, direciona para o perfil
         $url_redirecionamento = '../aluno/perfilAluno.php';
     } else {
-        // Se NÃO TEM plano, direciona para a escolha do plano (passando o ID)
         $url_redirecionamento = '../escolha_plano.php?aluno_id=' . $novo_aluno_id;
     }
 
@@ -85,7 +85,6 @@ try {
     exit;
 
 } catch (PDOException $e) {
-    //  TRATAMENTO DE ERRO PDO
     http_response_code(500);
     echo json_encode([
         'status' => 'erro',
@@ -93,5 +92,4 @@ try {
     ]);
     exit;
 }
-
 ?>

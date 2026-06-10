@@ -1,14 +1,30 @@
 <?php
 
-// Chamando o arquivo escolha_plano.php
 session_start();
-
-// 1. INCLUIR CONEXÃO
  require_once '../autenticacao/conexao.php'; 
 
-// 2. OBTER O ID DO ALUNO necessario para o pagamento
-// O ID é passado via URL após o cadastro, mas o usuário também pode estar logado.
-$aluno_id = $_GET['aluno_id'] ?? ($_SESSION['id_aluno'] ?? null);
+// Tenta pegar o ID de qualquer uma das variações de nomes de sessão mais comuns
+$aluno_id = $_GET['aluno_id'] ?? $_SESSION['id_aluno'] ?? $_SESSION['id'] ?? $_SESSION['aluno_id'] ?? null;
+
+//   VERIFICAÇÃO DE ENDEREÇO EXISTENTE ---
+$ja_tem_endereco = false;
+if (!empty($aluno_id)) {
+    try {
+        $conn = conectar();
+        // Consulta se o aluno já tem o ID do endereço preenchido na tabela aluno
+        $stmtCheckEnd = $conn->prepare("SELECT id_enderecoAluno FROM tbl_aluno WHERE id_aluno = :id_aluno");
+        $stmtCheckEnd->bindParam(':id_aluno', $aluno_id, PDO::PARAM_INT);
+        $stmtCheckEnd->execute();
+        $id_endereco_vinculado = $stmtCheckEnd->fetchColumn();
+
+        if ($id_endereco_vinculado) {
+            $ja_tem_endereco = true; // Aluno já tem endereço cadastrado!
+        }
+    } catch (PDOException $e) {
+        error_log("Erro ao checar endereço do aluno: " . $e->getMessage());
+    }
+}
+// ------------------------------------------------
 
 // 3. BUSCAR DADOS DOS PLANOS NO BANCO DE DADOS
 $planos = [];
@@ -22,7 +38,6 @@ try {
     $planos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
-    // Em caso de erro, você pode logar a mensagem ou definir um array vazio
     error_log("Erro ao buscar planos: " . $e->getMessage());
     $planos = [];
 }
@@ -41,14 +56,11 @@ try {
    
 </head>
 <body>
- <!-- ======== CABEÇALHO/HEADER ======== -->
-    <?php
+ <?php
          include ('header.php')    
     ?>
 <main>
- <!-- ======== SEÇÃO PRINCIPAL BODY/MAIN ======== -->
-   
-      <section class="intro">
+ <section class="intro">
         <div class="intro-text">
           <h1>Um ponto de conexão inabalável!</h1>
           <p>
@@ -83,6 +95,10 @@ try {
                     
                     // Converte a observação (se contiver pontos ou quebras de linha) em itens de lista
                     $observacoes_lista = explode(';', $plano['observacao']);
+
+                    // --- ADIÇÃO: DEFINE O DESTINO DO FORMULÁRIO DINAMICAMENTE ---
+                    // Se já tiver endereço vai para pagamento.php, senão vai para enderecoPg.php
+                    $action_destino = $ja_tem_endereco ? "pagamento.php" : "enderecoPg.php";
             ?>
             
             <div class="nexus_plano" id="plano-<?php echo $plano['id_plano']; ?>">
@@ -101,7 +117,7 @@ try {
                     ?>
                 </ul>
 
-                <form action="enderecoPg.php" method="GET" class="form-plano">
+                <form action="<?php echo $action_destino; ?>" method="GET" class="form-plano">
                     
                     <input type="hidden" name="id_plano" value="<?php echo htmlspecialchars ($plano['id_plano']); ?>">
                     <input type="hidden" name="nome_plano" value="<?php echo htmlspecialchars($plano['nome_plano']); ?>">
@@ -137,4 +153,3 @@ try {
     ?>
 </body>
 </html>
-

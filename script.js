@@ -428,3 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Exemplo de como coletar dentro do seu script.js no momento do envio:
+const idDoPlanoCerto = document.getElementById('final_id_plano').value;

@@ -5,7 +5,7 @@ function conectar() {
     $usuario_server = "sa";
     $senha_server = "7556";
     $banco_de_dados = "BD_Nexus";
-     // As in BDCompleta.sql
+    
 
     $dns = "sqlsrv:Server=$local_server;Database=$banco_de_dados";
 

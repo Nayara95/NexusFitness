@@ -12,7 +12,8 @@
         <a href="#"><img src="../imagens/facebook.png" alt="Facebook" /></a>
         <a href="#"><img src="../imagens/instagram.png" alt="Instagram" /></a>
      
-      <p>© 2025 Nexus Fitness — Todos os direitos reservados.</p>
+        <p style="text-align: center; width: 100%">© 2025 Nexus Fitness — Todos os direitos reservados.</p>
+
 
       </div>
 

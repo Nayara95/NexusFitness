@@ -14,6 +14,7 @@
             <div class="dropdown-content">
               <a href="boasvindasAluno.php">Área do Aluno</a>
               <a href="perfilAluno.php">Meu Perfil</a>
+              <a href="escolha_plano.php">Escolher Plano</a>
               <a href="../autenticacao/logout.php">Sair</a>
             </div>
         </div>

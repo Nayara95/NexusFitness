@@ -26,7 +26,9 @@
             nosso combustível diário!
           </p>
           <button class="btn-principal">
-             <a href="sabiaMais.html">Saiba mais </a>
+              <a href="sabiaMais.php" style="text-decoration: none; color: inherit;">
+                 Saiba mais
+              </a>
           </button>
         </div>
         <div class="img-banner">

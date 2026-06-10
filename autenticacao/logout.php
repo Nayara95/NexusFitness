@@ -8,6 +8,6 @@ $_SESSION = array();
 session_destroy();
 
 // Redireciona para a página inicial
-header('Location: ../inicio.php');
+header('Location: ../index.php');
 exit;
 ?>

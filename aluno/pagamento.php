@@ -1,3 +1,28 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// 1. Se os dados vieram pela URL (GET), nós os guardamos imediatamente na Sessão
+if (isset($_GET['id_plano'])) {
+    $_SESSION['id_plano_escolhido'] = $_GET['id_plano'];
+    $_SESSION['nome_plano_escolhido'] = $_GET['nome_plano'] ?? 'Plano Selecionado';
+    $_SESSION['valor_plano_escolhido'] = $_GET['valor_plano'] ?? '0.00';
+}
+if (isset($_GET['aluno_id'])) {
+    $_SESSION['id_aluno'] = $_GET['aluno_id'];
+}
+
+// 2. Agora capturamos os dados priorizando a Sessão (assim, mesmo que a URL limpe, os dados continuam vivos)
+$id_plano_final   = $_SESSION['id_plano_escolhido'] ?? '';
+$nome_plano_final  = $_SESSION['nome_plano_escolhido'] ?? 'Plano Nexus';
+$valor_plano_final = $_SESSION['valor_plano_escolhido'] ?? '0.00';
+$aluno_id          = $_SESSION['id_aluno'] ?? null;
+
+// Formata o preço para o padrão brasileiro
+$valor_formatado = "R$ " . number_format((float)$valor_plano_final, 2, ',', '.');
+?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -56,6 +81,7 @@
         </div>
 
          <form id="formPagamento">
+         <input type="hidden" id="final_id_plano" name="id_plano" value="<?php echo htmlspecialchars($id_plano_final); ?>">
         
             <!-- Opções cartão -->
 
@@ -110,8 +136,17 @@
                 
                 <p class="aviso-expiracao">Prazo de expiração: 30 minutos.</p>
 
+               <!--  //Simulador para pagamento do plano escolhido, redireciona para a área do aluno  -->
                 <button type="submit" id="btnPagarPix">Já Paguei (Notificar)</button>
-            </div>
+                
+                
+                </div>
+            
+
+                <div class="voltar-area">
+                <button type="button" id="btnvoltar" onclick="bemvindo('escolha_plano.php')">
+                        Voltar
+                </button>
             
         </form>
 
@@ -123,9 +158,41 @@
     
 
    
-    <script src="../script.js"></script>
+    <script src="../script.js">
 
+    </script>
 
+    <script>
+document.getElementById('formPagamento').addEventListener('submit', function(e) {
+            e.preventDefault();
 
+            const formData = new FormData(this);
+
+            document.getElementById('btnPagarCartao').disabled = true;
+            document.getElementById('btnPagarPix').disabled = true;
+
+            fetch('atualizar_plano.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.sucesso) {
+                    alert("Pagamento Simulado com Sucesso! Seu perfil foi atualizado.");
+                    window.location.href = 'boasvindasAluno.php';
+                } else {
+                    alert("Erro no processamento: " + data.mensagem);
+                    document.getElementById('btnPagarCartao').disabled = false;
+                    document.getElementById('btnPagarPix').disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error("Erro na comunicação:", error);
+                alert("Houve um erro ao processar a simulação do plano.");
+                document.getElementById('btnPagarCartao').disabled = false;
+                document.getElementById('btnPagarPix').disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>

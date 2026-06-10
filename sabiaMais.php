@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +27,7 @@
           <button class="dropbtn">Minha Conta▾</button>
           <div class="dropdown-content">
             <a href="login.php">Login</a>
-            <a href="inicio.php">Voltar</a>     
+            <a href="index.php">Voltar</a>     
         </div>
       </div>
     </header>
@@ -65,6 +66,17 @@
         </div>            
     </section>
 
+    <form action="cookie.php" method="POST">
+   <label for="conteudoCookie">Criar Cookie</label>
+    
+ 
+   <input type = "submit" 
+       name = "btn1" value="Salvar" />
+   
+</form>
+
 
 </body>
+
+
 </html>
